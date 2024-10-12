@@ -9,5 +9,6 @@ package clases;
  * @author Mauri
  */
 public class admin {
-    
+    String nombre;
+    int id;
 }
