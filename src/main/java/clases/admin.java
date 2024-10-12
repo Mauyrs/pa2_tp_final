@@ -11,4 +11,5 @@ package clases;
 public class admin {
     String nombre;
     int id;
+    int i ;
 }

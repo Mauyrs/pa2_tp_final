@@ -9,5 +9,5 @@ package clases;
  * @author Mauri
  */
 public class usuario {
-    
+    String nombre;
 }
