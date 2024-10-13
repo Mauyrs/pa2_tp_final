@@ -1,13 +1,27 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package clases;
 
-/**
- *
- * @author Mauri
- */
+import java.util.LinkedList;
+import java.util.List;
+
+
 public class buscador {
+    private List <producto> listaProductos;
+
+    public buscador() {
+        this.listaProductos = new LinkedList <>();
+    }
+
+    public buscador(List<producto> listaProductos) {
+        this.listaProductos = listaProductos;
+    }
+
+    public List<producto> getListaProductos() {
+        return listaProductos;
+    }
+
+    public void setListaProductos(List<producto> listaProductos) {
+        this.listaProductos = listaProductos;
+    }
     
 }

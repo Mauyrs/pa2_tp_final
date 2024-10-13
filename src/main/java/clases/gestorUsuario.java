@@ -1,13 +1,25 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package clases;
 
-/**
- *
- * @author Mauri
- */
+import java.util.List;
+
+
 public class gestorUsuario {
+    private List <usuario> listaUsuarios;
+
+    public gestorUsuario() {
+    }
+
+    public gestorUsuario(List<usuario> listaUsuarios) {
+        this.listaUsuarios = listaUsuarios;
+    }
+
+    public List<usuario> getListaUsuarios() {
+        return listaUsuarios;
+    }
+
+    public void setListaUsuarios(List<usuario> listaUsuarios) {
+        this.listaUsuarios = listaUsuarios;
+    }
     
 }
