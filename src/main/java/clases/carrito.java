@@ -5,14 +5,7 @@ package clases;
 public class carrito {
     private usuario usuario;
     private int idCarrito;
-    //mostrando a jose github
-    private int lobo;
-    
-    
-    
-    
-    
-    
+ 
     
     //falta hashmap
     public carrito() {
