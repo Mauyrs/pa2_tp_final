@@ -90,7 +90,16 @@ public class usuario {
         this.listaPedidos = listaPedidos;
     }
   
+    public void enlazarPedidos(pedido pedi){
+    listaPedidos.add(pedi);
+        System.out.println("Sus lista de pedidos ha sido actualizada \n");
     
-    
+}
+    public void mostrarPedios(pedido pedi){
+        System.out.println("Lista de sus pedidos");
+        for(pedido ped: listaPedidos){
+            System.out.println("ID "+ ped.getIdPedido()+ " - "+  "monto "+ ped.getMontoPedido()+ "\n" );
+        }
+    }
     
 }

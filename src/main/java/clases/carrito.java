@@ -5,6 +5,8 @@ package clases;
 public class carrito {
     private usuario usuario;
     private int idCarrito;
+ 
+    
     //falta hashmap
     public carrito() {
     }
