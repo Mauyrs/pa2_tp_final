@@ -70,7 +70,7 @@ public class Login extends javax.swing.JFrame {
         });
 
         btnOlvidecontra.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        btnOlvidecontra.setText("Olvide mi contraseña");
+        btnOlvidecontra.setText("Registrarse");
         btnOlvidecontra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnOlvidecontraActionPerformed(evt);
