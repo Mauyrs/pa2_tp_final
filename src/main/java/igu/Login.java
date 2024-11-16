@@ -32,9 +32,9 @@ public class Login extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
-        Iniciar = new javax.swing.JButton();
+        btnLogin = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        passUsuario = new javax.swing.JPasswordField();
         jSeparator3 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -66,26 +66,26 @@ public class Login extends javax.swing.JFrame {
         });
         jPanel1.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, 240, 24));
 
-        Iniciar.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        Iniciar.setText("Login");
-        Iniciar.addActionListener(new java.awt.event.ActionListener() {
+        btnLogin.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        btnLogin.setText("Login");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                IniciarActionPerformed(evt);
+                btnLoginActionPerformed(evt);
             }
         });
-        jPanel1.add(Iniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 390, 120, 40));
+        jPanel1.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 390, 120, 40));
 
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, 240, 10));
 
-        jPasswordField1.setBorder(null);
-        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+        passUsuario.setBorder(null);
+        passUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField1ActionPerformed(evt);
+                passUsuarioActionPerformed(evt);
             }
         });
-        jPanel1.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 350, 240, -1));
+        jPanel1.add(passUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 350, 240, -1));
 
         jSeparator3.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
@@ -109,26 +109,26 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUsuarioActionPerformed
 
-    private void IniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IniciarActionPerformed
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_IniciarActionPerformed
+    }//GEN-LAST:event_btnLoginActionPerformed
 
-    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+    private void passUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passUsuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField1ActionPerformed
+    }//GEN-LAST:event_passUsuarioActionPerformed
 
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Iniciar;
+    private javax.swing.JButton btnLogin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JPasswordField passUsuario;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

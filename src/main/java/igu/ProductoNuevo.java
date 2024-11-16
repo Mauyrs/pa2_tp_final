@@ -45,6 +45,7 @@ public class ProductoNuevo extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         txtDescripcion = new javax.swing.JTextField();
         jSeparator7 = new javax.swing.JSeparator();
+        btnGuardar = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
         jTextField1.setBorder(null);
@@ -142,6 +143,14 @@ public class ProductoNuevo extends javax.swing.JFrame {
         jSeparator7.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 420, 170, 10));
 
+        btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 400, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -180,9 +189,14 @@ public class ProductoNuevo extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDescripcionActionPerformed
 
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnGuardar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
