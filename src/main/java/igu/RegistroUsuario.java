@@ -4,6 +4,8 @@
  */
 package igu;
 
+import java.awt.Color;
+
 /**
  *
  * @author Nacho
@@ -34,13 +36,14 @@ public class RegistroUsuario extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        txtNombre = new javax.swing.JTextField();
+        txtUsuario = new javax.swing.JTextField();
         txtDireccion = new javax.swing.JTextField();
         txtCorreo = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
         passUsuario = new javax.swing.JPasswordField();
         jSeparator4 = new javax.swing.JSeparator();
+        jCheckBox1 = new javax.swing.JCheckBox();
 
         jTextField1.setText("jTextField1");
         jTextField1.setBorder(null);
@@ -53,12 +56,13 @@ public class RegistroUsuario extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("REGISTRO");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 40, 210, 90));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, 210, 90));
 
         jLabel2.setText("CONTRASEÑA");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 300, -1, -1));
@@ -76,15 +80,29 @@ public class RegistroUsuario extends javax.swing.JFrame {
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 340, 170, 10));
 
-        txtNombre.setBorder(null);
-        txtNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreActionPerformed(evt);
+        txtUsuario.setForeground(new java.awt.Color(204, 204, 204));
+        txtUsuario.setText("Ingrese su nombre de usuario");
+        txtUsuario.setBorder(null);
+        txtUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtUsuarioMousePressed(evt);
             }
         });
-        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, 170, -1));
+        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUsuarioActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, 170, -1));
 
+        txtDireccion.setForeground(new java.awt.Color(204, 204, 204));
+        txtDireccion.setText("Ingrese su direccion");
         txtDireccion.setBorder(null);
+        txtDireccion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtDireccionMousePressed(evt);
+            }
+        });
         txtDireccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDireccionActionPerformed(evt);
@@ -92,7 +110,14 @@ public class RegistroUsuario extends javax.swing.JFrame {
         });
         jPanel1.add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 210, 170, -1));
 
+        txtCorreo.setForeground(new java.awt.Color(204, 204, 204));
+        txtCorreo.setText("Ingrese su correo");
         txtCorreo.setBorder(null);
+        txtCorreo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtCorreoMousePressed(evt);
+            }
+        });
         txtCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCorreoActionPerformed(evt);
@@ -108,26 +133,38 @@ public class RegistroUsuario extends javax.swing.JFrame {
         jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 230, 170, 10));
 
-        passUsuario.setText("jPasswordField1");
+        passUsuario.setForeground(new java.awt.Color(204, 204, 204));
+        passUsuario.setText("********");
         passUsuario.setBorder(null);
+        passUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                passUsuarioMousePressed(evt);
+            }
+        });
         passUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 passUsuarioActionPerformed(evt);
             }
         });
-        jPanel1.add(passUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 320, -1, -1));
+        jPanel1.add(passUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 320, 170, -1));
 
         jSeparator4.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 280, 170, 10));
 
+        jCheckBox1.setText("Mostrar contraseña");
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 320, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 919, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 925, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,9 +178,9 @@ public class RegistroUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
+    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreActionPerformed
+    }//GEN-LAST:event_txtUsuarioActionPerformed
 
     private void txtDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionActionPerformed
         // TODO add your handling code here:
@@ -157,9 +194,122 @@ public class RegistroUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_passUsuarioActionPerformed
 
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+ if (jCheckBox1.isSelected()) {
+  
+                  passUsuario.setEchoChar((char) 0); // Hace visible el texto
+                } else {
+                    // Si no está seleccionado, ocultar el texto de la contraseña
+                    passUsuario.setEchoChar('*'); // Vuelve a ocultar el texto
+                }        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
+
+    private void txtUsuarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUsuarioMousePressed
+        // TODO add your handling code here:
+            if(txtUsuario.getText().equals("Ingrese su nombre de usuario")){
+            txtUsuario.setText("");
+            txtUsuario.setForeground(Color.black);
+        }
+        
+        if(String.valueOf(passUsuario.getPassword()).isEmpty()){
+        passUsuario.setText("********");
+        passUsuario.setForeground(Color.gray);
+    }
+      if(txtCorreo.getText().isEmpty()){
+          txtCorreo.setText("Ingrese su correo");
+          txtCorreo.setForeground(Color.gray);
+      }
+      if(txtDireccion.getText().isEmpty()){
+          txtDireccion.setText("Ingrese su direccion");
+          txtDireccion.setForeground(Color.gray);
+      }
+      
+    }//GEN-LAST:event_txtUsuarioMousePressed
+
+    private void txtDireccionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDireccionMousePressed
+                    if(txtDireccion.getText().equals("Ingrese su direccion")){
+            txtDireccion.setText("");
+            txtDireccion.setForeground(Color.black);
+        }
+        
+        if(String.valueOf(passUsuario.getPassword()).isEmpty()){
+        passUsuario.setText("********");
+        passUsuario.setForeground(Color.gray);
+    }
+      if(txtCorreo.getText().isEmpty()){
+          txtCorreo.setText("Ingrese su correo");
+          txtCorreo.setForeground(Color.gray);
+      }
+      if(txtUsuario.getText().isEmpty()){
+          txtUsuario.setText("Ingrese su nombre de usuario");
+          txtUsuario.setForeground(Color.gray);
+      }
+      
+    }//GEN-LAST:event_txtDireccionMousePressed
+
+    private void txtCorreoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCorreoMousePressed
+                    if(txtCorreo.getText().equals("Ingrese su correo")){
+            txtCorreo.setText("");
+            txtCorreo.setForeground(Color.black);
+        }
+        
+        if(String.valueOf(passUsuario.getPassword()).isEmpty()){
+        passUsuario.setText("********");
+        passUsuario.setForeground(Color.gray);
+    }
+      if(txtUsuario.getText().isEmpty()){
+          txtUsuario.setText("Ingrese su nombre de usuario");
+          txtUsuario.setForeground(Color.gray);
+      }
+      if(txtDireccion.getText().isEmpty()){
+          txtDireccion.setText("Ingrese su direccion");
+          txtDireccion.setForeground(Color.gray);
+      }
+      
+    }//GEN-LAST:event_txtCorreoMousePressed
+
+    private void passUsuarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passUsuarioMousePressed
+      // TODO add your handling code here:
+          if(String.valueOf(passUsuario.getPassword()).equals("********")){
+              passUsuario.setText("");
+              passUsuario.setForeground(Color.black);
+              } else{
+            if(txtUsuario.getText().isEmpty()){
+              txtUsuario.setText("Ingrese su nombre de usuario");
+              txtUsuario.setForeground(Color.gray);
+          }else{
+             if(txtCorreo.getText().isEmpty()){
+                 txtCorreo.setText("Ingrese su correo");
+                 txtCorreo.setForeground(Color.gray);
+             }else{
+                 if(txtDireccion.getText().isEmpty()){
+                  txtDireccion.setText("Ingrese su direccion");
+                  txtDireccion.setForeground(Color.gray);
+                 }
+             }   
+            }
+    }                                        
+  if(txtUsuario.getText().isEmpty()){
+                
+              txtUsuario.setText("Ingrese su nombre de usuario");
+              txtUsuario.setForeground(Color.gray);
+    }
+  if(txtDireccion.getText().isEmpty()){
+              txtDireccion.setText("Ingrese su direccion");
+              txtDireccion.setForeground(Color.gray);
+                 }
+  if(txtCorreo.getText().isEmpty()){
+              txtCorreo.setText("Ingrese su correo");
+              txtCorreo.setForeground(Color.gray);
+             }
+  
+  
+    }//GEN-LAST:event_passUsuarioMousePressed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -174,6 +324,6 @@ public class RegistroUsuario extends javax.swing.JFrame {
     private javax.swing.JPasswordField passUsuario;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtDireccion;
-    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }
