@@ -164,6 +164,7 @@ public class Login extends javax.swing.JFrame {
         passUsuario.setText("********");
         passUsuario.setForeground(Color.gray);
     }
+      
     }//GEN-LAST:event_txtUsuarioMousePressed
 
     private void passUsuarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passUsuarioMousePressed
@@ -171,15 +172,19 @@ public class Login extends javax.swing.JFrame {
           if(String.valueOf(passUsuario.getPassword()).equals("********")){
               passUsuario.setText("");
               passUsuario.setForeground(Color.black);
-        {  
+              } else{
             if(txtUsuario.getText().isEmpty()){
                 
               txtUsuario.setText("Ingrese su nombre de usuario");
               txtUsuario.setForeground(Color.gray);
-          }
-       } 
+          } 
     }//GEN-LAST:event_passUsuarioMousePressed
- } 
+  if(txtUsuario.getText().isEmpty()){
+                
+              txtUsuario.setText("Ingrese su nombre de usuario");
+              txtUsuario.setForeground(Color.gray);
+    } 
+   } 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnLoginActionPerformed
