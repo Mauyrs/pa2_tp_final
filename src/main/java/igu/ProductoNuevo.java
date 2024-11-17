@@ -4,6 +4,8 @@
  */
 package igu;
 
+import java.awt.Color;
+
 /**
  *
  * @author Nacho
@@ -33,7 +35,7 @@ public class ProductoNuevo extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        txtNombre = new javax.swing.JTextField();
+        txtUsuario = new javax.swing.JTextField();
         txtPrecio = new javax.swing.JTextField();
         txtCategoria = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
@@ -77,15 +79,34 @@ public class ProductoNuevo extends javax.swing.JFrame {
         jLabel6.setText("CANTIDAD EN STOCK");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 260, -1, -1));
 
-        txtNombre.setBorder(null);
-        txtNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreActionPerformed(evt);
+        txtUsuario.setForeground(new java.awt.Color(204, 204, 204));
+        txtUsuario.setText("Ingrese el nombre del producto");
+        txtUsuario.setBorder(null);
+        txtUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtUsuarioMousePressed(evt);
             }
         });
-        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 160, 170, -1));
+        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUsuarioActionPerformed(evt);
+            }
+        });
+        txtUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtUsuarioKeyPressed(evt);
+            }
+        });
+        jPanel1.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 160, 180, 20));
 
+        txtPrecio.setForeground(new java.awt.Color(204, 204, 204));
+        txtPrecio.setText("Ingrese el precio del producto");
         txtPrecio.setBorder(null);
+        txtPrecio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtPrecioMousePressed(evt);
+            }
+        });
         txtPrecio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPrecioActionPerformed(evt);
@@ -93,7 +114,14 @@ public class ProductoNuevo extends javax.swing.JFrame {
         });
         jPanel1.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 220, 170, -1));
 
+        txtCategoria.setForeground(new java.awt.Color(204, 204, 204));
+        txtCategoria.setText("Ingrese una categoria");
         txtCategoria.setBorder(null);
+        txtCategoria.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtCategoriaMousePressed(evt);
+            }
+        });
         txtCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCategoriaActionPerformed(evt);
@@ -113,7 +141,14 @@ public class ProductoNuevo extends javax.swing.JFrame {
         jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 300, 170, 10));
 
+        txtCantStock.setForeground(new java.awt.Color(204, 204, 204));
+        txtCantStock.setText("Ingrese la cantidad en stock");
         txtCantStock.setBorder(null);
+        txtCantStock.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtCantStockMousePressed(evt);
+            }
+        });
         txtCantStock.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCantStockActionPerformed(evt);
@@ -131,7 +166,14 @@ public class ProductoNuevo extends javax.swing.JFrame {
         jLabel7.setText("DESCRIPCION");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 380, -1, -1));
 
+        txtDescripcion.setForeground(new java.awt.Color(204, 204, 204));
+        txtDescripcion.setText("Ingrese una descripcion");
         txtDescripcion.setBorder(null);
+        txtDescripcion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtDescripcionMousePressed(evt);
+            }
+        });
         txtDescripcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDescripcionActionPerformed(evt);
@@ -169,9 +211,9 @@ public class ProductoNuevo extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
+    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreActionPerformed
+    }//GEN-LAST:event_txtUsuarioActionPerformed
 
     private void txtPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioActionPerformed
         // TODO add your handling code here:
@@ -192,6 +234,138 @@ public class ProductoNuevo extends javax.swing.JFrame {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void txtUsuarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUsuarioMousePressed
+          if(txtUsuario.getText().equals("Ingrese el nombre del producto")){
+            txtUsuario.setText("");
+            txtUsuario.setForeground(Color.black);
+        }
+        
+      if(txtPrecio.getText().isEmpty()){
+          txtPrecio.setText("Ingrese el precio del producto");
+          txtPrecio.setForeground(Color.gray);
+      }
+      if(txtCantStock.getText().isEmpty()){
+          txtCantStock.setText("Ingrese la cantidad en stock");
+          txtCantStock.setForeground(Color.gray);
+      }
+      if(txtCategoria.getText().isEmpty()){
+          txtCategoria.setText("Ingrese una categoria");
+          txtCategoria.setForeground(Color.gray);
+      }
+      if(txtDescripcion.getText().isEmpty()){
+          txtDescripcion.setText("Ingrese una descripcion");
+          txtDescripcion.setForeground(Color.gray);
+      }
+      
+    }//GEN-LAST:event_txtUsuarioMousePressed
+
+    private void txtPrecioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPrecioMousePressed
+               if(txtPrecio.getText().equals("Ingrese el precio del producto")){
+            txtPrecio.setText("");
+            txtPrecio.setForeground(Color.black);
+        }
+        
+      if(txtUsuario.getText().isEmpty()){
+          txtUsuario.setText("Ingrese el nombre del producto");
+          txtUsuario.setForeground(Color.gray);
+      }
+      if(txtCantStock.getText().isEmpty()){
+          txtCantStock.setText("Ingrese la cantidad en stock");
+          txtCantStock.setForeground(Color.gray);
+      }
+      if(txtCategoria.getText().isEmpty()){
+          txtCategoria.setText("Ingrese una categoria");
+          txtCategoria.setForeground(Color.gray);
+      }
+      if(txtDescripcion.getText().isEmpty()){
+          txtDescripcion.setText("Ingrese una descripcion");
+          txtDescripcion.setForeground(Color.gray);
+      }
+      
+    }//GEN-LAST:event_txtPrecioMousePressed
+
+    private void txtCantStockMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCantStockMousePressed
+       if(txtCantStock.getText().equals("Ingrese la cantidad en stock")){
+            txtCantStock.setText("");
+            txtCantStock.setForeground(Color.black);
+        }
+        
+      if(txtPrecio.getText().isEmpty()){
+          txtPrecio.setText("Ingrese el precio del producto");
+          txtPrecio.setForeground(Color.gray);
+      }
+      if(txtUsuario.getText().isEmpty()){
+          txtUsuario.setText("Ingrese el nombre del producto");
+          txtUsuario.setForeground(Color.gray);
+      }
+      if(txtCategoria.getText().isEmpty()){
+          txtCategoria.setText("Ingrese una categoria");
+          txtCategoria.setForeground(Color.gray);
+      }
+      if(txtDescripcion.getText().isEmpty()){
+          txtDescripcion.setText("Ingrese una descripcion");
+          txtDescripcion.setForeground(Color.gray);
+      }
+      
+    }//GEN-LAST:event_txtCantStockMousePressed
+
+    private void txtCategoriaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCategoriaMousePressed
+     if(txtCategoria.getText().equals("Ingrese una categoria")){
+            txtCategoria.setText("");
+            txtCategoria.setForeground(Color.black);
+        }
+        
+      if(txtPrecio.getText().isEmpty()){
+          txtPrecio.setText("Ingrese el precio del producto");
+          txtPrecio.setForeground(Color.gray);
+      }
+      if(txtCantStock.getText().isEmpty()){
+          txtCantStock.setText("Ingrese la cantidad en stock");
+          txtCantStock.setForeground(Color.gray);
+      }
+      if(txtUsuario.getText().isEmpty()){
+          txtUsuario.setText("Ingrese el nombre del producto");
+          txtUsuario.setForeground(Color.gray);
+      }
+      if(txtDescripcion.getText().isEmpty()){
+          txtDescripcion.setText("Ingrese una descripcion");
+          txtDescripcion.setForeground(Color.gray);
+      }
+      
+    }//GEN-LAST:event_txtCategoriaMousePressed
+
+    private void txtDescripcionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDescripcionMousePressed
+           if(txtDescripcion.getText().equals("Ingrese una descripcion")){
+            txtDescripcion.setText("");
+            txtDescripcion.setForeground(Color.black);
+        }
+        
+      if(txtPrecio.getText().isEmpty()){
+          txtPrecio.setText("Ingrese el precio del producto");
+          txtPrecio.setForeground(Color.gray);
+      }
+      if(txtCantStock.getText().isEmpty()){
+          txtCantStock.setText("Ingrese la cantidad en stock");
+          txtCantStock.setForeground(Color.gray);
+      }
+      if(txtCategoria.getText().isEmpty()){
+          txtCategoria.setText("Ingrese una categoria");
+          txtCategoria.setForeground(Color.gray);
+      }
+      if(txtUsuario.getText().isEmpty()){
+          txtUsuario.setText("Ingrese el nombre del producto");
+          txtUsuario.setForeground(Color.gray);
+      }
+      
+    }//GEN-LAST:event_txtDescripcionMousePressed
+
+    private void txtUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyPressed
+        if (txtUsuario.getText().equals("Ingrese el nombre del producto")) {
+                    txtUsuario.setText(""); 
+                    txtUsuario.setForeground(Color.BLACK); 
+                }
+    }//GEN-LAST:event_txtUsuarioKeyPressed
 
 
 
@@ -214,7 +388,7 @@ public class ProductoNuevo extends javax.swing.JFrame {
     private javax.swing.JTextField txtCantStock;
     private javax.swing.JTextField txtCategoria;
     private javax.swing.JTextField txtDescripcion;
-    private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtPrecio;
+    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

@@ -93,6 +93,11 @@ public class RegistroUsuario extends javax.swing.JFrame {
                 txtUsuarioActionPerformed(evt);
             }
         });
+        txtUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtUsuarioKeyPressed(evt);
+            }
+        });
         jPanel1.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, 170, -1));
 
         txtDireccion.setForeground(new java.awt.Color(204, 204, 204));
@@ -305,6 +310,13 @@ public class RegistroUsuario extends javax.swing.JFrame {
   
   
     }//GEN-LAST:event_passUsuarioMousePressed
+
+    private void txtUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyPressed
+       if (txtUsuario.getText().equals("Ingrese su nombre de usuario")) {
+                    txtUsuario.setText(""); 
+                    txtUsuario.setForeground(Color.BLACK); 
+                }
+    }//GEN-LAST:event_txtUsuarioKeyPressed
 
 
 
