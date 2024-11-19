@@ -4,7 +4,7 @@
  */
 package DAO;
 
-import clases.Categoria;
+import clases.TipoUsuario;
 import conexiones.ConSql;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,80 +17,62 @@ import java.util.List;
  *
  * @author Mauri
  */
-public class ImpDAOCategoria implements CategoriaDAO{
+public class ImpDAOTipoUsuario implements TipoUsuarioDAO{
 
     @Override
-    public Categoria obtener(int id) throws SQLException,ClassNotFoundException {
-        
+    public TipoUsuario obtener(int id) throws SQLException, ClassNotFoundException {
         Connection con = ConSql.obtener();
-        Categoria cat = null;
-        String sql = "SELECT id, nombre FROM categoria WHERE id = ?";
+        TipoUsuario tipoUsu = null;
+        
+        String sql = "SELECT id, descripcion FROM tipo_usuario WHERE id = ?";
+        
         PreparedStatement prep = con.prepareStatement(sql);
-
+        
         prep.setInt(1, id);
-
+        
         ResultSet rs = prep.executeQuery();
-
         if(rs.next()){
-            cat = new Categoria(rs.getInt("id"),rs.getString("nombre"));
+            tipoUsu = new TipoUsuario(rs.getInt("id"),rs.getString("descripcion"));
         }
-
+        
         ConSql.cerrarConexion(con);
         ConSql.cerrarPrepStmt(prep);
         ConSql.cerrarResultSet(rs);
-        return cat;
+        
+        return tipoUsu;
+        
     }
 
     @Override
-    public List<Categoria> listar() throws SQLException, ClassNotFoundException {
+    public List<TipoUsuario> listar() throws SQLException, ClassNotFoundException {
         Connection con = ConSql.obtener();
-        List<Categoria> listaCat = new ArrayList();
-        String sql = "SELECT id, nombre FROM categoria";
-        PreparedStatement prep = con.prepareStatement(sql);
-
+        List<TipoUsuario> tiposUsuario = new ArrayList();
+        
+        String sql = "SELECT id, descripcion FROM tipo_usuario";
+        
+        PreparedStatement prep = con.prepareStatement(sql);        
         ResultSet rs = prep.executeQuery();
-
         while(rs.next()){
-            Categoria cat = new Categoria(rs.getInt("id"),rs.getString("nombre"));
-            listaCat.add(cat);
+            TipoUsuario tipoUsu = new TipoUsuario(rs.getInt("id"),rs.getString("descripcion"));
+            tiposUsuario.add(tipoUsu);
         }
-
+        
         ConSql.cerrarConexion(con);
         ConSql.cerrarPrepStmt(prep);
         ConSql.cerrarResultSet(rs);
-        return listaCat;
+        
+        return tiposUsuario;
+
 
     }
 
     @Override
-    public int insertar(Categoria categoria) throws SQLException, ClassNotFoundException {
+    public int insertar(TipoUsuario tipo) throws SQLException, ClassNotFoundException {
         Connection con = ConSql.obtener();
-        String sql = "INSERT INTO categoria (nombre) VALUES (?)";
+        String sql = "INSERT INTO tipo_usuario (descripcion) VALUES (?)";
         
         PreparedStatement prep = con.prepareStatement(sql);
-        
-        prep.setString(1, categoria.getNombre());
-        
-        int camb = prep.executeUpdate();
-        
-        ConSql.cerrarConexion(con);
-        ConSql.cerrarPrepStmt(prep);
-        
-        
-        return camb;
-        
-    }
-
-    @Override
-    public int actualizar(Categoria categoria) throws SQLException, ClassNotFoundException {
-        Connection con = ConSql.obtener();
-        String sql = "UPDATE categoria SET nombre= ? WHERE id = ?";
-        
-        
-        PreparedStatement prep = con.prepareStatement(sql);
-        
-        prep.setString(1, categoria.getNombre());
-        prep.setInt(2, categoria.getIdCategoria());
+        prep.setString(1, tipo.getDescripcion());
         
         int camb = prep.executeUpdate();
         
@@ -98,14 +80,33 @@ public class ImpDAOCategoria implements CategoriaDAO{
         ConSql.cerrarPrepStmt(prep);
         
         return camb;
+
     }
 
     @Override
-    public int eliminar(Categoria categoria) throws ClassNotFoundException, SQLException{
+    public int actualizar(TipoUsuario tipo) throws SQLException, ClassNotFoundException {
         Connection con = ConSql.obtener();
-        String sql = "DELETE FROM categoria WHERE id = ?";
+        String sql = "UPDATE tipo_usuario SET descripcion = ? WHERE id=?";
+        
         PreparedStatement prep = con.prepareStatement(sql);
-        prep.setInt(1, categoria.getIdCategoria());
+        prep.setString(1, tipo.getDescripcion());
+        prep.setInt(2, tipo.getIdTipoUsu());
+        
+        int camb = prep.executeUpdate();
+        
+        ConSql.cerrarConexion(con);
+        ConSql.cerrarPrepStmt(prep);
+        
+        return camb;
+
+    }
+
+    @Override
+    public int eliminar(TipoUsuario tipo) throws SQLException, ClassNotFoundException {
+        Connection con = ConSql.obtener();
+        String sql = "DELETE FROM tipo_usuario WHERE id = ?";
+        PreparedStatement prep = con.prepareStatement(sql);
+        prep.setInt(1, tipo.getIdTipoUsu());
         
         int camb = prep.executeUpdate();
         ConSql.cerrarConexion(con);
