@@ -4,7 +4,15 @@
  */
 package igu;
 
+import DAO.CategoriaDAO;
+import DAO.ImpDAOCategoria;
+import clases.Categoria;
 import java.awt.Color;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 
 /**
  *
@@ -17,6 +25,7 @@ public class ProductoNuevo extends javax.swing.JFrame {
      */
     public ProductoNuevo() {
         initComponents();
+        cargarCategorias(comboCategorias);
     }
 
     /**
@@ -46,7 +55,7 @@ public class ProductoNuevo extends javax.swing.JFrame {
         txtDescripcion = new javax.swing.JTextField();
         jSeparator7 = new javax.swing.JSeparator();
         btnBuscar = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        comboCategorias = new javax.swing.JComboBox<>();
         btnGuardar1 = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnModificar1 = new javax.swing.JButton();
@@ -189,8 +198,12 @@ public class ProductoNuevo extends javax.swing.JFrame {
         });
         jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 190, 80, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 310, 70, 20));
+        comboCategorias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboCategoriasActionPerformed(evt);
+            }
+        });
+        jPanel1.add(comboCategorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 310, 130, 20));
 
         btnGuardar1.setText("Guardar");
         btnGuardar1.addActionListener(new java.awt.event.ActionListener() {
@@ -452,6 +465,10 @@ public class ProductoNuevo extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtCantStockKeyTyped
 
+    private void comboCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCategoriasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboCategoriasActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -459,7 +476,7 @@ public class ProductoNuevo extends javax.swing.JFrame {
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardar1;
     private javax.swing.JButton btnModificar1;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> comboCategorias;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -482,4 +499,21 @@ public class ProductoNuevo extends javax.swing.JFrame {
     private javax.swing.JTextField txtPrecio;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
+
+    private void cargarCategorias(JComboBox comboCategorias) {
+        CategoriaDAO categoriaDAO = new ImpDAOCategoria();
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+        comboCategorias.setModel(modelo);
+        
+        try {
+            for (Categoria cat : categoriaDAO.listar()){
+                modelo.addElement(cat.getNombre());
+                
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            modelo.addElement("Error Consulta SQL");
+        }
+        
+        
+    }
 }
