@@ -3,17 +3,27 @@ package clases;
 
 
 public class Categoria {
-    private String nombre;
+    
     private int idCategoria;
+    private String nombre;
+    
 
     public Categoria() {
     }
+    
+    
+  
 
-    public Categoria(String nombre, int idCategoria) {
+    public Categoria(int idCategoria, String nombre) {
         this.nombre = nombre;
         this.idCategoria = idCategoria;
     }
 
+    @Override
+    public String toString(){
+        return "Nombre: "+this.nombre +" ID: "+this.idCategoria;
+    }
+    
     public String getNombre() {
         return nombre;
     }

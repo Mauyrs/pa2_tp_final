@@ -12,15 +12,14 @@ import java.util.List;
  * @author Mauri
  */
 public interface DAO<T> {
-     T obtener(int id) throws SQLException;
+     T obtener(int id) throws SQLException,ClassNotFoundException;
      
-     List<T> listar() throws SQLException;
+     List<T> listar() throws SQLException,ClassNotFoundException;
      
-     int guardar(T t) throws SQLException;
      
-     int insertar(T t) throws SQLException;
+     int insertar(T t) throws SQLException,ClassNotFoundException;
      
-     int actualizar(T t) throws SQLException;
+     int actualizar(T t) throws SQLException,ClassNotFoundException;
      
-     int eliminar(T t);
+     int eliminar(T t) throws SQLException, ClassNotFoundException;
 }
