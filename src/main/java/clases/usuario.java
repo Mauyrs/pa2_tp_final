@@ -23,6 +23,16 @@ public class Usuario {
         this.hashContrasena = hashContrasena;
         this.idTipo = idTipo;
     }
+
+    public Usuario(int idUsuario, String nombre, String apellido, String direccion, String correo, String hashContrasena, int idTipo) {
+        this.idUsuario = idUsuario;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.direccion = direccion;
+        this.correo = correo;
+        this.hashContrasena = hashContrasena;
+        this.idTipo = idTipo;
+    }
     
     
 

@@ -1,7 +1,6 @@
 
 package clases;
 
-import DAO.CategoriaDAO;
 import DAO.ImpDAOCategoria;
 import igu.*;
 import java.sql.SQLException;
@@ -27,9 +26,7 @@ public class main {
                 System.out.println(cat);
             }
            // categoriaDAO.insertar(cate);
-        } catch (SQLException ex) {
-            Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
+        } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
         }
         
