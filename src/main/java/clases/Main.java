@@ -13,21 +13,26 @@ import java.util.logging.Logger;
 public class main {
     public static void main(String [] args ){
         
-        ImpDAOCategoria categoriaDAO = new ImpDAOCategoria();
-        ImpDAOTipoUsuario tipoUsuDAO = new ImpDAOTipoUsuario();
-        
-        TipoUsuario nuevo = null;
-        
+        CategoriaDAO categoriaDAO = new ImpDAOCategoria();
+      //  Categoria cate = new Categoria();
+            Categoria cate = null;
+        //cate.setNombre("Juguete");
         try {
-            nuevo = tipoUsuDAO.obtener(3);
-            tipoUsuDAO.eliminar(nuevo);
-            
-            
-        } catch (SQLException | ClassNotFoundException ex) {
+        /*    cate = categoriaDAO.obtener(1);
+            System.out.println(cate);
+            cate.setNombre("celulares");
+            categoriaDAO.actualizar(cate);
+            System.out.println(cate);
+          */  List <Categoria> listaCategorias = categoriaDAO.listar();
+            for(Categoria cat : listaCategorias){
+                System.out.println(cat);
+            }
+           // categoriaDAO.insertar(cate);
+        } catch (SQLException ex) {
+            Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
             Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
         
         
         ProductoNuevo log = new ProductoNuevo();
