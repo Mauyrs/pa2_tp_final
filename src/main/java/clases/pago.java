@@ -2,16 +2,16 @@
 package clases;
 
 
-public class pago {
+public class Pago {
     private int idPago;
-    private usuario idUsuario;
+    private Usuario idUsuario;
     private double monto;
-    private pedido pedidoPago;
+    private Pedido pedidoPago;
 
-    public pago() {
+    public Pago() {
     }
 
-    public pago(int idPago, usuario idUsuario, double monto, pedido pedidoPago) {
+    public Pago(int idPago, Usuario idUsuario, double monto, Pedido pedidoPago) {
         this.idPago = idPago;
         this.idUsuario = idUsuario;
         this.monto = monto;
@@ -26,11 +26,11 @@ public class pago {
         this.idPago = idPago;
     }
 
-    public usuario getIdUsuario() {
+    public Usuario getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(usuario idUsuario) {
+    public void setIdUsuario(Usuario idUsuario) {
         this.idUsuario = idUsuario;
     }
 
@@ -42,11 +42,11 @@ public class pago {
         this.monto = monto;
     }
 
-    public pedido getPedidoPago() {
+    public Pedido getPedidoPago() {
         return pedidoPago;
     }
 
-    public void setPedidoPago(pedido pedidoPago) {
+    public void setPedidoPago(Pedido pedidoPago) {
         this.pedidoPago = pedidoPago;
     }
     

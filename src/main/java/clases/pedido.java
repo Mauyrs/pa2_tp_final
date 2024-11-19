@@ -2,18 +2,18 @@
 package clases;
 
 
-public class pedido {
+public class Pedido {
     private String estado;
     // falta el hashmap 
     // entregaEstim tmb falta
     private int idPedido;
-    private pago pago;
+    private Pago pago;
     private double montoPedido;
 
-    public pedido() {
+    public Pedido() {
     }
 
-    public pedido(String estado, int idPedido, pago pago, double montoPedido) {
+    public Pedido(String estado, int idPedido, Pago pago, double montoPedido) {
         this.estado = estado;
         this.idPedido = idPedido;
         this.pago = pago;
@@ -36,11 +36,11 @@ public class pedido {
         this.idPedido = idPedido;
     }
 
-    public pago getPago() {
+    public Pago getPago() {
         return pago;
     }
 
-    public void setPago(pago pago) {
+    public void setPago(Pago pago) {
         this.pago = pago;
     }
 

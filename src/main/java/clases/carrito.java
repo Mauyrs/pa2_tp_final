@@ -2,25 +2,25 @@
 package clases;
 
 
-public class carrito {
-    private usuario usuario;
+public class Carrito {
+    private Usuario usuario;
     private int idCarrito;
  
     
     //falta hashmap
-    public carrito() {
+    public Carrito() {
     }
 
-    public carrito(usuario usuario, int idCarrito) {
+    public Carrito(Usuario usuario, int idCarrito) {
         this.usuario = usuario;
         this.idCarrito = idCarrito;
     }
 
-    public usuario getUsuario() {
+    public Usuario getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(usuario usuario) {
+    public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
 
