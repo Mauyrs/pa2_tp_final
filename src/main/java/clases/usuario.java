@@ -6,21 +6,21 @@ import java.util.List;
 
 
 
-public class usuario {
+public class Usuario {
   private String nombre;
   private String direccion;
   private String correo;
   private String contrasena;
   private int idUsuario;
-  private List<pedido>listaPedidos;
-  private carrito carritoUsu;
+  private List<Pedido>listaPedidos;
+  private Carrito carritoUsu;
   
 
-    public usuario() {
+    public Usuario() {
         this.listaPedidos = new LinkedList <> () ;
     }
 
-    public usuario(String nombre, String direccion, String correo, String contrasena, int idUsuario, List<pedido> listaPedidos, carrito carritoUsu) {
+    public Usuario(String nombre, String direccion, String correo, String contrasena, int idUsuario, List<Pedido> listaPedidos, Carrito carritoUsu) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.correo = correo;
@@ -30,11 +30,11 @@ public class usuario {
         this.carritoUsu = carritoUsu;
     }
 
-    public carrito getCarritoUsu() {
+    public Carrito getCarritoUsu() {
         return carritoUsu;
     }
 
-    public void setCarritoUsu(carrito carritoUsu) {
+    public void setCarritoUsu(Carrito carritoUsu) {
         this.carritoUsu = carritoUsu;
     }
 
@@ -82,22 +82,22 @@ public class usuario {
         this.idUsuario = idUsuario;
     }
 
-    public List<pedido> getListaPedidos() {
+    public List<Pedido> getListaPedidos() {
         return listaPedidos;
     }
 
-    public void setListaPedidos(List<pedido> listaPedidos) {
+    public void setListaPedidos(List<Pedido> listaPedidos) {
         this.listaPedidos = listaPedidos;
     }
   
-    public void enlazarPedidos(pedido pedi){
+    public void enlazarPedidos(Pedido pedi){
     listaPedidos.add(pedi);
         System.out.println("Sus lista de pedidos ha sido actualizada \n");
     
 }
-    public void mostrarPedios(pedido pedi){
+    public void mostrarPedios(Pedido pedi){
         System.out.println("Lista de sus pedidos");
-        for(pedido ped: listaPedidos){
+        for(Pedido ped: listaPedidos){
             System.out.println("ID "+ ped.getIdPedido()+ " - "+  "monto "+ ped.getMontoPedido()+ "\n" );
         }
     }

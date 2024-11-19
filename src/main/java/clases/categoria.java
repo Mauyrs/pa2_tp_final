@@ -2,14 +2,14 @@
 package clases;
 
 
-public class categoria {
+public class Categoria {
     private String nombre;
     private int idCategoria;
 
-    public categoria() {
+    public Categoria() {
     }
 
-    public categoria(String nombre, int idCategoria) {
+    public Categoria(String nombre, int idCategoria) {
         this.nombre = nombre;
         this.idCategoria = idCategoria;
     }
