@@ -104,7 +104,7 @@ public class ImpDAOUsuario implements UsuarioDAO{
         prep.setString(1, usu.getNombre());
         prep.setString(2, usu.getApellido());
         prep.setString(3, usu.getDireccion());
-        prep.setString(4, usu.getCorreo());
+        prep.setString(4, usu.getCorreo().toLowerCase());
         prep.setString(5, usu.getHashContrasena());
         prep.setInt(6, usu.getIdTipo());
         
@@ -153,5 +153,37 @@ public class ImpDAOUsuario implements UsuarioDAO{
         
         
         return camb;    }
+
+    @Override
+    public Usuario buscarCorreo(String correo) throws SQLException, ClassNotFoundException {
+        Connection con = ConSql.obtener();
+        Usuario usu = null;
+        
+        String sql = "SELECT id, nombre, apellido, direccion, correo, contrasena_hash, tipo FROM usuario WHERE correo = ?";
+        
+        PreparedStatement prep = con.prepareStatement(sql);
+        
+        prep.setString(1, correo.toLowerCase());
+        
+        ResultSet rs = prep.executeQuery();
+        if(rs.next()){
+            int id = rs.getInt("id");
+            String nombre = rs.getString("nombre");
+            String apellido = rs.getString("apellido");
+            String direccion = rs.getString("direccion");
+            String hash_contra = rs.getString("contrasena_hash");
+            int tipo = rs.getInt("tipo");
+            
+            usu = new Usuario(id, nombre, apellido, direccion, correo.toLowerCase(), hash_contra, tipo);
+            
+        }
+        
+        ConSql.cerrarConexion(con);
+        ConSql.cerrarPrepStmt(prep);
+        ConSql.cerrarResultSet(rs);
+        
+        return usu;
+
+    }
     
 }

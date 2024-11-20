@@ -31,18 +31,44 @@ public class main {
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
         }
-        */
+        
+        
         ImpDAOUsuario usuarioDAO = new ImpDAOUsuario();
-        String contraEncriptada = Contrasena.encriptar("Mari12223");
+        Usuario nuevo = null;
         
-        
-        Usuario nuevo = new Usuario("Mario", "Ventura", "Tacuari 2331","marioven@gmail.com", contraEncriptada, 1);
         try {
+            String contra = "DaniRex29";
+            String contraEncriptada = Contrasena.encriptar(contra); // Antes de cargar un nuevo usuario o cambiar su contraseña hay que encriptarla
+
+            nuevo = new Usuario("Daniel", "Kaczka", "Tacuari 2331", "danikaczka@gmail.com", contraEncriptada, 1);
             usuarioDAO.insertar(nuevo);
+                    
             
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
+        
+        ImpDAOUsuario usuarioDAO = new ImpDAOUsuario();
+        String contra = "lolazo";
+        String correo = "marioven@gmail.com";
+        try {
+            Usuario logeado = usuarioDAO.buscarCorreo(correo); // se busca al usuario con X correo
+            if(Contrasena.combrobar(contra, logeado.getHashContrasena())){ // se comprueba que el usuario encontrado tenga esa contraseña
+                System.out.println("Se logeo correctamente!");
+            }else{
+                System.out.println("Contraseña incorrecta!");
+            }
+            
+            
+            
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        */
+        
+        
         
         ProductoNuevo log = new ProductoNuevo();
         
