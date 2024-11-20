@@ -20,11 +20,18 @@
             <artifactId>spring-security-crypto</artifactId>
             <version>6.2.3</version>
         </dependency>
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>1.2</version>
+        </dependency>
+        
+        
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>16</maven.compiler.source>
-        <maven.compiler.target>16</maven.compiler.target>
+        <maven.compiler.source>23</maven.compiler.source>
+        <maven.compiler.target>23</maven.compiler.target>
         <exec.mainClass>prog_av2.pa2_tpfinal_nacho_mauri.Pa2_tpfinal_nacho_mauri</exec.mainClass>
     </properties>
 </project>
