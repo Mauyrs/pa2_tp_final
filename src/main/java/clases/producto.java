@@ -3,24 +3,39 @@ package clases;
 
 
 public class Producto {
-   
+    private int idProducto;   
     private String nombre;
-    private int idProducto;
     private String descripcion;
     private double precio;
-    private Categoria categoria;
+    private int idCategoria;
     private int cantidadStock;
 
-    public Producto() {
-    }
-
-    public Producto(String nombre, int idProducto, String descripcion, double precio, Categoria categoria, int cantidadStock) {
+    public Producto(String nombre, String descripcion, double precio, int idCategoria, int cantidadStock) {
         this.nombre = nombre;
-        this.idProducto = idProducto;
         this.descripcion = descripcion;
         this.precio = precio;
-        this.categoria = categoria;
+        this.idCategoria = idCategoria;
         this.cantidadStock = cantidadStock;
+    }
+    
+    
+    public Producto(int idProducto, String nombre, String descripcion, double precio, int idCategoria, int cantidadStock) {
+        this.idProducto = idProducto;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.precio = precio;
+        this.idCategoria = idCategoria;
+        this.cantidadStock = cantidadStock;
+    }
+
+    
+    
+    public int getIdProducto() {
+        return idProducto;
+    }
+
+    public void setIdProducto(int idProducto) {
+        this.idProducto = idProducto;
     }
 
     public String getNombre() {
@@ -29,14 +44,6 @@ public class Producto {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public int getIdProducto() {
-        return idProducto;
-    }
-
-    public void setIdProducto(int idProducto) {
-        this.idProducto = idProducto;
     }
 
     public String getDescripcion() {
@@ -55,12 +62,12 @@ public class Producto {
         this.precio = precio;
     }
 
-    public Categoria getCategoria() {
-        return categoria;
+    public int getIdCategoria() {
+        return idCategoria;
     }
 
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
+    public void setIdCategoria(int idCategoria) {
+        this.idCategoria = idCategoria;
     }
 
     public int getCantidadStock() {
@@ -70,6 +77,11 @@ public class Producto {
     public void setCantidadStock(int cantidadStock) {
         this.cantidadStock = cantidadStock;
     }
+    
+    
+    
+    
+    
     
     
 }
