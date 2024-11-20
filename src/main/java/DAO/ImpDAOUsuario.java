@@ -119,12 +119,39 @@ public class ImpDAOUsuario implements UsuarioDAO{
 
     @Override
     public int actualizar(Usuario usu) throws SQLException, ClassNotFoundException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Connection con = ConSql.obtener();
+        String sql = "UPDATE usuario SET nombre = ?, apellido = ?, direccion = ?, correo = ?, contrasena_hash = ?, tipo = ? WHERE id=?";
+        
+        PreparedStatement prep = con.prepareStatement(sql);
+        prep.setString(1, usu.getNombre());
+        prep.setString(2, usu.getApellido());
+        prep.setString(3, usu.getDireccion());
+        prep.setString(4, usu.getCorreo());
+        prep.setString(5, usu.getHashContrasena());
+        prep.setInt(6, usu.getIdTipo());
+        prep.setInt(7, usu.getIdUsuario());
+        
+        int camb = prep.executeUpdate();
+        
+        ConSql.cerrarConexion(con);
+        ConSql.cerrarPrepStmt(prep);
+        
+        return camb;
+
     }
 
     @Override
     public int eliminar(Usuario usu) throws SQLException, ClassNotFoundException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+        Connection con = ConSql.obtener();
+        String sql = "DELETE FROM usuario WHERE id = ?";
+        PreparedStatement prep = con.prepareStatement(sql);
+        prep.setInt(1, usu.getIdUsuario());
+        
+        int camb = prep.executeUpdate();
+        ConSql.cerrarConexion(con);
+        ConSql.cerrarPrepStmt(prep);
+        
+        
+        return camb;    }
     
 }

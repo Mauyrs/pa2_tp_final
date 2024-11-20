@@ -33,11 +33,7 @@ public class Usuario {
         this.hashContrasena = hashContrasena;
         this.idTipo = idTipo;
     }
-    
-    
 
-    
-    
     public int getIdUsuario() {
         return idUsuario;
     }
@@ -78,6 +74,14 @@ public class Usuario {
         this.correo = correo;
     }
 
+    public String getHashContrasena() {
+        return hashContrasena;
+    }
+
+    public void setHashContrasena(String hashContrasena) {
+        this.hashContrasena = hashContrasena;
+    }
+
     public int getIdTipo() {
         return idTipo;
     }
@@ -85,6 +89,12 @@ public class Usuario {
     public void setIdTipo(int idTipo) {
         this.idTipo = idTipo;
     }
+    
+    
+    
+    
+    
+    
     
 
     
