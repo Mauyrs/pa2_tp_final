@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
+
 package DAO;
 
 import java.sql.SQLException;
@@ -15,7 +12,6 @@ public interface DAO<T> {
      T obtener(int id) throws SQLException,ClassNotFoundException;
      
      List<T> listar() throws SQLException,ClassNotFoundException;
-     
      
      int insertar(T t) throws SQLException,ClassNotFoundException;
      
