@@ -22,19 +22,76 @@ import java.util.List;
 public class ImpDAOProducto implements ProductoDAO {
 
     @Override
-    public List<Producto> bucarNombre(String buscado) throws SQLException, ClassNotFoundException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public List<Producto> buscarNombre(String buscado) throws SQLException, ClassNotFoundException {
+        Connection con = ConSql.obtener();
+        List<Producto> productos= new ArrayList();
+        
+        String sql = "SELECT id, nombre, descripcion, precio, id_categoria, stock FROM producto WHERE nombre LIKE %?%";
+        
+        PreparedStatement prep = con.prepareStatement(sql);
+        
+        prep.setString(1, buscado);
+        
+        ResultSet rs = prep.executeQuery();
+        
+        while(rs.next()){
+            int id = rs.getInt("id");
+            String nombre = rs.getString("nombre");
+            String descripcion = rs.getString("descripcion");
+            Double precio = rs.getDouble("precio");
+            int id_categoria = rs.getInt("id_categoria");
+            int stock = rs.getInt("stock");
+            
+            Producto prod = new Producto(id, nombre, descripcion, precio, id_categoria, stock);
+            productos.add(prod);
+        }
+        
+        ConSql.cerrarConexion(con);
+        ConSql.cerrarPrepStmt(prep);
+        ConSql.cerrarResultSet(rs);
+
+        return productos;
+        
     }
 
     @Override
-    public List<Producto> bucarCategoria(Categoria categoria) throws SQLException, ClassNotFoundException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public List<Producto> buscarCategoria(int id_cat) throws SQLException, ClassNotFoundException {
+        Connection con = ConSql.obtener();
+        List<Producto> productos = new ArrayList();
+
+        String sql = "SELECT id, nombre, descripcion, precio, id_categoria, stock FROM producto WHERE id = ?";
+
+        PreparedStatement prep = con.prepareStatement(sql);
+
+        prep.setInt(1, id_cat);
+        
+        ResultSet rs = prep.executeQuery();
+        while (rs.next()) {
+            int id = rs.getInt("id");
+            String nombre = rs.getString("nombre");
+            String descripcion = rs.getString("descripcion");
+            Double precio = rs.getDouble("precio");
+            int id_categoria = rs.getInt("id_categoria");
+            int stock = rs.getInt("stock");
+
+            Producto prod = new Producto(id, nombre, descripcion, precio, id_categoria, stock);
+            productos.add(prod);
+
+        }
+
+        ConSql.cerrarConexion(con);
+        ConSql.cerrarPrepStmt(prep);
+        ConSql.cerrarResultSet(rs);
+
+        return productos;
+    }
+    
+    @Override
+    public List<Producto> buscarCategoria(Categoria categoria) throws SQLException, ClassNotFoundException {
+        return this.buscarCategoria(categoria.getIdCategoria());
     }
 
-    @Override
-    public List<Producto> bucarCategoria(int id) throws SQLException, ClassNotFoundException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    
 
     @Override
     public Producto obtener(int id) throws SQLException, ClassNotFoundException {
@@ -93,7 +150,8 @@ public class ImpDAOProducto implements ProductoDAO {
         ConSql.cerrarPrepStmt(prep);
         ConSql.cerrarResultSet(rs);
 
-        return productos;    }
+        return productos;    
+    }
 
     @Override
     public int insertar(Producto prod) throws SQLException, ClassNotFoundException {

@@ -8,8 +8,8 @@ import java.util.List;
 
 
 public interface ProductoDAO extends DAO<Producto>{
-    List<Producto> bucarNombre(String buscado)throws SQLException,ClassNotFoundException;
-    List<Producto> bucarCategoria(Categoria categoria)throws SQLException,ClassNotFoundException;
-    List<Producto> bucarCategoria(int id)throws SQLException,ClassNotFoundException;
+    List<Producto> buscarNombre(String buscado)throws SQLException,ClassNotFoundException;
+    List<Producto> buscarCategoria(Categoria categoria)throws SQLException,ClassNotFoundException;
+    List<Producto> buscarCategoria(int id)throws SQLException,ClassNotFoundException;
     
 }
