@@ -10,6 +10,14 @@ public class Producto {
     private int idCategoria;
     private int cantidadStock;
 
+    @Override
+    public String toString() {
+        return "ID: " + idProducto + ", Nombre: " + nombre + ", \n Descripcion: " + descripcion + "\nPrecio:" + precio + ", ID categoria: " + idCategoria + ", Stock: " + cantidadStock;
+    }
+    
+    
+    
+    
     public Producto(String nombre, String descripcion, double precio, int idCategoria, int cantidadStock) {
         this.nombre = nombre;
         this.descripcion = descripcion;

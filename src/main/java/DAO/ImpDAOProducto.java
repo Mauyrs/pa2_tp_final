@@ -26,11 +26,11 @@ public class ImpDAOProducto implements ProductoDAO {
         Connection con = ConSql.obtener();
         List<Producto> productos= new ArrayList();
         
-        String sql = "SELECT id, nombre, descripcion, precio, id_categoria, stock FROM producto WHERE nombre LIKE %?%";
+        String sql = "SELECT id, nombre, descripcion, precio, id_categoria, stock FROM producto WHERE nombre LIKE ?";
         
         PreparedStatement prep = con.prepareStatement(sql);
         
-        prep.setString(1, buscado);
+        prep.setString(1, "%"+buscado+"%");
         
         ResultSet rs = prep.executeQuery();
         
@@ -59,7 +59,7 @@ public class ImpDAOProducto implements ProductoDAO {
         Connection con = ConSql.obtener();
         List<Producto> productos = new ArrayList();
 
-        String sql = "SELECT id, nombre, descripcion, precio, id_categoria, stock FROM producto WHERE id = ?";
+        String sql = "SELECT id, nombre, descripcion, precio, id_categoria, stock FROM producto WHERE id_categoria = ?";
 
         PreparedStatement prep = con.prepareStatement(sql);
 

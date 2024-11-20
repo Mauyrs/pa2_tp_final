@@ -2,6 +2,7 @@
 package clases;
 
 import DAO.ImpDAOCategoria;
+import DAO.ImpDAOProducto;
 import DAO.ImpDAOUsuario;
 import igu.*;
 import java.sql.SQLException;
@@ -67,6 +68,31 @@ public class main {
             Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
         }
         */
+        
+        ImpDAOProducto productoDAO = new ImpDAOProducto();
+        
+        try {
+            List<Producto> productosCategoria= productoDAO.buscarCategoria(4);
+            List<Producto> productosNombre = productoDAO.buscarNombre("lego");
+            
+            System.out.println("Por categoria: ");
+            
+            for(Producto prod : productosCategoria){
+                System.out.println(prod);
+            }
+            
+            System.out.println("Por nombre: ");
+            
+            for(Producto prod : productosNombre){
+                System.out.println(prod);
+            }
+            
+            
+            
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         
         
         
