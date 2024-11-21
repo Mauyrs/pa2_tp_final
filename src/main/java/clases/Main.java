@@ -96,9 +96,9 @@ public class main {
         
         
         
-        ProductoNuevo log = new ProductoNuevo();
+        InterfazUsuario log = new InterfazUsuario();
         
         log.setVisible(true);
-        log.setLocationRelativeTo(null);// para que cuando se abra abre en el medio de la pantalla  
+        
     }
 }
