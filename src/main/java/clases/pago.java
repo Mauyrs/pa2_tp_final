@@ -1,54 +1,65 @@
 
 package clases;
 
+import java.time.LocalDate;
+
 
 public class Pago {
-    private int idPago;
-    private Usuario idUsuario;
-    private double monto;
-    private Pedido pedidoPago;
+    private Integer idPago;
+    private Double monto;
+    private LocalDate fechaPago;
+    private Integer idPedido;
 
-    public Pago() {
-    }
-
-    public Pago(int idPago, Usuario idUsuario, double monto, Pedido pedidoPago) {
+    public Pago(Integer idPago, Double monto, LocalDate fecha_pago, Integer idPedido) {
         this.idPago = idPago;
-        this.idUsuario = idUsuario;
         this.monto = monto;
-        this.pedidoPago = pedidoPago;
+        this.fechaPago = fecha_pago;
+        this.idPedido = idPedido;
     }
 
-    public int getIdPago() {
+    public Pago(Double monto, LocalDate fecha_pago, Integer idPedido) {
+        this.monto = monto;
+        this.fechaPago = fecha_pago;
+        this.idPedido = idPedido;
+    }
+
+    
+    
+    
+    
+    public Integer getIdPago() {
         return idPago;
     }
 
-    public void setIdPago(int idPago) {
+    public void setIdPago(Integer idPago) {
         this.idPago = idPago;
     }
 
-    public Usuario getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(Usuario idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
-    public double getMonto() {
+    public Double getMonto() {
         return monto;
     }
 
-    public void setMonto(double monto) {
+    public void setMonto(Double monto) {
         this.monto = monto;
     }
 
-    public Pedido getPedidoPago() {
-        return pedidoPago;
+    public LocalDate getFechaPago() {
+        return fechaPago;
     }
 
-    public void setPedidoPago(Pedido pedidoPago) {
-        this.pedidoPago = pedidoPago;
+    public void setFechaPago(LocalDate fecha_pago) {
+        this.fechaPago = fecha_pago;
+    }
+
+    public Integer getIdPedido() {
+        return idPedido;
+    }
+
+    public void setIdPedido(Integer idPedido) {
+        this.idPedido = idPedido;
     }
     
-            
+    
+    
+    
 }
