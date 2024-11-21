@@ -89,7 +89,8 @@ public class ImpDAOPedido implements PedidoDAO {
         ConSql.cerrarConexion(con);
         ConSql.cerrarPrepStmt(prep);
         
-        return camb;        }
+        return camb;        
+    }
 
     @Override
     public int actualizar(Pedido ped) throws SQLException, ClassNotFoundException {
