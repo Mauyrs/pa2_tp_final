@@ -47,6 +47,7 @@ public class PerfilUsuario extends javax.swing.JFrame {
         setLocationByPlatform(true);
         setResizable(false);
 
+        jPanel1.setBackground(new java.awt.Color(204, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
