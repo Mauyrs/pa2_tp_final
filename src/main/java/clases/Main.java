@@ -11,7 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import seguridad.Contrasena;
 
-public class main {
+public class Main {
     public static void main(String [] args ){
         /*
         ImpDAOCategoria categoriaDAO = new ImpDAOCategoria();
@@ -56,7 +56,7 @@ public class main {
         String correo = "marioven@gmail.com"; texfield
         try {
             Usuario logeado = usuarioDAO.buscarCorreo(correo); // se busca al usuario con X correo
-            if(Contrasena.combrobar(contra, logeado.getHashContrasena())){ // se comprueba que el usuario encontrado tenga esa contraseña
+            if(Contrasena.comprobar(contra, logeado.getHashContrasena())){ // se comprueba que el usuario encontrado tenga esa contraseña
                 System.out.println("Se logeo correctamente!");
             }else{
                 System.out.println("Contraseña incorrecta!");
@@ -90,7 +90,7 @@ public class main {
             
             
         } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         
