@@ -24,7 +24,7 @@ public class ImpDAOUsuario implements UsuarioDAO{
 
     @Override
     public List<Pedido> obtenerPedidosUsu(Usuario usu) throws SQLException, ClassNotFoundException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet ."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
