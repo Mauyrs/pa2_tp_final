@@ -53,7 +53,7 @@ public class main {
         
         ImpDAOUsuario usuarioDAO = new ImpDAOUsuario();
         String contra = "lolazo";
-        String correo = "marioven@gmail.com";
+        String correo = "marioven@gmail.com"; texfield
         try {
             Usuario logeado = usuarioDAO.buscarCorreo(correo); // se busca al usuario con X correo
             if(Contrasena.combrobar(contra, logeado.getHashContrasena())){ // se comprueba que el usuario encontrado tenga esa contraseña
@@ -96,7 +96,7 @@ public class main {
         
         
         
-        InterfazProducto log = new InterfazProducto();
+        Login log = new Login();
         
         log.setVisible(true);
         

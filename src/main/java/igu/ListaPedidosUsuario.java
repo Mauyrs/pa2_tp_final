@@ -66,6 +66,11 @@ public class ListaPedidosUsuario extends javax.swing.JFrame {
 
         btnVolver.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, 110, 40));
 
         btnListar.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
@@ -92,6 +97,13 @@ public class ListaPedidosUsuario extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        // TODO add your handling code here:
+       // InterfazUsuario inter = new InterfazUsuario();
+       // inter.setVisible(true);
+       // this.setVisible(false);
+    }//GEN-LAST:event_btnVolverActionPerformed
 
    
 

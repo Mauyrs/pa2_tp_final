@@ -4,16 +4,17 @@
  */
 package igu;
 
+import clases.Usuario;
+
 /**
  *
  * @author Nacho
  */
 public class InterfazAdmin extends javax.swing.JFrame {
 
-    /**
-     * Creates new form InterfazUsuario
-     */
-    public InterfazAdmin() {
+  private Usuario usuario;
+    public InterfazAdmin(Usuario usuario) {
+        this.usuario = usuario;
         initComponents();
     }
 
@@ -83,6 +84,11 @@ public class InterfazAdmin extends javax.swing.JFrame {
         jPanel1.add(btnGestionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 340, 250, 60));
 
         btnListarusuario.setText("LISTAR TODOS LOS USUARIOS");
+        btnListarusuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListarusuarioActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnListarusuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 260, 250, 60));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 30)); // NOI18N
@@ -91,6 +97,11 @@ public class InterfazAdmin extends javax.swing.JFrame {
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, 390, 40));
 
         btnPerfil.setText("VER MI PERFIL");
+        btnPerfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPerfilActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 250, 60));
 
         btnPronom.setText("BUSCAR PRODUCTO POR NOMBRE");
@@ -121,7 +132,7 @@ public class InterfazAdmin extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -134,6 +145,16 @@ public class InterfazAdmin extends javax.swing.JFrame {
     private void btnListarproductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarproductoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnListarproductoActionPerformed
+
+    private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
+      PerfilUsuario per = new PerfilUsuario();
+      per.setVisible(true);
+      this.setVisible(false);
+    }//GEN-LAST:event_btnPerfilActionPerformed
+
+    private void btnListarusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarusuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnListarusuarioActionPerformed
 
    
 

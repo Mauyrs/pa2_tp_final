@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package igu;
+ import clases.Usuario;
 
 /**
  *
@@ -10,13 +11,16 @@ package igu;
  */
 public class InterfazUsuario extends javax.swing.JFrame {
 
-    /**
-     * Creates new form InterfazUsuario
-     */
-    public InterfazUsuario() {
+    private Usuario usuario;
+    public InterfazUsuario(Usuario usuario) {
+         this.usuario = usuario;
         initComponents();
+        inicializarNombre();
     }
 
+    private void inicializarNombre(){
+        lblNombre.setText(this.usuario.getNombre().trim().toUpperCase());
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,7 +39,7 @@ public class InterfazUsuario extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnPerfil = new javax.swing.JButton();
         btnPronom = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        lblNombre = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -81,6 +85,11 @@ public class InterfazUsuario extends javax.swing.JFrame {
         jPanel1.add(btnPedidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 260, 250, 60));
 
         btnCarrito.setText("VER MI CARRITO");
+        btnCarrito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCarritoActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnCarrito, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 260, 250, 60));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 30)); // NOI18N
@@ -89,15 +98,19 @@ public class InterfazUsuario extends javax.swing.JFrame {
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, 390, 40));
 
         btnPerfil.setText("VER MI PERFIL");
+        btnPerfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPerfilActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 250, 60));
 
         btnPronom.setText("BUSCAR PRODUCTO POR NOMBRE");
         jPanel1.add(btnPronom, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 340, 250, 60));
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 0, 68)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("ENOL");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 220, 70));
+        lblNombre.setFont(new java.awt.Font("Dialog", 0, 68)); // NOI18N
+        lblNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel1.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, 220, 70));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -112,10 +125,18 @@ public class InterfazUsuario extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void btnPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPedidosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnPedidosActionPerformed
+
+    private void btnCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCarritoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCarritoActionPerformed
+
+    private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPerfilActionPerformed
 
    
 
@@ -126,9 +147,9 @@ public class InterfazUsuario extends javax.swing.JFrame {
     private javax.swing.JButton btnProcat;
     private javax.swing.JButton btnPronom;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblBienvenido;
+    private javax.swing.JLabel lblNombre;
     // End of variables declaration//GEN-END:variables
 }

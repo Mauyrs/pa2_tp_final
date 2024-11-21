@@ -11,7 +11,7 @@ public class Contrasena {
         return codificador.encode(contra);
     }
     
-    public static boolean combrobar(String contra, String hash){
+    public static boolean comprobar(String contra, String hash){
         return codificador.matches(contra, hash);
     }
     

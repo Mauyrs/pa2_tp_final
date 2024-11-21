@@ -4,7 +4,15 @@
  */
 package igu;
 
+import DAO.ImpDAOUsuario;
+import clases.Usuario;
+import clases.main;
 import java.awt.Color;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import seguridad.Contrasena;
 
 /**
  *
@@ -193,7 +201,38 @@ public class Login extends javax.swing.JFrame {
     } 
    } 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        // TODO add your handling code here:
+         ImpDAOUsuario usuarioDAO = new ImpDAOUsuario();
+         String correo = txtUsuario.getText().trim();
+         String contra = String.valueOf(passUsuario.getPassword());
+      
+        try {
+            Usuario logueado = usuarioDAO.buscarCorreo(correo); // se busca al usuario con X correo
+            if(  logueado!=null && Contrasena.comprobar(contra, logueado.getHashContrasena())){ // se comprueba que el usuario encontrado tenga esa contraseña
+              int tipoUsuario = logueado.getIdTipo();
+              switch(tipoUsuario){
+                  case 1:
+                      InterfazAdmin interAdmin = new InterfazAdmin (logueado);
+                      interAdmin.setVisible(true);
+                     this.setVisible(false);
+                      break;
+                  case 2:
+                      InterfazUsuario interUsu = new InterfazUsuario (logueado);
+                      interUsu.setVisible(true);
+                       this.setVisible(false);
+                     break; 
+              }
+               
+            }else{
+                JOptionPane.showMessageDialog(null,"Credenciales incorrectas");
+            }
+            
+            
+            
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void txtUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyPressed
