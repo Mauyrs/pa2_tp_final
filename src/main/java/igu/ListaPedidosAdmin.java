@@ -8,12 +8,12 @@ package igu;
  *
  * @author Nacho
  */
-public class ListaPedidos extends javax.swing.JFrame {
+public class ListaPedidosAdmin extends javax.swing.JFrame {
 
     /**
      * Creates new form ListaUsuarios
      */
-    public ListaPedidos() {
+    public ListaPedidosAdmin() {
         initComponents();
     }
 
