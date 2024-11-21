@@ -46,7 +46,7 @@ public class InterfazAdmin extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(51, 153, 255));
+        jPanel2.setBackground(new java.awt.Color(102, 204, 255));
 
         lblBienvenido.setFont(new java.awt.Font("Dialog", 0, 72)); // NOI18N
         lblBienvenido.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
