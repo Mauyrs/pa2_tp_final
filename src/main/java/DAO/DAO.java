@@ -4,10 +4,7 @@ package DAO;
 import java.sql.SQLException;
 import java.util.List;
 
-/**
- *
- * @author Mauri
- */
+
 public interface DAO<T> {
      T obtener(int id) throws SQLException,ClassNotFoundException;
      
