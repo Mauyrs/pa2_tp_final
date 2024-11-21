@@ -37,6 +37,7 @@ public class InterfazAdmin extends javax.swing.JFrame {
         btnPronom = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         btnListarproducto = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -100,13 +101,17 @@ public class InterfazAdmin extends javax.swing.JFrame {
         jLabel2.setText("ENOL");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 220, 70));
 
-        btnListarproducto.setText("LISTAR TODOS LOS PEDIDOS");
+        btnListarproducto.setText("LISTAR TODOS LOS PRODUCTOS");
         btnListarproducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnListarproductoActionPerformed(evt);
             }
         });
         jPanel1.add(btnListarproducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 260, 250, 60));
+
+        btnVolver.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        btnVolver.setText("Volver");
+        jPanel1.add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 420, 110, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -139,6 +144,7 @@ public class InterfazAdmin extends javax.swing.JFrame {
     private javax.swing.JButton btnPerfil;
     private javax.swing.JButton btnProcat;
     private javax.swing.JButton btnPronom;
+    private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
