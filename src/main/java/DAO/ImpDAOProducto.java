@@ -3,7 +3,6 @@ package DAO;
 
 import clases.Categoria;
 import clases.Producto;
-import clases.Usuario;
 import conexiones.ConSql;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -190,7 +189,7 @@ public class ImpDAOProducto implements ProductoDAO {
     @Override
     public int eliminar(Producto prod) throws SQLException, ClassNotFoundException {
         Connection con = ConSql.obtener();
-        String sql = "DELETE FROM tipo_usuario WHERE id = ?";
+        String sql = "DELETE FROM producto WHERE id = ?";
         PreparedStatement prep = con.prepareStatement(sql);
         prep.setInt(1, prod.getIdProducto());
         
@@ -199,6 +198,7 @@ public class ImpDAOProducto implements ProductoDAO {
         ConSql.cerrarPrepStmt(prep);
         
         
-        return camb;    }
+        return camb;    
+    }
 
 }

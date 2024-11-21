@@ -1,33 +1,26 @@
 
 package clases;
 
+import java.time.LocalDate;
+
 
 public class Pedido {
-    private String estado;
-    // falta el hashmap 
-    // entregaEstim tmb falta
     private int idPedido;
-    private Pago pago;
-    private double montoPedido;
+    private int idEstado;
+    private LocalDate entregaEstimada;
+    private int idUsuario;
+    private LocalDate fechaPedido;
 
-    public Pedido() {
-    }
-
-    public Pedido(String estado, int idPedido, Pago pago, double montoPedido) {
-        this.estado = estado;
+    public Pedido(int idPedido, int idEstado, LocalDate entregaEstimada, int idUsuario, LocalDate fechaPedido) {
         this.idPedido = idPedido;
-        this.pago = pago;
-        this.montoPedido = montoPedido;
+        this.idEstado = idEstado;
+        this.entregaEstimada = entregaEstimada;
+        this.idUsuario = idUsuario;
+        this.fechaPedido = fechaPedido;
     }
 
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
+    
+    
     public int getIdPedido() {
         return idPedido;
     }
@@ -36,21 +29,41 @@ public class Pedido {
         this.idPedido = idPedido;
     }
 
-    public Pago getPago() {
-        return pago;
+    public int getIdEstado() {
+        return idEstado;
     }
 
-    public void setPago(Pago pago) {
-        this.pago = pago;
+    public void setIdEstado(int idEstado) {
+        this.idEstado = idEstado;
     }
 
-    public double getMontoPedido() {
-        return montoPedido;
+    public LocalDate getEntregaEstimada() {
+        return entregaEstimada;
     }
 
-    public void setMontoPedido(double montoPedido) {
-        this.montoPedido = montoPedido;
+    public void setEntregaEstimada(LocalDate entregaEstimada) {
+        this.entregaEstimada = entregaEstimada;
     }
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public LocalDate getFechaPedido() {
+        return fechaPedido;
+    }
+
+    public void setFechaPedido(LocalDate fechaPedido) {
+        this.fechaPedido = fechaPedido;
+    }
+    
+    
+
+    
         
     
 }

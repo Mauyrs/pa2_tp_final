@@ -8,12 +8,12 @@ package igu;
  *
  * @author Nacho
  */
-public class Carrito extends javax.swing.JFrame {
+public class CarritoIGU extends javax.swing.JFrame {
 
     /**
      * Creates new form Carrito
      */
-    public Carrito() {
+    public CarritoIGU() {
         initComponents();
     }
 
