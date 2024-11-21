@@ -4,16 +4,17 @@
  */
 package igu;
 
+import clases.Usuario;
+
 /**
  *
  * @author Nacho
  */
 public class CarritoIGU extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Carrito
-     */
-    public CarritoIGU() {
+  private Usuario usu;
+    public CarritoIGU(Usuario usu) {
+        this.usu = usu;
         initComponents();
     }
 
