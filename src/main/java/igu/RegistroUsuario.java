@@ -236,9 +236,11 @@ public class RegistroUsuario extends javax.swing.JFrame {
  if (jCheckBox1.isSelected()) {
   
                   passUsuario.setEchoChar((char) 0); // Hace visible el texto
+                  passUsuario1.setEchoChar((char) 0);
                 } else {
                     // Si no está seleccionado, ocultar el texto de la contraseña
                     passUsuario.setEchoChar('*'); // Vuelve a ocultar el texto
+                     passUsuario1.setEchoChar('*');
                 }        // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
@@ -251,17 +253,20 @@ public class RegistroUsuario extends javax.swing.JFrame {
         
         if(String.valueOf(passUsuario.getPassword()).isEmpty()){
         passUsuario.setText("********");
-        passUsuario.setForeground(Color.gray);
+        passUsuario.setForeground(Color.gray.brighter());
     }
       if(txtCorreo.getText().isEmpty()){
           txtCorreo.setText("Ingrese su correo");
-          txtCorreo.setForeground(Color.gray);
+          txtCorreo.setForeground(Color.gray.brighter());
       }
       if(txtDireccion.getText().isEmpty()){
           txtDireccion.setText("Ingrese su direccion");
-          txtDireccion.setForeground(Color.gray);
+          txtDireccion.setForeground(Color.gray.brighter());
       }
-      
+        if(String.valueOf(passUsuario1.getPassword()).isEmpty()){
+        passUsuario1.setText("********");
+        passUsuario1.setForeground(Color.gray.brighter());
+    }
     }//GEN-LAST:event_txtUsuarioMousePressed
 
     private void txtDireccionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDireccionMousePressed
@@ -272,17 +277,20 @@ public class RegistroUsuario extends javax.swing.JFrame {
         
         if(String.valueOf(passUsuario.getPassword()).isEmpty()){
         passUsuario.setText("********");
-        passUsuario.setForeground(Color.gray);
+        passUsuario.setForeground(Color.gray.brighter());
     }
       if(txtCorreo.getText().isEmpty()){
           txtCorreo.setText("Ingrese su correo");
-          txtCorreo.setForeground(Color.gray);
+          txtCorreo.setForeground(Color.gray.brighter());
       }
       if(txtUsuario.getText().isEmpty()){
           txtUsuario.setText("Ingrese su nombre de usuario");
-          txtUsuario.setForeground(Color.gray);
+          txtUsuario.setForeground(Color.gray.brighter());
       }
-      
+        if(String.valueOf(passUsuario1.getPassword()).isEmpty()){
+        passUsuario1.setText("********");
+        passUsuario1.setForeground(Color.gray.brighter());
+    }
     }//GEN-LAST:event_txtDireccionMousePressed
 
     private void txtCorreoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCorreoMousePressed
@@ -293,17 +301,20 @@ public class RegistroUsuario extends javax.swing.JFrame {
         
         if(String.valueOf(passUsuario.getPassword()).isEmpty()){
         passUsuario.setText("********");
-        passUsuario.setForeground(Color.gray);
+        passUsuario.setForeground(Color.gray.brighter());
     }
       if(txtUsuario.getText().isEmpty()){
           txtUsuario.setText("Ingrese su nombre de usuario");
-          txtUsuario.setForeground(Color.gray);
+          txtUsuario.setForeground(Color.gray.brighter());
       }
       if(txtDireccion.getText().isEmpty()){
           txtDireccion.setText("Ingrese su direccion");
-          txtDireccion.setForeground(Color.gray);
+          txtDireccion.setForeground(Color.gray.brighter());
       }
-      
+       if(String.valueOf(passUsuario1.getPassword()).isEmpty()){
+        passUsuario1.setText("********");
+        passUsuario1.setForeground(Color.gray.brighter());
+    }
     }//GEN-LAST:event_txtCorreoMousePressed
 
     private void passUsuarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passUsuarioMousePressed
@@ -314,36 +325,45 @@ public class RegistroUsuario extends javax.swing.JFrame {
               } else{
             if(txtUsuario.getText().isEmpty()){
               txtUsuario.setText("Ingrese su nombre de usuario");
-              txtUsuario.setForeground(Color.gray);
+              txtUsuario.setForeground(Color.gray.brighter());
           }else{
              if(txtCorreo.getText().isEmpty()){
                  txtCorreo.setText("Ingrese su correo");
-                 txtCorreo.setForeground(Color.gray);
+                 txtCorreo.setForeground(Color.gray.brighter());
              }else{
                  if(txtDireccion.getText().isEmpty()){
                   txtDireccion.setText("Ingrese su direccion");
-                  txtDireccion.setForeground(Color.gray);
+                  txtDireccion.setForeground(Color.gray.brighter());
                  }
-             }   
-            }
-    }                                        
+                    else{
+                      if(String.valueOf(passUsuario1.getPassword()).isEmpty()){
+                        passUsuario1.setText("********");
+                        passUsuario1.setForeground(Color.gray.brighter());
+                             }
+                       }   
+                     }
+                  }
+            } 
   if(txtUsuario.getText().isEmpty()){
                 
               txtUsuario.setText("Ingrese su nombre de usuario");
-              txtUsuario.setForeground(Color.gray);
+              txtUsuario.setForeground(Color.gray.brighter());
     }
   if(txtDireccion.getText().isEmpty()){
               txtDireccion.setText("Ingrese su direccion");
-              txtDireccion.setForeground(Color.gray);
+              txtDireccion.setForeground(Color.gray.brighter());
                  }
   if(txtCorreo.getText().isEmpty()){
               txtCorreo.setText("Ingrese su correo");
-              txtCorreo.setForeground(Color.gray);
+              txtCorreo.setForeground(Color.gray.brighter());
              }
-  
+  if(String.valueOf(passUsuario1.getPassword()).isEmpty()){
+                        passUsuario1.setText("********");
+                        passUsuario1.setForeground(Color.gray.brighter());
+                 }
   
     }//GEN-LAST:event_passUsuarioMousePressed
-
+          
     private void txtUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyPressed
        if (txtUsuario.getText().equals("Ingrese su nombre de usuario")) {
                     txtUsuario.setText(""); 
@@ -352,7 +372,50 @@ public class RegistroUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUsuarioKeyPressed
 
     private void passUsuario1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passUsuario1MousePressed
-        // TODO add your handling code here:
+     if(String.valueOf(passUsuario1.getPassword()).equals("********")){
+              passUsuario1.setText("");
+              passUsuario1.setForeground(Color.black);
+              } else{
+            if(txtUsuario.getText().isEmpty()){
+              txtUsuario.setText("Ingrese su nombre de usuario");
+              txtUsuario.setForeground(Color.gray.brighter());
+          }else{
+             if(txtCorreo.getText().isEmpty()){
+                 txtCorreo.setText("Ingrese su correo");
+                 txtCorreo.setForeground(Color.gray.brighter());
+             }else{
+                 if(txtDireccion.getText().isEmpty()){
+                  txtDireccion.setText("Ingrese su direccion");
+                  txtDireccion.setForeground(Color.gray.brighter());
+                 }
+                 else{
+                      if(String.valueOf(passUsuario.getPassword()).isEmpty()){
+                        passUsuario.setText("********");
+                        passUsuario.setForeground(Color.gray.brighter());
+                             }
+                     }   
+                 }
+             }   
+         }
+                                            
+  if(txtUsuario.getText().isEmpty()){
+                
+              txtUsuario.setText("Ingrese su nombre de usuario");
+              txtUsuario.setForeground(Color.gray.brighter());
+    }
+  if(txtDireccion.getText().isEmpty()){
+              txtDireccion.setText("Ingrese su direccion");
+              txtDireccion.setForeground(Color.gray.brighter());
+                 }
+  if(txtCorreo.getText().isEmpty()){
+              txtCorreo.setText("Ingrese su correo");
+              txtCorreo.setForeground(Color.gray.brighter());
+             }
+  if(String.valueOf(passUsuario.getPassword()).isEmpty()){
+                        passUsuario.setText("********");
+                        passUsuario.setForeground(Color.gray.brighter());
+                             }
+  
     }//GEN-LAST:event_passUsuario1MousePressed
 
     private void passUsuario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passUsuario1ActionPerformed

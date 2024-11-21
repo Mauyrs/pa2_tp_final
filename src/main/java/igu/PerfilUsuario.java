@@ -41,6 +41,7 @@ public class PerfilUsuario extends javax.swing.JFrame {
         btnGuardar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -65,7 +66,7 @@ public class PerfilUsuario extends javax.swing.JFrame {
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 160, 50));
 
         txtNombre.setBorder(null);
-        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 50, 140, 40));
+        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 40, 140, 40));
 
         txtApellido.setBorder(null);
         jPanel1.add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 100, 140, 40));
@@ -86,10 +87,10 @@ public class PerfilUsuario extends javax.swing.JFrame {
                 passConfirmarActionPerformed(evt);
             }
         });
-        jPanel1.add(passConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 350, 140, 40));
+        jPanel1.add(passConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 340, 140, 40));
 
         passContra.setText("jPasswordField1");
-        jPanel1.add(passContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, 140, 40));
+        jPanel1.add(passContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 260, 140, 40));
 
         btnGuardar.setText("Guardar cambios");
         jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 220, -1, -1));
@@ -102,6 +103,10 @@ public class PerfilUsuario extends javax.swing.JFrame {
         jLabel9.setText("<html>Confirmar contraseña </html>");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, 200, 150));
 
+        jButton1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jButton1.setText("Volver");
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 450, 110, 40));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -110,7 +115,7 @@ public class PerfilUsuario extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 454, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -124,6 +129,7 @@ public class PerfilUsuario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

@@ -100,7 +100,7 @@ public class InterfazAdmin extends javax.swing.JFrame {
         jLabel2.setText("ENOL");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 220, 70));
 
-        btnListarproducto.setText("LISTAR TODOS LOS PRODUCTOS");
+        btnListarproducto.setText("LISTAR TODOS LOS PEDIDOS");
         btnListarproducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnListarproductoActionPerformed(evt);
