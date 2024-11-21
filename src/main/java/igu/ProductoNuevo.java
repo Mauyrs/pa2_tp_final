@@ -203,7 +203,7 @@ public class ProductoNuevo extends javax.swing.JFrame {
                 comboCategoriasActionPerformed(evt);
             }
         });
-        jPanel1.add(comboCategorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 310, 130, 20));
+        jPanel1.add(comboCategorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 310, 140, 20));
 
         btnGuardar1.setText("Guardar");
         btnGuardar1.addActionListener(new java.awt.event.ActionListener() {

@@ -29,13 +29,15 @@ public class InterfazUsuario extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         lblBienvenido = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
-        btnMisPedidos = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        btnSalir = new javax.swing.JButton();
+        btnProcat = new javax.swing.JButton();
+        btnPedidos = new javax.swing.JButton();
+        btnCarrito = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        btnPerfil = new javax.swing.JButton();
+        btnPronom = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -63,27 +65,30 @@ public class InterfazUsuario extends javax.swing.JFrame {
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 120));
 
-        jButton5.setText("VER MI PERFIL");
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 210, 70));
+        btnProcat.setText("BUSCAR PRODUCTO POR CATEGORIA");
+        jPanel1.add(btnProcat, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 310, 240, 60));
 
-        btnMisPedidos.setText("MIS PEDIDOS");
-        btnMisPedidos.addActionListener(new java.awt.event.ActionListener() {
+        btnPedidos.setText("MIS PEDIDOS");
+        btnPedidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMisPedidosActionPerformed(evt);
+                btnPedidosActionPerformed(evt);
             }
         });
-        jPanel1.add(btnMisPedidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 240, 210, 70));
+        jPanel1.add(btnPedidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 240, 240, 60));
 
-        jButton3.setText("VER CARRITO");
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, 210, 70));
-
-        btnSalir.setText("SALIR");
-        jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 450, 100, 30));
+        btnCarrito.setText("VER MI CARRITO");
+        jPanel1.add(btnCarrito, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, 240, 60));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 30)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("QUE TRATAS DE HACER?");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, 390, 30));
+        jLabel1.setText("¿QUE DESEAS HACER?");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, 390, 40));
+
+        btnPerfil.setText("VER MI PERFIL");
+        jPanel1.add(btnPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 240, 60));
+
+        btnPronom.setText("BUSCAR PRODUCTO POR NOMBRE");
+        jPanel1.add(btnPronom, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 240, 60));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -93,23 +98,24 @@ public class InterfazUsuario extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnMisPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMisPedidosActionPerformed
+    private void btnPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPedidosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnMisPedidosActionPerformed
+    }//GEN-LAST:event_btnPedidosActionPerformed
 
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnMisPedidos;
-    private javax.swing.JButton btnSalir;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton btnCarrito;
+    private javax.swing.JButton btnPedidos;
+    private javax.swing.JButton btnPerfil;
+    private javax.swing.JButton btnProcat;
+    private javax.swing.JButton btnPronom;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
