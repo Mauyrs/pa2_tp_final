@@ -44,6 +44,10 @@ public class RegistroUsuario extends javax.swing.JFrame {
         passUsuario = new javax.swing.JPasswordField();
         jSeparator4 = new javax.swing.JSeparator();
         jCheckBox1 = new javax.swing.JCheckBox();
+        jButton1 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jSeparator5 = new javax.swing.JSeparator();
+        passUsuario1 = new javax.swing.JPasswordField();
 
         jTextField1.setText("jTextField1");
         jTextField1.setBorder(null);
@@ -54,6 +58,8 @@ public class RegistroUsuario extends javax.swing.JFrame {
         });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocationByPlatform(true);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -62,23 +68,23 @@ public class RegistroUsuario extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("REGISTRO");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, 210, 90));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 40, 210, 90));
 
         jLabel2.setText("CONTRASEÑA");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 300, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 290, -1, -1));
 
         jLabel3.setText("NOMBRE");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 130, 60, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, 60, -1));
 
         jLabel5.setText("DIRECCION");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 190, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, -1, -1));
 
         jLabel6.setText("CORREO");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 240, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 240, -1, -1));
 
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 340, 170, 10));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 330, 170, 10));
 
         txtUsuario.setForeground(new java.awt.Color(204, 204, 204));
         txtUsuario.setText("Ingrese su nombre de usuario");
@@ -98,7 +104,7 @@ public class RegistroUsuario extends javax.swing.JFrame {
                 txtUsuarioKeyPressed(evt);
             }
         });
-        jPanel1.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, 170, -1));
+        jPanel1.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, 170, -1));
 
         txtDireccion.setForeground(new java.awt.Color(204, 204, 204));
         txtDireccion.setText("Ingrese su direccion");
@@ -113,7 +119,7 @@ public class RegistroUsuario extends javax.swing.JFrame {
                 txtDireccionActionPerformed(evt);
             }
         });
-        jPanel1.add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 210, 170, -1));
+        jPanel1.add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 210, 170, -1));
 
         txtCorreo.setForeground(new java.awt.Color(204, 204, 204));
         txtCorreo.setText("Ingrese su correo");
@@ -128,15 +134,15 @@ public class RegistroUsuario extends javax.swing.JFrame {
                 txtCorreoActionPerformed(evt);
             }
         });
-        jPanel1.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 260, 170, -1));
+        jPanel1.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 260, 170, -1));
 
         jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 170, 170, 10));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, 170, 10));
 
         jSeparator3.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 230, 170, 10));
+        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 230, 170, 10));
 
         passUsuario.setForeground(new java.awt.Color(204, 204, 204));
         passUsuario.setText("********");
@@ -151,11 +157,11 @@ public class RegistroUsuario extends javax.swing.JFrame {
                 passUsuarioActionPerformed(evt);
             }
         });
-        jPanel1.add(passUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 320, 170, -1));
+        jPanel1.add(passUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 310, 170, -1));
 
         jSeparator4.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 280, 170, 10));
+        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 280, 170, 10));
 
         jCheckBox1.setText("Mostrar contraseña");
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -163,17 +169,44 @@ public class RegistroUsuario extends javax.swing.JFrame {
                 jCheckBox1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 320, -1, -1));
+        jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 320, -1, -1));
+
+        jButton1.setText("Confirmar registro");
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 270, -1, -1));
+
+        jLabel4.setText("CONFIRMAR CONTRASEÑA");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 340, -1, -1));
+
+        jSeparator5.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator5.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 380, 170, 10));
+
+        passUsuario1.setForeground(new java.awt.Color(204, 204, 204));
+        passUsuario1.setText("********");
+        passUsuario1.setBorder(null);
+        passUsuario1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                passUsuario1MousePressed(evt);
+            }
+        });
+        passUsuario1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passUsuario1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(passUsuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 360, 170, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 925, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 855, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 431, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -318,13 +351,23 @@ public class RegistroUsuario extends javax.swing.JFrame {
                 }
     }//GEN-LAST:event_txtUsuarioKeyPressed
 
+    private void passUsuario1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passUsuario1MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passUsuario1MousePressed
+
+    private void passUsuario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passUsuario1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passUsuario1ActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
@@ -332,8 +375,10 @@ public class RegistroUsuario extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JPasswordField passUsuario;
+    private javax.swing.JPasswordField passUsuario1;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtUsuario;

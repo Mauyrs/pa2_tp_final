@@ -65,11 +65,13 @@ public class ProductoNuevo extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocationByPlatform(true);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("PRODUCTO NUEVO");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 360, 70));
@@ -196,7 +198,7 @@ public class ProductoNuevo extends javax.swing.JFrame {
                 btnBuscarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 190, 80, -1));
+        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 190, 120, 40));
 
         comboCategorias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -211,7 +213,7 @@ public class ProductoNuevo extends javax.swing.JFrame {
                 btnGuardar1ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnGuardar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 370, 80, 20));
+        jPanel1.add(btnGuardar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 360, 120, 40));
 
         btnEliminar.setText("Eliminar");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -219,7 +221,7 @@ public class ProductoNuevo extends javax.swing.JFrame {
                 btnEliminarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 410, 80, -1));
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 360, 120, 40));
 
         btnModificar1.setText("Modificar");
         btnModificar1.addActionListener(new java.awt.event.ActionListener() {
@@ -227,7 +229,7 @@ public class ProductoNuevo extends javax.swing.JFrame {
                 btnModificar1ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnModificar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 390, -1, -1));
+        jPanel1.add(btnModificar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 360, 120, 40));
 
         jLabel8.setText("ID");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 120, -1, -1));
@@ -256,7 +258,7 @@ public class ProductoNuevo extends javax.swing.JFrame {
         });
         jPanel1.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 180, 20));
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         jLabel9.setText("BUSCAR PRODUCTO");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 50, -1, -1));
 
@@ -264,11 +266,11 @@ public class ProductoNuevo extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 865, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 453, Short.MAX_VALUE)
         );
 
         pack();
@@ -302,19 +304,19 @@ public class ProductoNuevo extends javax.swing.JFrame {
         
       if(txtPrecio.getText().isEmpty()){
           txtPrecio.setText("Ingrese el precio del producto");
-          txtPrecio.setForeground(Color.gray);
+          txtPrecio.setForeground(Color.gray.brighter());
       }
       if(txtCantStock.getText().isEmpty()){
           txtCantStock.setText("Ingrese la cantidad en stock");
-          txtCantStock.setForeground(Color.gray);
+          txtCantStock.setForeground(Color.gray.brighter());
       }
       if(txtDescripcion.getText().isEmpty()){
           txtDescripcion.setText("Ingrese una descripcion");
-          txtDescripcion.setForeground(Color.gray);
+          txtDescripcion.setForeground(Color.gray.brighter());
       }
       if(txtUsuario.getText().isEmpty()){
           txtUsuario.setText("Ingrese el nombre del producto");
-          txtUsuario.setForeground(Color.gray);
+          txtUsuario.setForeground(Color.gray.brighter());
       }
     }//GEN-LAST:event_txtIdMousePressed
 
@@ -326,20 +328,20 @@ public class ProductoNuevo extends javax.swing.JFrame {
         
       if(txtUsuario.getText().isEmpty()){
           txtUsuario.setText("Ingrese el nombre del producto");
-          txtUsuario.setForeground(Color.gray);
+          txtUsuario.setForeground(Color.gray.brighter());
       }
       if(txtCantStock.getText().isEmpty()){
           txtCantStock.setText("Ingrese la cantidad en stock");
-          txtCantStock.setForeground(Color.gray);
+          txtCantStock.setForeground(Color.gray.brighter());
       }
      
       if(txtDescripcion.getText().isEmpty()){
           txtDescripcion.setText("Ingrese una descripcion");
-          txtDescripcion.setForeground(Color.gray);
+          txtDescripcion.setForeground(Color.gray.brighter());
       }
        if(txtId.getText().isEmpty()){
           txtId.setText("Ingrese la ID del producto a buscar");
-          txtId.setForeground(Color.gray);
+          txtId.setForeground(Color.gray.brighter());
       }
     }//GEN-LAST:event_txtPrecioMousePressed
 
@@ -351,20 +353,20 @@ public class ProductoNuevo extends javax.swing.JFrame {
         
       if(txtPrecio.getText().isEmpty()){
           txtPrecio.setText("Ingrese el precio del producto");
-          txtPrecio.setForeground(Color.gray);
+          txtPrecio.setForeground(Color.gray.brighter());
       }
       if(txtUsuario.getText().isEmpty()){
           txtUsuario.setText("Ingrese el nombre del producto");
-          txtUsuario.setForeground(Color.gray);
+          txtUsuario.setForeground(Color.gray.brighter());
       }
 
       if(txtDescripcion.getText().isEmpty()){
           txtDescripcion.setText("Ingrese una descripcion");
-          txtDescripcion.setForeground(Color.gray);
+          txtDescripcion.setForeground(Color.gray.brighter());
       }
        if(txtId.getText().isEmpty()){
           txtId.setText("Ingrese la ID del producto a buscar");
-          txtId.setForeground(Color.gray);
+          txtId.setForeground(Color.gray.brighter());
       }
     }//GEN-LAST:event_txtCantStockMousePressed
 
@@ -376,20 +378,20 @@ public class ProductoNuevo extends javax.swing.JFrame {
         
       if(txtPrecio.getText().isEmpty()){
           txtPrecio.setText("Ingrese el precio del producto");
-          txtPrecio.setForeground(Color.gray);
+          txtPrecio.setForeground(Color.gray.brighter());
       }
       if(txtCantStock.getText().isEmpty()){
           txtCantStock.setText("Ingrese la cantidad en stock");
-          txtCantStock.setForeground(Color.gray);
+          txtCantStock.setForeground(Color.gray.brighter());
       }
       
       if(txtUsuario.getText().isEmpty()){
           txtUsuario.setText("Ingrese el nombre del producto");
-          txtUsuario.setForeground(Color.gray);
+          txtUsuario.setForeground(Color.gray.brighter());
       }
        if(txtId.getText().isEmpty()){
           txtId.setText("Ingrese la ID del producto a buscar");
-          txtId.setForeground(Color.gray);
+          txtId.setForeground(Color.gray.brighter());
       }
       
     }//GEN-LAST:event_txtDescripcionMousePressed
@@ -421,19 +423,19 @@ public class ProductoNuevo extends javax.swing.JFrame {
         
       if(txtPrecio.getText().isEmpty()){
           txtPrecio.setText("Ingrese el precio del producto");
-          txtPrecio.setForeground(Color.gray);
+          txtPrecio.setForeground(Color.gray.brighter());
       }
       if(txtCantStock.getText().isEmpty()){
           txtCantStock.setText("Ingrese la cantidad en stock");
-          txtCantStock.setForeground(Color.gray);
+          txtCantStock.setForeground(Color.gray.brighter());
       }
       if(txtDescripcion.getText().isEmpty()){
           txtDescripcion.setText("Ingrese una descripcion");
-          txtDescripcion.setForeground(Color.gray);
+          txtDescripcion.setForeground(Color.gray.brighter());
       }
        if(txtId.getText().isEmpty()){
           txtId.setText("Ingrese la ID del producto a buscar");
-          txtId.setForeground(Color.gray);
+          txtId.setForeground(Color.gray.brighter());
       }
     }//GEN-LAST:event_txtUsuarioMousePressed
 

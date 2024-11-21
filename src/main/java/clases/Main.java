@@ -96,7 +96,7 @@ public class main {
         
         
         
-        InterfazUsuario log = new InterfazUsuario();
+        ProductoNuevo log = new ProductoNuevo();
         
         log.setVisible(true);
         

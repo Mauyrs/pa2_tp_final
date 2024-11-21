@@ -27,10 +27,80 @@ public class PerfilUsuario extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        txtNombre = new javax.swing.JTextField();
+        txtApellido = new javax.swing.JTextField();
+        txtCorreo = new javax.swing.JTextField();
+        txtDireccion = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        passConfirmar = new javax.swing.JPasswordField();
+        passContra = new javax.swing.JPasswordField();
+        btnGuardar = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocationByPlatform(true);
+        setResizable(false);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        jLabel1.setText("Contraseña:");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 200, -1));
+
+        jLabel3.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        jLabel3.setText("Apellido:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, -1, 60));
+
+        jLabel4.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        jLabel4.setText("Correo:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 140, -1));
+
+        jLabel5.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        jLabel5.setText("Nombre:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 160, 50));
+
+        txtNombre.setBorder(null);
+        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 50, 140, 40));
+
+        txtApellido.setBorder(null);
+        jPanel1.add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 100, 140, 40));
+
+        txtCorreo.setBorder(null);
+        jPanel1.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, 140, 40));
+
+        txtDireccion.setBorder(null);
+        jPanel1.add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 210, 140, 40));
+
+        jLabel6.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        jLabel6.setText("Direccion:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 170, -1));
+
+        passConfirmar.setText("jPasswordField1");
+        passConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passConfirmarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(passConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 350, 140, 40));
+
+        passContra.setText("jPasswordField1");
+        jPanel1.add(passContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, 140, 40));
+
+        btnGuardar.setText("Guardar cambios");
+        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 220, -1, -1));
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel8.setText(":");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 350, 10, 30));
+
+        jLabel9.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        jLabel9.setText("<html>Confirmar contraseña </html>");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, 200, 150));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -46,9 +116,27 @@ public class PerfilUsuario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void passConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passConfirmarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passConfirmarActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnGuardar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPasswordField passConfirmar;
+    private javax.swing.JPasswordField passContra;
+    private javax.swing.JTextField txtApellido;
+    private javax.swing.JTextField txtCorreo;
+    private javax.swing.JTextField txtDireccion;
+    private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }
