@@ -96,7 +96,7 @@ public class main {
         
         
         
-        ProductoNuevo log = new ProductoNuevo();
+        Login log = new Login();
         
         log.setVisible(true);
         
