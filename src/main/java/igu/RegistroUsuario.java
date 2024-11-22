@@ -544,11 +544,16 @@ public class RegistroUsuario extends javax.swing.JFrame {
              JOptionPane.showMessageDialog(null,"Ingresa una contraseña de al menos 10 caracteres");
                 }else{
                  if(contra.equals(confirma)){
-                     String contraEncriptada= Contrasena.encriptar(contra);
-                     nuevo= new Usuario(txtUsuario.getText().trim(), txtApellido.getText().trim(),txtDireccion.getText(),
+                     
+                     if(usuarioDAO.buscarCorreo(txtCorreo.getText().trim())==null){
+                          String contraEncriptada= Contrasena.encriptar(contra);
+                          nuevo= new Usuario(txtUsuario.getText().trim(), txtApellido.getText().trim(),txtDireccion.getText(),
                      txtCorreo.getText().trim(),contraEncriptada,1);
                      usuarioDAO.insertar(nuevo);
                       JOptionPane.showMessageDialog(null,"Se ha registrado ");
+                     }else{
+                         JOptionPane.showMessageDialog(null, "El correo ya esta registrado");
+                     }
                       
                  }else{
                      JOptionPane.showMessageDialog(null,"Las contraseñas no son iguales");
