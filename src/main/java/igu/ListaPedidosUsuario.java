@@ -4,16 +4,14 @@
  */
 package igu;
 
-/**
- *
- * @author Nacho
- */
+import clases.Usuario;
+
+
 public class ListaPedidosUsuario extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ListaUsuarios
-     */
-    public ListaPedidosUsuario() {
+    private Usuario usuario;
+    public ListaPedidosUsuario(Usuario usuario) {
+        this.usuario = usuario;
         initComponents();
     }
 
@@ -99,10 +97,20 @@ public class ListaPedidosUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        // TODO add your handling code here:
-       // InterfazUsuario inter = new InterfazUsuario();
-       // inter.setVisible(true);
-       // this.setVisible(false);
+        int tipoUsuario = usuario.getIdTipo();
+              switch(tipoUsuario){
+                  case 1:
+                      InterfazAdmin interAdmin = new InterfazAdmin (usuario);
+                      interAdmin.setVisible(true);
+                     this.setVisible(false);
+                      break;
+                  case 2:
+                      InterfazUsuario interUsu = new InterfazUsuario (usuario);
+                      interUsu.setVisible(true);
+                       this.setVisible(false);
+                     break; 
+              }
+               
     }//GEN-LAST:event_btnVolverActionPerformed
 
    

@@ -7,6 +7,7 @@ package igu;
 import DAO.CategoriaDAO;
 import DAO.ImpDAOCategoria;
 import clases.Categoria;
+import clases.Usuario;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -20,10 +21,9 @@ import javax.swing.JComboBox;
  */
 public class ProductoNuevo extends javax.swing.JFrame {
 
-    /**
-     * Creates new form RegistroUsuario
-     */
-    public ProductoNuevo() {
+    private Usuario usuario;
+    public ProductoNuevo(Usuario usuario) {
+        this.usuario = usuario;
         initComponents();
         cargarCategorias(comboCategorias);
     }
@@ -265,6 +265,11 @@ public class ProductoNuevo extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         jButton1.setText("Volver");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, 110, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -475,6 +480,23 @@ public class ProductoNuevo extends javax.swing.JFrame {
     private void comboCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCategoriasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboCategoriasActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       int tipoUsuario = usuario.getIdTipo();
+              switch(tipoUsuario){
+                  case 1:
+                      InterfazAdmin interAdmin = new InterfazAdmin (usuario);
+                      interAdmin.setVisible(true);
+                     this.setVisible(false);
+                      break;
+                  case 2:
+                      InterfazUsuario interUsu = new InterfazUsuario (usuario);
+                      interUsu.setVisible(true);
+                       this.setVisible(false);
+                     break; 
+              }
+               
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
 

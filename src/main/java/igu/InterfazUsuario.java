@@ -5,10 +5,7 @@
 package igu;
  import clases.Usuario;
 
-/**
- *
- * @author Nacho
- */
+
 public class InterfazUsuario extends javax.swing.JFrame {
 
     private Usuario usuario;
@@ -75,6 +72,11 @@ public class InterfazUsuario extends javax.swing.JFrame {
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, 110));
 
         btnProcat.setText("BUSCAR PRODUCTO POR CATEGORIA");
+        btnProcat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProcatActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnProcat, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, 250, 60));
 
         btnPedidos.setText("MIS PEDIDOS");
@@ -107,6 +109,11 @@ public class InterfazUsuario extends javax.swing.JFrame {
         jPanel1.add(btnPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 250, 60));
 
         btnPronom.setText("BUSCAR PRODUCTO POR NOMBRE");
+        btnPronom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPronomActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnPronom, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 340, 250, 60));
 
         lblNombre.setFont(new java.awt.Font("Dialog", 0, 68)); // NOI18N
@@ -137,7 +144,9 @@ public class InterfazUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     private void btnPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPedidosActionPerformed
-        // TODO add your handling code here:
+      ListaPedidosUsuario listape = new ListaPedidosUsuario(usuario);
+      listape.setVisible(true);
+      this.setVisible(false);
     }//GEN-LAST:event_btnPedidosActionPerformed
 
     private void btnCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCarritoActionPerformed
@@ -147,7 +156,9 @@ public class InterfazUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCarritoActionPerformed
 
     private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
-        // TODO add your handling code here:
+      PerfilUsuario per = new PerfilUsuario(usuario);
+      per.setVisible(true);
+      this.setVisible(false);
     }//GEN-LAST:event_btnPerfilActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
@@ -155,6 +166,18 @@ public class InterfazUsuario extends javax.swing.JFrame {
         log.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void btnProcatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcatActionPerformed
+        BusquedaCategoria busq = new BusquedaCategoria(usuario);
+        busq.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnProcatActionPerformed
+
+    private void btnPronomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPronomActionPerformed
+        BusquedaNombre busq = new BusquedaNombre(usuario);
+        busq.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnPronomActionPerformed
 
    
 
