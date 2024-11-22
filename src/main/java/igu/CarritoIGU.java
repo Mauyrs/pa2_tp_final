@@ -251,8 +251,10 @@ public class CarritoIGU extends javax.swing.JFrame {
     }//GEN-LAST:event_lblTotalActionPerformed
 
     private void btnPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPago1ActionPerformed
-        
-        //ESTE CODIGO FUNCIONA PERFECTO PERO NO DEBERIA ESTAR ACA, SE DEBERIA USAR UNA VEZ SE CONFIRMAN LAS CREDENCIALES DE PAGO
+        InterfazPago inter = new InterfazPago(usu);
+        inter.setVisible(true);
+        this.setVisible(false);
+       /* //ESTE CODIGO FUNCIONA PERFECTO PERO NO DEBERIA ESTAR ACA, SE DEBERIA USAR UNA VEZ SE CONFIRMAN LAS CREDENCIALES DE PAGO
         try {
             
             Map<Producto, Integer> carritoActual = usuarioDAO.obtenerCarrito(usu);
@@ -265,7 +267,7 @@ public class CarritoIGU extends javax.swing.JFrame {
         } catch (SQLException | ClassNotFoundException ex) {
             JOptionPane.showMessageDialog(tblCarrito, "No se pudo conectar con la base de datos" + ex.getMessage());
         }
-        
+        */
         
         
 
