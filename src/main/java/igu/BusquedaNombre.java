@@ -4,16 +4,14 @@
  */
 package igu;
 
-/**
- *
- * @author Nacho
- */
+import clases.Usuario;
+
+
 public class BusquedaNombre extends javax.swing.JFrame {
 
-    /**
-     * Creates new form BusquedaNombre
-     */
-    public BusquedaNombre() {
+   private Usuario usuario;
+    public BusquedaNombre(Usuario usuario) {
+        this.usuario = usuario;
         initComponents();
     }
 
@@ -27,6 +25,9 @@ public class BusquedaNombre extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -35,14 +36,52 @@ public class BusquedaNombre extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, 530));
+
+        jLabel1.setText("jLabel1");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 40, 60, 30));
+
+        jTextField1.setText("jTextField1");
+        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, 80, 30));
+
+        jButton5.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jButton5.setText("Volver");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 110, 50));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 410));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        int tipoUsuario = usuario.getIdTipo();
+        switch(tipoUsuario){
+            case 1:
+            InterfazAdmin interAdmin = new InterfazAdmin (usuario);
+            interAdmin.setVisible(true);
+            this.setVisible(false);
+            break;
+            case 2:
+            InterfazUsuario interUsu = new InterfazUsuario (usuario);
+            interUsu.setVisible(true);
+            this.setVisible(false);
+            break;
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

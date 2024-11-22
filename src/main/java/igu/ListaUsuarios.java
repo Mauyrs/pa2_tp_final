@@ -4,16 +4,17 @@
  */
 package igu;
 
+import clases.Usuario;
+
 /**
  *
  * @author Nacho
  */
 public class ListaUsuarios extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ListaUsuarios
-     */
-    public ListaUsuarios() {
+    private Usuario usuario;
+    public ListaUsuarios(Usuario usuario) {
+        this.usuario = usuario;
         initComponents();
     }
 
@@ -74,6 +75,11 @@ public class ListaUsuarios extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         jButton2.setText("Volver");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, 110, 40));
 
         jSeparator5.setBackground(new java.awt.Color(0, 0, 0));
@@ -133,6 +139,22 @@ public class ListaUsuarios extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+                  int tipoUsuario = usuario.getIdTipo();
+              switch(tipoUsuario){
+                  case 1:
+                      InterfazAdmin interAdmin = new InterfazAdmin (usuario);
+                      interAdmin.setVisible(true);
+                     this.setVisible(false);
+                      break;
+                  case 2:
+                      InterfazUsuario interUsu = new InterfazUsuario (usuario);
+                      interUsu.setVisible(true);
+                       this.setVisible(false);
+                     break; 
+              }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
    
 

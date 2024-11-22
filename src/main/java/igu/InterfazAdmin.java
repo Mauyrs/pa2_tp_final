@@ -76,6 +76,11 @@ public class InterfazAdmin extends javax.swing.JFrame {
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, 110));
 
         btnProcat.setText("BUSCAR PRODUCTO POR CATEGORIA");
+        btnProcat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProcatActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnProcat, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, 250, 60));
 
         btnGestionar.setText("GESTIONAR UN PRODUCTO");
@@ -108,6 +113,11 @@ public class InterfazAdmin extends javax.swing.JFrame {
         jPanel1.add(btnPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 250, 60));
 
         btnPronom.setText("BUSCAR PRODUCTO POR NOMBRE");
+        btnPronom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPronomActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnPronom, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 340, 250, 60));
 
         lblNombre.setFont(new java.awt.Font("Dialog", 0, 68)); // NOI18N
@@ -146,13 +156,15 @@ public class InterfazAdmin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGestionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionarActionPerformed
-      ProductoNuevo pro = new ProductoNuevo ();
+      ProductoNuevo pro = new ProductoNuevo (usuario);
       pro.setVisible(true);
       this.setVisible(false);
     }//GEN-LAST:event_btnGestionarActionPerformed
 
     private void btnListarproductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarproductoActionPerformed
-        // TODO add your handling code here:
+      ListaProductos listapro = new ListaProductos(usuario);
+      listapro.setVisible(true);
+      this.setVisible(false);
     }//GEN-LAST:event_btnListarproductoActionPerformed
 
     private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
@@ -162,7 +174,10 @@ public class InterfazAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPerfilActionPerformed
 
     private void btnListarusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarusuarioActionPerformed
-        // TODO add your handling code here:
+    ListaUsuarios listausu = new ListaUsuarios(usuario);
+    listausu.setVisible(true);
+    this.setVisible(false);
+    
     }//GEN-LAST:event_btnListarusuarioActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
@@ -170,6 +185,18 @@ public class InterfazAdmin extends javax.swing.JFrame {
         log.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void btnPronomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPronomActionPerformed
+        BusquedaNombre busque = new BusquedaNombre (usuario);
+        busque.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnPronomActionPerformed
+
+    private void btnProcatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcatActionPerformed
+       BusquedaCategoria busque = new BusquedaCategoria(usuario);
+       busque.setVisible(true);
+       this.setVisible(false);
+    }//GEN-LAST:event_btnProcatActionPerformed
 
    
 

@@ -7,9 +7,10 @@ package igu;
 import clases.Usuario;
 
 
-public class ListaPedidosAdmin extends javax.swing.JFrame {
-private Usuario usuario;
-    public ListaPedidosAdmin(Usuario usuario) {
+public class ListaProductos extends javax.swing.JFrame {
+
+    private Usuario usuario;
+    public ListaProductos(Usuario usuario) {
         this.usuario = usuario;
         initComponents();
     }
@@ -53,7 +54,7 @@ private Usuario usuario;
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Estado", "Precio", "ID Usuario", "Fecha de pedido", "Entrega estimada"
+                "ID", "Nombre", "Descripcion", "Precio unitario", "ID categoria", "Cantidad stock"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -85,13 +86,13 @@ private Usuario usuario;
 
         jSeparator4.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 40, 150, 10));
+        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 40, 230, 10));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
-        jLabel1.setText("LISTA DE PEDIDOS");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 330, -1));
+        jLabel1.setText("LISTA DE PRODUCTOS");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, -1));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 330, 50));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 410, 50));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 924, 550));
 
@@ -99,7 +100,7 @@ private Usuario usuario;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-                  int tipoUsuario = usuario.getIdTipo();
+        int tipoUsuario = usuario.getIdTipo();
               switch(tipoUsuario){
                   case 1:
                       InterfazAdmin interAdmin = new InterfazAdmin (usuario);
@@ -112,6 +113,7 @@ private Usuario usuario;
                        this.setVisible(false);
                      break; 
               }
+               
     }//GEN-LAST:event_jButton1ActionPerformed
 
    
