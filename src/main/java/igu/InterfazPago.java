@@ -205,7 +205,10 @@ private void inicializarNombre(){
     }//GEN-LAST:event_jFormattedTextField1ActionPerformed
 
     private void jFormattedTextField1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextField1MousePressed
-        // TODO add your handling code here:
+        if(txtNombre.getText().isEmpty()){
+           txtNombre.setText("Fulano Andres Martinez Gimenez de Jesus");
+           txtNombre.setForeground(Color.gray.brighter());
+       }
     }//GEN-LAST:event_jFormattedTextField1MousePressed
 
     private void jFormattedTextField2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextField2MousePressed
