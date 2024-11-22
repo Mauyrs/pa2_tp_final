@@ -5,6 +5,7 @@
 package igu;
 
 import DAO.ImpDAOUsuario;
+
 import clases.main;
 import clases.Usuario;
 import java.awt.Color;
@@ -229,7 +230,7 @@ public class Login extends javax.swing.JFrame {
             
             
         } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
         
         
