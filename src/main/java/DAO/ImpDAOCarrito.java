@@ -23,7 +23,7 @@ public class ImpDAOCarrito implements CarritoDAO{
         PreparedStatement prep = con.prepareStatement(sql);
 
         prep.setInt(1, idUsu);
-        prep.setInt(1, idProd);
+        prep.setInt(2, idProd);
         
         ResultSet rs = prep.executeQuery();
         if (rs.next()) {
@@ -64,6 +64,7 @@ public class ImpDAOCarrito implements CarritoDAO{
 
     @Override
     public int insertar(Carrito car) throws SQLException, ClassNotFoundException {
+        
         Connection con = ConSql.obtener();
         String sql = "INSERT INTO carrito (id_usuario, id_producto, cantidad) VALUES (?, ?, ?)";
         
@@ -116,5 +117,6 @@ public class ImpDAOCarrito implements CarritoDAO{
         
         return camb;
     }
+    
     
 }

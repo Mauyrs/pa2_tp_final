@@ -1,6 +1,9 @@
 package igu;
 
+import DAO.ImpDAOCarrito;
+import DAO.ImpDAOProducto;
 import DAO.ImpDAOUsuario;
+import clases.Carrito;
 import clases.Producto;
 import clases.Usuario;
 import java.awt.Font;
@@ -9,6 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -17,7 +21,11 @@ import javax.swing.table.DefaultTableModel;
 public class CarritoIGU extends javax.swing.JFrame {
 
     private Usuario usu;
-    private Map<Integer, Producto> mapFilaProducto; 
+    private Map<Integer, Producto> mapFilaProducto;
+    private final ImpDAOUsuario usuarioDAO = new ImpDAOUsuario();
+    private final ImpDAOProducto productoDAO = new ImpDAOProducto();
+    private final ImpDAOCarrito carritoDAO = new ImpDAOCarrito();
+    
     public CarritoIGU(Usuario usu) {
         this.usu = usu;
         initComponents();
@@ -25,7 +33,7 @@ public class CarritoIGU extends javax.swing.JFrame {
     }
 
     private void inicializarCarrito(){
-        ImpDAOUsuario usuarioDAO = new ImpDAOUsuario();
+        
         Double totalCarrito = 0.0;
         String nombreCompleto = usu.getNombre().trim()+ " " + usu.getApellido().trim();
         Font fuente = new Font("Kameron",Font.BOLD,15);
@@ -33,6 +41,7 @@ public class CarritoIGU extends javax.swing.JFrame {
         try {
             Map<Producto, Integer> carritoUsu = usuarioDAO.obtenerCarrito(usu);
             DefaultTableModel tabla = (DefaultTableModel) tblCarrito.getModel();
+            tabla.setRowCount(0);
             tabla.setColumnIdentifiers(new String[]{"Nombre", "Cantidad", "Precio", "Total"});
             Map<Integer, Producto> mapRow= new HashMap();
             Integer fila = 0;
@@ -78,7 +87,7 @@ public class CarritoIGU extends javax.swing.JFrame {
             
           
         } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(CarritoIGU.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(tblCarrito, "No se pudo conectar con la base de datos");
         }
         
         
@@ -101,6 +110,8 @@ public class CarritoIGU extends javax.swing.JFrame {
         btnPago = new javax.swing.JButton();
         btnCambiar = new javax.swing.JButton();
         btnBorrar = new javax.swing.JButton();
+        txtNuevaCantidad = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -112,7 +123,7 @@ public class CarritoIGU extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Monto total:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 350, 110, 40));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 350, 110, 40));
 
         lblTotal.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         lblTotal.setText("000.000 $");
@@ -122,7 +133,7 @@ public class CarritoIGU extends javax.swing.JFrame {
                 lblTotalActionPerformed(evt);
             }
         });
-        jPanel1.add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 360, 150, 20));
+        jPanel1.add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 360, 140, 20));
 
         tblCarrito.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -154,7 +165,7 @@ public class CarritoIGU extends javax.swing.JFrame {
             tblCarrito.getColumnModel().getColumn(3).setPreferredWidth(1);
         }
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 770, 200));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 770, 230));
 
         jButton1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         jButton1.setText("Volver");
@@ -163,7 +174,7 @@ public class CarritoIGU extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, 110, 40));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 430, 110, 40));
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -178,23 +189,33 @@ public class CarritoIGU extends javax.swing.JFrame {
                 btnPagoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 440, 120, 30));
+        jPanel1.add(btnPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 360, 120, 30));
 
-        btnCambiar.setText("Borrar del Carrito");
+        btnCambiar.setText("Cambiar cantidad");
         btnCambiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCambiarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCambiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 360, 120, 30));
+        jPanel1.add(btnCambiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 400, 140, 30));
 
-        btnBorrar.setText("Borrar del Carrito");
+        btnBorrar.setText("<html><div style='text-align: center;'>Borrar producto seleccionado</html>");
         btnBorrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBorrarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 120, 30));
+        jPanel1.add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 440, 140, 40));
+
+        txtNuevaCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNuevaCantidadKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtNuevaCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 360, 140, 30));
+
+        jLabel2.setText("<html>Seleccione un producto e ingrese una nueva cantidad:</html>");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 150, 50));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, 530));
 
@@ -228,17 +249,73 @@ public class CarritoIGU extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPago1ActionPerformed
 
     private void btnCambiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiarActionPerformed
-        // TODO add your handling code here:
+        Integer fila = tblCarrito.getSelectedRow();
+        String textoNuevaCantidad = txtNuevaCantidad.getText();
+        if(fila!=-1 && !textoNuevaCantidad.isEmpty()&&Integer.parseInt(textoNuevaCantidad)!=0){
+            Producto productoSelec = mapFilaProducto.get(fila);
+            Integer cantidadNueva = Integer.valueOf(txtNuevaCantidad.getText());            
+            
+            
+            try {
+                
+                Carrito carrito = carritoDAO.obtener(productoSelec.getIdProducto(), usu.getIdUsuario());
+                
+                if(productoDAO.obtener(productoSelec.getIdProducto()).getCantidadStock()>=cantidadNueva){
+                    carrito.setCantidad(cantidadNueva);
+                    carritoDAO.actualizar(carrito);
+                    inicializarCarrito();
+                    
+                }else{
+                JOptionPane.showMessageDialog(tblCarrito, "No existe stock suficiente para cubrir el pedido");
+                }
+                
+                
+                
+                
+            } catch (SQLException | ClassNotFoundException ex) {
+                JOptionPane.showMessageDialog(tblCarrito, "No se pudo conectar con la base de datos");
+            }
+            
+            
+            
+        }else if(textoNuevaCantidad.isEmpty()||Integer.parseInt(textoNuevaCantidad)==0){
+            JOptionPane.showMessageDialog(tblCarrito, "No se ingreso una nueva cantidad");
+        }else{
+            JOptionPane.showMessageDialog(tblCarrito, "No se selecciono una fila");
+        }
+        
+        
     }//GEN-LAST:event_btnCambiarActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
         Integer fila = tblCarrito.getSelectedRow();
-        Producto productoSelec = mapFilaProducto.get(fila);
-        tblCarrito.getColumn("Cantidad").getModelIndex();
+        
+        if(fila!=-1){
+            Producto productoSelec = mapFilaProducto.get(fila);
+            try {
+                
+                Carrito carrito = carritoDAO.obtener(productoSelec.getIdProducto(), usu.getIdUsuario());
+                carritoDAO.eliminar(carrito);
+                inicializarCarrito();
+            } catch (SQLException | ClassNotFoundException ex) {
+                JOptionPane.showMessageDialog(tblCarrito, "No se pudo conectar con la base de datos" + ex.getMessage());
+            }
+            
+            
+            
+        }else{
+            JOptionPane.showMessageDialog(tblCarrito, "No se selecciono una fila");
+        }
         
         
         
     }//GEN-LAST:event_btnBorrarActionPerformed
+
+    private void txtNuevaCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNuevaCantidadKeyTyped
+        if(!Character.isDigit(evt.getKeyChar())){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNuevaCantidadKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -247,11 +324,13 @@ public class CarritoIGU extends javax.swing.JFrame {
     private javax.swing.JButton btnPago;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JTextField lblTotal;
     private javax.swing.JTable tblCarrito;
+    private javax.swing.JTextField txtNuevaCantidad;
     // End of variables declaration//GEN-END:variables
 }
