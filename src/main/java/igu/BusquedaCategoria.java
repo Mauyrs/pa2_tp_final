@@ -4,15 +4,37 @@
  */
 package igu;
 
+import DAO.CategoriaDAO;
+import DAO.ImpDAOCategoria;
+import DAO.ImpDAOProducto;
+import clases.Categoria;
+import clases.Producto;
 import clases.Usuario;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 
 public class BusquedaCategoria extends javax.swing.JFrame {
 
-  private Usuario usuario;
+    private Usuario usuario;
+    private final ImpDAOProducto productoDAO = new ImpDAOProducto();
+    private final ImpDAOCategoria categoriaDAO = new ImpDAOCategoria();
+    private Map<Integer, Categoria> mapComCat= new HashMap();
     public BusquedaCategoria(Usuario usuario) {
         this.usuario= usuario;
         initComponents();
+        cargarCategorias(comboCategorias);
     }
 
     /**
@@ -26,6 +48,10 @@ public class BusquedaCategoria extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
+        comboCategorias = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        panelProductos = new javax.swing.JPanel();
+        btnBuscar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -42,33 +68,151 @@ public class BusquedaCategoria extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, 110, 40));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 110, 50));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 470));
+        comboCategorias.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        comboCategorias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboCategoriasActionPerformed(evt);
+            }
+        });
+        jPanel1.add(comboCategorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, 450, 50));
+
+        panelProductos.setBackground(new java.awt.Color(255, 255, 255));
+        panelProductos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        panelProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        panelProductos.setFocusCycleRoot(true);
+        panelProductos.setInheritsPopupMenu(true);
+        panelProductos.setLayout(new javax.swing.BoxLayout(panelProductos, javax.swing.BoxLayout.LINE_AXIS));
+        panelProductos.setLayout(new javax.swing.BoxLayout(panelProductos, javax.swing.BoxLayout.Y_AXIS));
+        jScrollPane1.setViewportView(panelProductos);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 750, 290));
+
+        btnBuscar.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 60, 110, 50));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, 480));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-          int tipoUsuario = usuario.getIdTipo();
-              switch(tipoUsuario){
-                  case 1:
-                      InterfazAdmin interAdmin = new InterfazAdmin (usuario);
-                      interAdmin.setVisible(true);
-                     this.setVisible(false);
-                      break;
-                  case 2:
-                      InterfazUsuario interUsu = new InterfazUsuario (usuario);
-                      interUsu.setVisible(true);
-                       this.setVisible(false);
-                     break; 
-              }
+        int tipoUsuario = usuario.getIdTipo();
+        switch(tipoUsuario){
+            case 1:
+            InterfazAdmin interAdmin = new InterfazAdmin (usuario);
+            interAdmin.setVisible(true);
+            this.setVisible(false);
+            break;
+            case 2:
+            InterfazUsuario interUsu = new InterfazUsuario (usuario);
+            interUsu.setVisible(true);
+            this.setVisible(false);
+            break;
+        }
+        
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void comboCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCategoriasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboCategoriasActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        try {
+            panelProductos.removeAll();
+            panelProductos.revalidate();
+            
+            
+            Integer selec = comboCategorias.getSelectedIndex();
+            Categoria catSel = mapComCat.get(selec);
+            List<Producto> encontrados = productoDAO.buscarCategoria(catSel);
+            int i = 1;
+            if(!encontrados.isEmpty()){
+                for(Producto prod : encontrados ){
+                    ItemProducto item = new ItemProducto(prod);
+                    panelProductos.add(item);
+                    JLabel nombre = item.getLblNombre();
+                    linkear(nombre, prod, this);
+                    if((i%2)==0){
+                        JPanel panel = item.getPanelPrincipal();
+                        panel.setBackground(panel.getBackground().brighter());
+                    }
+                    i++;
+
+                }
+            }else{
+                JOptionPane.showMessageDialog(jPanel1, "No se encontraron productos que coincidan con lo ingresado");
+
+            }
+
+            panelProductos.revalidate();
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(jPanel1, "No se pudo conectar con la base de datos" + ex.getMessage());
+
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JComboBox<String> comboCategorias;
     private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel panelProductos;
     // End of variables declaration//GEN-END:variables
+
+    private void linkear(JLabel label, Producto prod, BusquedaCategoria vent) {
+        Color letraOriginal = label.getForeground();
+        
+        label.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) { 
+                label.setForeground(new Color(70, 130, 180)); 
+                label.setCursor(new Cursor(Cursor.HAND_CURSOR)); 
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                label.setForeground(letraOriginal); 
+                label.setCursor(new Cursor(Cursor.DEFAULT_CURSOR)); 
+            }
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                InterfazProducto intProd = new InterfazProducto(usuario, prod);
+                intProd.setVisible(true);
+                vent.setVisible(false);
+            }
+        });
+
+    }
+    
+    private void cargarCategorias(JComboBox comboCategorias) {
+        CategoriaDAO categoriaDAO = new ImpDAOCategoria();
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+        comboCategorias.setModel(modelo);
+        Integer i = 0;
+        try {
+            for (Categoria cat : categoriaDAO.listar()){
+                modelo.addElement(cat.getNombre());
+                mapComCat.put(i, cat);
+                i++;
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            modelo.addElement("Error Consulta SQL");
+        }
+        
+        
+    }
+    
 }
