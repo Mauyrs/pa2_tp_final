@@ -141,7 +141,9 @@ public class InterfazUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPedidosActionPerformed
 
     private void btnCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCarritoActionPerformed
-        // TODO add your handling code here:
+        CarritoIGU carrito = new CarritoIGU(this.usuario);
+        this.setVisible(false);
+        carrito.setVisible(true);
     }//GEN-LAST:event_btnCarritoActionPerformed
 
     private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
