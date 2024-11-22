@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 
 public class BusquedaNombre extends javax.swing.JFrame {
@@ -47,7 +48,6 @@ public class BusquedaNombre extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtBusqueda.setText("jTextField1");
         txtBusqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtBusquedaActionPerformed(evt);
@@ -92,19 +92,25 @@ public class BusquedaNombre extends javax.swing.JFrame {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
        try {
            List<Producto> encontrados = productoDAO.buscarNombre(txtBusqueda.getText());
-           
+           int i = 1;
             if(!encontrados.isEmpty()){
                 for(Producto prod : encontrados ){
-                ItemProducto item = new ItemProducto(prod);
-                panelProductos.add(item);
-                item.setVisible(true);
+                    ItemProducto item = new ItemProducto(prod);
+                    System.out.println(prod);
+                    panelProductos.add(item);
+                    if((i%2)==0){
+                        JPanel panel = item.getPanelPrincipal();
+                        panel.setBackground(panel.getBackground().brighter());
+                    }
+                    i++;
+                
             }    
             }else{
                 JOptionPane.showMessageDialog(jPanel1, "No se encontraron productos que coincidan con lo ingresado");
 
             }
            
-           
+           panelProductos.revalidate();
            
        } catch (SQLException | ClassNotFoundException ex) {
                        JOptionPane.showMessageDialog(jPanel1, "No se pudo conectar con la base de datos" + ex.getMessage());
@@ -142,4 +148,5 @@ public class BusquedaNombre extends javax.swing.JFrame {
     private javax.swing.JPanel panelProductos;
     private javax.swing.JTextField txtBusqueda;
     // End of variables declaration//GEN-END:variables
+
 }
