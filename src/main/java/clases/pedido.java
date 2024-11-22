@@ -19,6 +19,13 @@ public class Pedido {
         this.fechaPedido = fechaPedido;
     }
 
+    public Pedido(int idEstado, LocalDate entregaEstimada, int idUsuario, LocalDate fechaPedido) {
+        this.idEstado = idEstado;
+        this.entregaEstimada = entregaEstimada;
+        this.idUsuario = idUsuario;
+        this.fechaPedido = fechaPedido;
+    }
+    
     
     
     public int getIdPedido() {

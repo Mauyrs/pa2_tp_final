@@ -1,6 +1,5 @@
 package DAO;
 
-import clases.Carrito;
 import clases.DetallePedido;
 import conexiones.ConSql;
 import java.sql.Connection;
