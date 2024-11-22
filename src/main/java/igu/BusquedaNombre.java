@@ -7,10 +7,15 @@ package igu;
 import DAO.ImpDAOProducto;
 import clases.Producto;
 import clases.Usuario;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -96,8 +101,9 @@ public class BusquedaNombre extends javax.swing.JFrame {
             if(!encontrados.isEmpty()){
                 for(Producto prod : encontrados ){
                     ItemProducto item = new ItemProducto(prod);
-                    System.out.println(prod);
                     panelProductos.add(item);
+                    JLabel nombre = item.getLblNombre();
+                    linkear(nombre, prod, this);
                     if((i%2)==0){
                         JPanel panel = item.getPanelPrincipal();
                         panel.setBackground(panel.getBackground().brighter());
@@ -148,5 +154,31 @@ public class BusquedaNombre extends javax.swing.JFrame {
     private javax.swing.JPanel panelProductos;
     private javax.swing.JTextField txtBusqueda;
     // End of variables declaration//GEN-END:variables
+
+    private void linkear(JLabel label, Producto prod, BusquedaNombre vent) {
+        Color letraOriginal = label.getForeground();
+        
+        label.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) { 
+                label.setForeground(new Color(70, 130, 180)); 
+                label.setCursor(new Cursor(Cursor.HAND_CURSOR)); 
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                label.setForeground(letraOriginal); 
+                label.setCursor(new Cursor(Cursor.DEFAULT_CURSOR)); 
+            }
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                InterfazProducto intProd = new InterfazProducto(usuario, prod);
+                intProd.setVisible(true);
+                vent.setVisible(false);
+            }
+        });
+
+    }
 
 }

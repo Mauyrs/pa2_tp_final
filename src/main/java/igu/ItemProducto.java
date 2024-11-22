@@ -1,22 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package igu;
 
 import clases.Producto;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-/**
- *
- * @author Mauri
- */
+
 public class ItemProducto extends javax.swing.JPanel {
 
-    /**
-     * Creates new form ItemProducto
-     */
+    private Producto producto;
     public ItemProducto(Producto prod) {
+        this.producto = prod;
         initComponents();
         lblNombre.setText(prod.getNombre());
         lblPrecio.setText("$ " + String.valueOf(prod.getPrecio()));
@@ -99,5 +93,9 @@ public class ItemProducto extends javax.swing.JPanel {
         return panelPrincipal;
     }
 
+    public JLabel getLblNombre() {
+        return lblNombre;
+    }
 
+    
 }

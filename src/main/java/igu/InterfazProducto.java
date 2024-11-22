@@ -4,6 +4,9 @@
  */
 package igu;
 
+import clases.Producto;
+import clases.Usuario;
+
 /**
  *
  * @author Nacho
@@ -13,7 +16,7 @@ public class InterfazProducto extends javax.swing.JFrame {
     /**
      * Creates new form InterfazProducto
      */
-    public InterfazProducto() {
+    public InterfazProducto(Usuario usu, Producto prod) {
         initComponents();
     }
 

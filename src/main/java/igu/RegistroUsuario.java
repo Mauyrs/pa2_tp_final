@@ -546,9 +546,9 @@ public class RegistroUsuario extends javax.swing.JFrame {
                  if(contra.equals(confirma)){
                      String contraEncriptada= Contrasena.encriptar(contra);
                      nuevo= new Usuario(txtUsuario.getText().trim(), txtApellido.getText().trim(),txtDireccion.getText(),
-                     txtCorreo.getText().trim(),contraEncriptada,1);
+                     txtCorreo.getText().trim(),contraEncriptada,2);
                      usuarioDAO.insertar(nuevo);
-                      JOptionPane.showMessageDialog(null,"Se ha registrado ");
+                     JOptionPane.showMessageDialog(null,"Se ha registrado ");
                       
                  }else{
                      JOptionPane.showMessageDialog(null,"Las contraseñas no son iguales");
