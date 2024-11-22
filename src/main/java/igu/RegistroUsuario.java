@@ -4,15 +4,20 @@
  */
 package igu;
 
+import DAO.ImpDAOUsuario;
+import clases.Usuario;
+import clases.main;
 import java.awt.Color;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import seguridad.Contrasena;
 
 
 public class RegistroUsuario extends javax.swing.JFrame {
-
-    /**
-     * Creates new form RegistroUsuario
-     */
+    private Usuario usuario;
+  private final ImpDAOUsuario usuarioDAO  =new ImpDAOUsuario ();
     public RegistroUsuario() {
         initComponents();
     }
@@ -48,6 +53,9 @@ public class RegistroUsuario extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        txtApellido = new javax.swing.JTextField();
+        jSeparator6 = new javax.swing.JSeparator();
+        jLabel7 = new javax.swing.JLabel();
 
         jTextField1.setText("jTextField1");
         jTextField1.setBorder(null);
@@ -67,7 +75,7 @@ public class RegistroUsuario extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel2.setText("CONTRASEÑA");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 290, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 330, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel3.setText("NOMBRE");
@@ -75,18 +83,18 @@ public class RegistroUsuario extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel5.setText("DIRECCION");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 230, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel6.setText("CORREO");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 240, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 280, -1, -1));
 
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 330, 170, 10));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 370, 170, 10));
 
         txtUsuario.setForeground(new java.awt.Color(204, 204, 204));
-        txtUsuario.setText("Ingrese su nombre de usuario");
+        txtUsuario.setText("Ingrese su nombre");
         txtUsuario.setBorder(null);
         txtUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -118,7 +126,7 @@ public class RegistroUsuario extends javax.swing.JFrame {
                 txtDireccionActionPerformed(evt);
             }
         });
-        jPanel1.add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 210, 170, -1));
+        jPanel1.add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 250, 170, -1));
 
         txtCorreo.setForeground(new java.awt.Color(204, 204, 204));
         txtCorreo.setText("Ingrese su correo");
@@ -133,7 +141,7 @@ public class RegistroUsuario extends javax.swing.JFrame {
                 txtCorreoActionPerformed(evt);
             }
         });
-        jPanel1.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 260, 170, -1));
+        jPanel1.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 300, 170, -1));
 
         jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
@@ -141,7 +149,7 @@ public class RegistroUsuario extends javax.swing.JFrame {
 
         jSeparator3.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 230, 170, 10));
+        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 270, 170, 10));
 
         passUsuario.setForeground(new java.awt.Color(204, 204, 204));
         passUsuario.setText("********");
@@ -156,11 +164,11 @@ public class RegistroUsuario extends javax.swing.JFrame {
                 passUsuarioActionPerformed(evt);
             }
         });
-        jPanel1.add(passUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 310, 170, -1));
+        jPanel1.add(passUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 350, 170, -1));
 
         jSeparator4.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 280, 170, 10));
+        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 320, 170, 10));
 
         jCheckBox1.setText("Mostrar contraseña");
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -168,7 +176,7 @@ public class RegistroUsuario extends javax.swing.JFrame {
                 jCheckBox1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 320, -1, -1));
+        jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 360, -1, -1));
 
         btnRegistro.setText("Confirmar registro");
         btnRegistro.addActionListener(new java.awt.event.ActionListener() {
@@ -176,15 +184,15 @@ public class RegistroUsuario extends javax.swing.JFrame {
                 btnRegistroActionPerformed(evt);
             }
         });
-        jPanel1.add(btnRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 400, -1, -1));
+        jPanel1.add(btnRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 440, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel4.setText("CONFIRMAR CONTRASEÑA");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 340, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 380, -1, -1));
 
         jSeparator5.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator5.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 380, 170, 10));
+        jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 420, 170, 10));
 
         passUsuario1.setForeground(new java.awt.Color(204, 204, 204));
         passUsuario1.setText("********");
@@ -199,7 +207,7 @@ public class RegistroUsuario extends javax.swing.JFrame {
                 passUsuario1ActionPerformed(evt);
             }
         });
-        jPanel1.add(passUsuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 360, 170, -1));
+        jPanel1.add(passUsuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 400, 170, -1));
 
         jButton2.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         jButton2.setText("Volver");
@@ -208,7 +216,7 @@ public class RegistroUsuario extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, 110, 40));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 480, 110, 40));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -233,6 +241,34 @@ public class RegistroUsuario extends javax.swing.JFrame {
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 60, 210, 50));
 
+        txtApellido.setForeground(new java.awt.Color(204, 204, 204));
+        txtApellido.setText("Ingrese su apellido");
+        txtApellido.setBorder(null);
+        txtApellido.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtApellidoMousePressed(evt);
+            }
+        });
+        txtApellido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtApellidoActionPerformed(evt);
+            }
+        });
+        txtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtApellidoKeyPressed(evt);
+            }
+        });
+        jPanel1.add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 200, 170, -1));
+
+        jSeparator6.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator6.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 220, 170, 10));
+
+        jLabel7.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel7.setText("APELLIDO");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 180, 60, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -243,7 +279,7 @@ public class RegistroUsuario extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -283,7 +319,7 @@ public class RegistroUsuario extends javax.swing.JFrame {
 
     private void txtUsuarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUsuarioMousePressed
         // TODO add your handling code here:
-            if(txtUsuario.getText().equals("Ingrese su nombre de usuario")){
+            if(txtUsuario.getText().equals("Ingrese su nombre")){
             txtUsuario.setText("");
             txtUsuario.setForeground(Color.black);
         }
@@ -304,6 +340,10 @@ public class RegistroUsuario extends javax.swing.JFrame {
         passUsuario1.setText("********");
         passUsuario1.setForeground(Color.gray.brighter());
     }
+        if(txtApellido.getText().isEmpty()){
+            txtApellido.setText("Ingrese su apellido");
+            txtApellido.setForeground(Color.gray.brighter());
+        }
     }//GEN-LAST:event_txtUsuarioMousePressed
 
     private void txtDireccionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDireccionMousePressed
@@ -321,13 +361,17 @@ public class RegistroUsuario extends javax.swing.JFrame {
           txtCorreo.setForeground(Color.gray.brighter());
       }
       if(txtUsuario.getText().isEmpty()){
-          txtUsuario.setText("Ingrese su nombre de usuario");
+          txtUsuario.setText("Ingrese su nombre");
           txtUsuario.setForeground(Color.gray.brighter());
       }
         if(String.valueOf(passUsuario1.getPassword()).isEmpty()){
         passUsuario1.setText("********");
         passUsuario1.setForeground(Color.gray.brighter());
     }
+        if(txtApellido.getText().isEmpty()){
+            txtApellido.setText("Ingrese su apellido");
+            txtApellido.setForeground(Color.gray.brighter());
+        }
     }//GEN-LAST:event_txtDireccionMousePressed
 
     private void txtCorreoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCorreoMousePressed
@@ -341,7 +385,7 @@ public class RegistroUsuario extends javax.swing.JFrame {
         passUsuario.setForeground(Color.gray.brighter());
     }
       if(txtUsuario.getText().isEmpty()){
-          txtUsuario.setText("Ingrese su nombre de usuario");
+          txtUsuario.setText("Ingrese su nombre");
           txtUsuario.setForeground(Color.gray.brighter());
       }
       if(txtDireccion.getText().isEmpty()){
@@ -352,6 +396,10 @@ public class RegistroUsuario extends javax.swing.JFrame {
         passUsuario1.setText("********");
         passUsuario1.setForeground(Color.gray.brighter());
     }
+       if(txtApellido.getText().isEmpty()){
+            txtApellido.setText("Ingrese su apellido");
+            txtApellido.setForeground(Color.gray.brighter());
+        }
     }//GEN-LAST:event_txtCorreoMousePressed
 
     private void passUsuarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passUsuarioMousePressed
@@ -361,7 +409,7 @@ public class RegistroUsuario extends javax.swing.JFrame {
               passUsuario.setForeground(Color.black);
               } else{
             if(txtUsuario.getText().isEmpty()){
-              txtUsuario.setText("Ingrese su nombre de usuario");
+              txtUsuario.setText("Ingrese su nombre");
               txtUsuario.setForeground(Color.gray.brighter());
           }else{
              if(txtCorreo.getText().isEmpty()){
@@ -376,14 +424,19 @@ public class RegistroUsuario extends javax.swing.JFrame {
                       if(String.valueOf(passUsuario1.getPassword()).isEmpty()){
                         passUsuario1.setText("********");
                         passUsuario1.setForeground(Color.gray.brighter());
-                             }
+                             }else{
+                          if(txtApellido.getText().isEmpty()){
+                               txtApellido.setText("Ingrese su apellido");
+                              txtApellido.setForeground(Color.gray.brighter());
+                                 }
+                      }
                        }   
                      }
                   }
             } 
   if(txtUsuario.getText().isEmpty()){
                 
-              txtUsuario.setText("Ingrese su nombre de usuario");
+              txtUsuario.setText("Ingrese su nombre");
               txtUsuario.setForeground(Color.gray.brighter());
     }
   if(txtDireccion.getText().isEmpty()){
@@ -398,11 +451,14 @@ public class RegistroUsuario extends javax.swing.JFrame {
                         passUsuario1.setText("********");
                         passUsuario1.setForeground(Color.gray.brighter());
                  }
-  
+  if(txtApellido.getText().isEmpty()){
+            txtApellido.setText("Ingrese su apellido");
+            txtApellido.setForeground(Color.gray.brighter());
+        }
     }//GEN-LAST:event_passUsuarioMousePressed
           
     private void txtUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyPressed
-       if (txtUsuario.getText().equals("Ingrese su nombre de usuario")) {
+       if (txtUsuario.getText().equals("Ingrese su nombre")) {
                     txtUsuario.setText(""); 
                     txtUsuario.setForeground(Color.BLACK); 
                 }
@@ -414,7 +470,7 @@ public class RegistroUsuario extends javax.swing.JFrame {
               passUsuario1.setForeground(Color.black);
               } else{
             if(txtUsuario.getText().isEmpty()){
-              txtUsuario.setText("Ingrese su nombre de usuario");
+              txtUsuario.setText("Ingrese su nombre");
               txtUsuario.setForeground(Color.gray.brighter());
           }else{
              if(txtCorreo.getText().isEmpty()){
@@ -429,7 +485,12 @@ public class RegistroUsuario extends javax.swing.JFrame {
                       if(String.valueOf(passUsuario.getPassword()).isEmpty()){
                         passUsuario.setText("********");
                         passUsuario.setForeground(Color.gray.brighter());
+                             }else{
+                          if(txtApellido.getText().isEmpty()){
+                            txtApellido.setText("Ingrese su apellido");
+                            txtApellido.setForeground(Color.gray.brighter());
                              }
+                      }
                      }   
                  }
              }   
@@ -437,7 +498,7 @@ public class RegistroUsuario extends javax.swing.JFrame {
                                             
   if(txtUsuario.getText().isEmpty()){
                 
-              txtUsuario.setText("Ingrese su nombre de usuario");
+              txtUsuario.setText("Ingrese su nombre");
               txtUsuario.setForeground(Color.gray.brighter());
     }
   if(txtDireccion.getText().isEmpty()){
@@ -452,7 +513,10 @@ public class RegistroUsuario extends javax.swing.JFrame {
                         passUsuario.setText("********");
                         passUsuario.setForeground(Color.gray.brighter());
                              }
-  
+  if(txtApellido.getText().isEmpty()){
+            txtApellido.setText("Ingrese su apellido");
+            txtApellido.setForeground(Color.gray.brighter());
+        }
     }//GEN-LAST:event_passUsuario1MousePressed
 
     private void passUsuario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passUsuario1ActionPerformed
@@ -468,6 +532,10 @@ public class RegistroUsuario extends javax.swing.JFrame {
     private void btnRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroActionPerformed
          String contra = String.valueOf(passUsuario.getPassword());
          String confirma = String.valueOf(passUsuario1.getPassword());
+         Usuario nuevo=null;
+         try{
+
+         
          if(txtUsuario.getText().isEmpty() || txtDireccion.getText().isEmpty() || txtCorreo.getText().isEmpty()
                  || contra.isEmpty()|| confirma.isEmpty()){
              JOptionPane.showMessageDialog(null,"Rellene todos los campos solicitados");
@@ -476,13 +544,57 @@ public class RegistroUsuario extends javax.swing.JFrame {
              JOptionPane.showMessageDialog(null,"Ingresa una contraseña de al menos 10 caracteres");
                 }else{
                  if(contra.equals(confirma)){
-                  JOptionPane.showMessageDialog(null,"Se ha registrado ");
+                     String contraEncriptada= Contrasena.encriptar(contra);
+                     nuevo= new Usuario(txtUsuario.getText().trim(), txtApellido.getText().trim(),txtDireccion.getText(),
+                     txtCorreo.getText().trim(),contraEncriptada,1);
+                     usuarioDAO.insertar(nuevo);
+                      JOptionPane.showMessageDialog(null,"Se ha registrado ");
+                      
                  }else{
                      JOptionPane.showMessageDialog(null,"Las contraseñas no son iguales");
                       }
                     }
               }
+         }catch(SQLException | ClassNotFoundException ex){
+             Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+         }
     }//GEN-LAST:event_btnRegistroActionPerformed
+
+    private void txtApellidoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtApellidoMousePressed
+                if(txtApellido.getText().equals("Ingrese su apellido")){
+            txtApellido.setText("");
+            txtApellido.setForeground(Color.black);
+        }
+        
+        if(String.valueOf(passUsuario.getPassword()).isEmpty()){
+        passUsuario.setText("********");
+        passUsuario.setForeground(Color.gray.brighter());
+    }
+      if(txtUsuario.getText().isEmpty()){
+          txtUsuario.setText("Ingrese su nombre");
+          txtUsuario.setForeground(Color.gray.brighter());
+      }
+      if(txtDireccion.getText().isEmpty()){
+          txtDireccion.setText("Ingrese su direccion");
+          txtDireccion.setForeground(Color.gray.brighter());
+      }
+       if(String.valueOf(passUsuario1.getPassword()).isEmpty()){
+        passUsuario1.setText("********");
+        passUsuario1.setForeground(Color.gray.brighter());
+    }
+       if(txtCorreo.getText().isEmpty()){
+            txtCorreo.setText("Ingrese su correo");
+            txtCorreo.setForeground(Color.gray.brighter());
+        }
+    }//GEN-LAST:event_txtApellidoMousePressed
+
+    private void txtApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtApellidoActionPerformed
+
+    private void txtApellidoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtApellidoKeyPressed
 
 
 
@@ -496,6 +608,7 @@ public class RegistroUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
@@ -503,9 +616,11 @@ public class RegistroUsuario extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JPasswordField passUsuario;
     private javax.swing.JPasswordField passUsuario1;
+    private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtUsuario;
