@@ -98,8 +98,9 @@ public class CarritoIGU extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
-        btnPago1 = new javax.swing.JButton();
-        btnPago2 = new javax.swing.JButton();
+        btnPago = new javax.swing.JButton();
+        btnCambiar = new javax.swing.JButton();
+        btnBorrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -132,7 +133,7 @@ public class CarritoIGU extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, true, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -171,45 +172,49 @@ public class CarritoIGU extends javax.swing.JFrame {
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 790, 60));
 
-        btnPago1.setText("Realizar pago");
-        btnPago1.addActionListener(new java.awt.event.ActionListener() {
+        btnPago.setText("Realizar pago");
+        btnPago.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPago1ActionPerformed(evt);
+                btnPagoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnPago1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 440, 120, 30));
+        jPanel1.add(btnPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 440, 120, 30));
 
-        btnPago2.setText("Borrar del Carrito");
-        btnPago2.addActionListener(new java.awt.event.ActionListener() {
+        btnCambiar.setText("Borrar del Carrito");
+        btnCambiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPago2ActionPerformed(evt);
+                btnCambiarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnPago2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 120, 30));
+        jPanel1.add(btnCambiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 360, 120, 30));
+
+        btnBorrar.setText("Borrar del Carrito");
+        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 120, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, 530));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnPagoActionPerformed
-
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         int tipoUsuario = usu.getIdTipo();
-              switch(tipoUsuario){
-                  case 1:
+        int tipoUsuario = usu.getIdTipo();
+            switch(tipoUsuario){
+                case 1:
                       InterfazAdmin interAdmin = new InterfazAdmin (usu);
                       interAdmin.setVisible(true);
                      this.setVisible(false);
                       break;
-                  case 2:
-                      InterfazUsuario interUsu = new InterfazUsuario (usu);
-                      interUsu.setVisible(true);
-                       this.setVisible(false);
-                     break; 
+                    case 2:
+                        InterfazUsuario interUsu = new InterfazUsuario (usu);
+                        interUsu.setVisible(true);
+                        this.setVisible(false);
+                    break; 
               }
                
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -218,19 +223,28 @@ public class CarritoIGU extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_lblTotalActionPerformed
 
-    private void btnPago1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPago1ActionPerformed
+    private void btnPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPago1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnPago1ActionPerformed
 
-    private void btnPago2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPago2ActionPerformed
+    private void btnCambiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnPago2ActionPerformed
+    }//GEN-LAST:event_btnCambiarActionPerformed
 
- 
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+        Integer fila = tblCarrito.getSelectedRow();
+        Producto productoSelec = mapFilaProducto.get(fila);
+        tblCarrito.getColumn("Cantidad").getModelIndex();
+        
+        
+        
+    }//GEN-LAST:event_btnBorrarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnPago1;
-    private javax.swing.JButton btnPago2;
+    private javax.swing.JButton btnBorrar;
+    private javax.swing.JButton btnCambiar;
+    private javax.swing.JButton btnPago;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
