@@ -114,6 +114,16 @@ private void inicializarNombre(){
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        jFormattedTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jFormattedTextField1MousePressed(evt);
+            }
+        });
+        jFormattedTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextField1ActionPerformed(evt);
+            }
+        });
         jFormattedTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jFormattedTextField1KeyTyped(evt);
@@ -135,6 +145,11 @@ private void inicializarNombre(){
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        jFormattedTextField2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jFormattedTextField2MousePressed(evt);
+            }
+        });
         jFormattedTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jFormattedTextField2KeyTyped(evt);
@@ -184,6 +199,21 @@ private void inicializarNombre(){
             evt.consume();
         }
     }//GEN-LAST:event_jFormattedTextField2KeyTyped
+
+    private void jFormattedTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextField1ActionPerformed
+
+    private void jFormattedTextField1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextField1MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextField1MousePressed
+
+    private void jFormattedTextField2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextField2MousePressed
+       if(txtNombre.getText().isEmpty()){
+           txtNombre.setText("Fulano Andres Martinez Gimenez de Jesus");
+           txtNombre.setForeground(Color.gray.brighter());
+       }
+    }//GEN-LAST:event_jFormattedTextField2MousePressed
 
  
 
