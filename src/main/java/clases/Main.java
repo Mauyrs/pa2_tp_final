@@ -11,7 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import seguridad.Contrasena;
 
-public class Main {
+public class main {
     public static void main(String [] args ){
         /*
         ImpDAOCategoria categoriaDAO = new ImpDAOCategoria();
@@ -90,7 +90,7 @@ public class Main {
             
             
         } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         

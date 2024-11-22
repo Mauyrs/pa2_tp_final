@@ -5,8 +5,8 @@
 package igu;
 
 import DAO.ImpDAOUsuario;
-import clases.Usuario;
 import clases.main;
+import clases.Usuario;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -72,7 +72,7 @@ public class Login extends javax.swing.JFrame {
 
         txtUsuario.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         txtUsuario.setForeground(new java.awt.Color(204, 204, 204));
-        txtUsuario.setText("Ingrese su nombre de usuario");
+        txtUsuario.setText("Ingrese su correo");
         txtUsuario.setBorder(null);
         txtUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -170,7 +170,7 @@ public class Login extends javax.swing.JFrame {
 
     private void txtUsuarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUsuarioMousePressed
         // TODO add your handling code here:
-        if(txtUsuario.getText().equals("Ingrese su nombre de usuario")){
+        if(txtUsuario.getText().equals("Ingrese su correo")){
             txtUsuario.setText("");
             txtUsuario.setForeground(Color.black);
         }
@@ -190,13 +190,13 @@ public class Login extends javax.swing.JFrame {
               } else{
             if(txtUsuario.getText().isEmpty()){
                 
-              txtUsuario.setText("Ingrese su nombre de usuario");
+              txtUsuario.setText("Ingrese su correo");
               txtUsuario.setForeground(Color.gray.brighter());
           } 
     }//GEN-LAST:event_passUsuarioMousePressed
   if(txtUsuario.getText().isEmpty()){
                 
-              txtUsuario.setText("Ingrese su nombre de usuario");
+              txtUsuario.setText("Ingrese su correo");
               txtUsuario.setForeground(Color.gray.brighter());
     } 
    } 
@@ -237,7 +237,7 @@ public class Login extends javax.swing.JFrame {
 
     private void txtUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyPressed
         // TODO add your handling code here:
-         if (txtUsuario.getText().equals("Ingrese su nombre de usuario")) {
+         if (txtUsuario.getText().equals("Ingrese su correo")) {
                     txtUsuario.setText(""); 
                     txtUsuario.setForeground(Color.BLACK); 
                 }

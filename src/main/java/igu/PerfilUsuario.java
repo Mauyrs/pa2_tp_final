@@ -4,16 +4,13 @@
  */
 package igu;
 
-/**
- *
- * @author Nacho
- */
-public class PerfilUsuario extends javax.swing.JFrame {
+import clases.Usuario;
 
-    /**
-     * Creates new form PerfilUsuario
-     */
-    public PerfilUsuario() {
+public class PerfilUsuario extends javax.swing.JFrame {
+       private Usuario usuario;  
+        
+    public PerfilUsuario(Usuario usuario) {
+        this.usuario = usuario;
         initComponents();
     }
 
@@ -106,6 +103,11 @@ public class PerfilUsuario extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         jButton1.setText("Volver");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 450, 110, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -125,6 +127,24 @@ public class PerfilUsuario extends javax.swing.JFrame {
     private void passConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passConfirmarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_passConfirmarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+      
+        int tipoUsuario = usuario.getIdTipo();
+              switch(tipoUsuario){
+                  case 1:
+                      InterfazAdmin interAdmin = new InterfazAdmin (usuario);
+                      interAdmin.setVisible(true);
+                     this.setVisible(false);
+                      break;
+                  case 2:
+                      InterfazUsuario interUsu = new InterfazUsuario (usuario);
+                      interUsu.setVisible(true);
+                       this.setVisible(false);
+                     break; 
+              }
+               
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     
 

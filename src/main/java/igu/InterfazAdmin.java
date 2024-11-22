@@ -16,8 +16,11 @@ public class InterfazAdmin extends javax.swing.JFrame {
     public InterfazAdmin(Usuario usuario) {
         this.usuario = usuario;
         initComponents();
+        inicializarNombre();
     }
-
+ private void inicializarNombre(){
+        lblNombre.setText("ADMIN " +this.usuario.getNombre().trim().toUpperCase());
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -36,7 +39,7 @@ public class InterfazAdmin extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnPerfil = new javax.swing.JButton();
         btnPronom = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        lblNombre = new javax.swing.JLabel();
         btnListarproducto = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
 
@@ -107,10 +110,9 @@ public class InterfazAdmin extends javax.swing.JFrame {
         btnPronom.setText("BUSCAR PRODUCTO POR NOMBRE");
         jPanel1.add(btnPronom, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 340, 250, 60));
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 0, 68)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("ENOL");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 220, 70));
+        lblNombre.setFont(new java.awt.Font("Dialog", 0, 68)); // NOI18N
+        lblNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel1.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 520, 70));
 
         btnListarproducto.setText("LISTAR TODOS LOS PRODUCTOS");
         btnListarproducto.addActionListener(new java.awt.event.ActionListener() {
@@ -121,7 +123,12 @@ public class InterfazAdmin extends javax.swing.JFrame {
         jPanel1.add(btnListarproducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 260, 250, 60));
 
         btnVolver.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        btnVolver.setText("Volver");
+        btnVolver.setText("SALIR");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 420, 110, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -139,7 +146,9 @@ public class InterfazAdmin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGestionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionarActionPerformed
-        // TODO add your handling code here:
+      ProductoNuevo pro = new ProductoNuevo ();
+      pro.setVisible(true);
+      this.setVisible(false);
     }//GEN-LAST:event_btnGestionarActionPerformed
 
     private void btnListarproductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarproductoActionPerformed
@@ -147,7 +156,7 @@ public class InterfazAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnListarproductoActionPerformed
 
     private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
-      PerfilUsuario per = new PerfilUsuario();
+      PerfilUsuario per = new PerfilUsuario(usuario);
       per.setVisible(true);
       this.setVisible(false);
     }//GEN-LAST:event_btnPerfilActionPerformed
@@ -155,6 +164,12 @@ public class InterfazAdmin extends javax.swing.JFrame {
     private void btnListarusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarusuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnListarusuarioActionPerformed
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        Login log = new Login ();
+        log.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnVolverActionPerformed
 
    
 
@@ -167,9 +182,9 @@ public class InterfazAdmin extends javax.swing.JFrame {
     private javax.swing.JButton btnPronom;
     private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblBienvenido;
+    private javax.swing.JLabel lblNombre;
     // End of variables declaration//GEN-END:variables
 }

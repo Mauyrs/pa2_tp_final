@@ -40,6 +40,7 @@ public class InterfazUsuario extends javax.swing.JFrame {
         btnPerfil = new javax.swing.JButton();
         btnPronom = new javax.swing.JButton();
         lblNombre = new javax.swing.JLabel();
+        btnVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -112,6 +113,15 @@ public class InterfazUsuario extends javax.swing.JFrame {
         lblNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jPanel1.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, 220, 70));
 
+        btnVolver.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        btnVolver.setText("SALIR");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 420, 110, 40));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -120,7 +130,7 @@ public class InterfazUsuario extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -138,6 +148,12 @@ public class InterfazUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnPerfilActionPerformed
 
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        Login log = new Login ();
+        log.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnVolverActionPerformed
+
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -146,6 +162,7 @@ public class InterfazUsuario extends javax.swing.JFrame {
     private javax.swing.JButton btnPerfil;
     private javax.swing.JButton btnProcat;
     private javax.swing.JButton btnPronom;
+    private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
