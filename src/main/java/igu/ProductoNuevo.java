@@ -10,6 +10,8 @@ import clases.Categoria;
 import clases.Usuario;
 import java.awt.Color;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
@@ -22,6 +24,8 @@ import javax.swing.JComboBox;
 public class ProductoNuevo extends javax.swing.JFrame {
 
     private Usuario usuario;
+    private Map<Integer, Categoria> mapComCat= new HashMap();
+
     public ProductoNuevo(Usuario usuario) {
         this.usuario = usuario;
         initComponents();
@@ -535,10 +539,11 @@ public class ProductoNuevo extends javax.swing.JFrame {
         CategoriaDAO categoriaDAO = new ImpDAOCategoria();
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
         comboCategorias.setModel(modelo);
-        
+        Integer i = 0;
         try {
             for (Categoria cat : categoriaDAO.listar()){
                 modelo.addElement(cat.getNombre());
+                mapComCat.put(i, cat);
                 
             }
         } catch (SQLException | ClassNotFoundException ex) {

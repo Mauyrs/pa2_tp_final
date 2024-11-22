@@ -96,6 +96,9 @@ public class BusquedaNombre extends javax.swing.JFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
        try {
+            panelProductos.removeAll();
+            panelProductos.revalidate();
+           
            List<Producto> encontrados = productoDAO.buscarNombre(txtBusqueda.getText());
            int i = 1;
             if(!encontrados.isEmpty()){
