@@ -1,6 +1,9 @@
 package DAO;
 
+import clases.DetallePedido;
 import clases.Pedido;
+import clases.Producto;
+import clases.Usuario;
 import conexiones.ConSql;
 import java.sql.Connection;
 import java.sql.Date;
@@ -10,6 +13,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class ImpDAOPedido implements PedidoDAO {
 
@@ -77,7 +81,7 @@ public class ImpDAOPedido implements PedidoDAO {
         Connection con = ConSql.obtener();
         String sql = "INSERT INTO pedido (id_estado, entrega_estimada, id_usuario, fecha_pedido) VALUES (?, ?, ?, ?)";
         
-        PreparedStatement prep = con.prepareStatement(sql);
+        PreparedStatement prep = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
         prep.setInt(1, ped.getIdEstado());
         prep.setDate(2, Date.valueOf(ped.getEntregaEstimada()));
         prep.setDouble(3, ped.getIdUsuario());
@@ -85,9 +89,15 @@ public class ImpDAOPedido implements PedidoDAO {
 
             
         int camb = prep.executeUpdate();
+        ResultSet rs= prep.getGeneratedKeys();
+        if(rs.next()){
+            ped.setIdPedido(rs.getInt(1));
+        }
+        
         
         ConSql.cerrarConexion(con);
         ConSql.cerrarPrepStmt(prep);
+        ConSql.cerrarResultSet(rs);
         
         return camb;        
     }
@@ -126,5 +136,62 @@ public class ImpDAOPedido implements PedidoDAO {
         
         
         return camb;    }
+
+    @Override
+    public Pedido insertarCarrito(Usuario usu, Map<Producto, Integer> carrito) throws SQLException, ClassNotFoundException {
+        
+        LocalDate hoy = LocalDate.now();
+        
+        Pedido ped = new Pedido(6, hoy.plusDays(10), usu.getIdUsuario(), hoy);
+        insertar(ped);
+        
+        Connection con = ConSql.obtener();
+        
+        String sql = "INSERT into detalle_pedido (id_pedido, id_producto, precio_unitario, cantidad) VALUES (?, ?, ?, ?)";
+        
+        PreparedStatement prep = con.prepareStatement(sql);
+        prep.setInt(1, ped.getIdPedido());
+        
+        for(Map.Entry<Producto, Integer> entry : carrito.entrySet()){
+            Integer cant = entry.getValue();
+            Producto prod = entry.getKey();
+            
+            prep.setInt(2, prod.getIdProducto());
+            prep.setDouble(3, prod.getPrecio());
+            prep.setInt(4, cant);
+            
+            prep.addBatch();
+            
+        }
+        
+        prep.executeBatch();
+        ConSql.cerrarConexion(con);
+        ConSql.cerrarPrepStmt(prep);
+        
+        return ped; 
+
+    }
+
+    @Override
+    public Double recuperarTotal(Pedido ped) throws SQLException, ClassNotFoundException {
+        Connection con = ConSql.obtener();
+        String sql = "SELECT SUM(precio_unitario * cantidad) AS total FROM detalle_pedido WHERE id_pedido = ?";
+        Double total = 0.0;
+        PreparedStatement prep = con.prepareStatement(sql);
+        prep.setInt(1, ped.getIdPedido());
+        
+        ResultSet rs = prep.executeQuery();
+        
+        if(rs.next()){
+            total = rs.getDouble("total");
+        }
+        
+        
+        
+        return total;
+    }
+    
+    
+    
     
 }
