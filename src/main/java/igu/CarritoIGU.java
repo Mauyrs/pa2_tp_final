@@ -5,6 +5,7 @@ import clases.Producto;
 import clases.Usuario;
 import java.awt.Font;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,7 +16,8 @@ import javax.swing.table.DefaultTableModel;
 
 public class CarritoIGU extends javax.swing.JFrame {
 
-  private Usuario usu;
+    private Usuario usu;
+    private Map<Integer, Producto> mapFilaProducto; 
     public CarritoIGU(Usuario usu) {
         this.usu = usu;
         initComponents();
@@ -32,6 +34,8 @@ public class CarritoIGU extends javax.swing.JFrame {
             Map<Producto, Integer> carritoUsu = usuarioDAO.obtenerCarrito(usu);
             DefaultTableModel tabla = (DefaultTableModel) tblCarrito.getModel();
             tabla.setColumnIdentifiers(new String[]{"Nombre", "Cantidad", "Precio", "Total"});
+            Map<Integer, Producto> mapRow= new HashMap();
+            Integer fila = 0;
             
             DefaultTableCellRenderer derecha = new DefaultTableCellRenderer();
             derecha.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -57,15 +61,20 @@ public class CarritoIGU extends javax.swing.JFrame {
                 String celdaTotal = "$ "+totalFila.toString();
                 String celdaPrecio = "$ "+Double.toString(prod.getPrecio());
                 
+                mapRow.put(fila, prod);
                 
                 totalCarrito += totalFila;
-                Object[] nuevaFila = {prod.getNombre(), cant, celdaPrecio,celdaTotal};
+                Object[] nuevaFila = {prod.getNombre(), cant, celdaPrecio, celdaTotal};
+                
                 tabla.addRow(nuevaFila);
+                fila++;
             }
             
-            
+            mapFilaProducto = mapRow;
             lblTotal.setText("$ "+totalCarrito.toString());
             lblTitulo.setText("Carrito de: "+nombreCompleto);
+            
+            
             
           
         } catch (SQLException | ClassNotFoundException ex) {
@@ -86,10 +95,11 @@ public class CarritoIGU extends javax.swing.JFrame {
         lblTotal = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCarrito = new javax.swing.JTable();
-        btnPago = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
+        btnPago1 = new javax.swing.JButton();
+        btnPago2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -145,14 +155,6 @@ public class CarritoIGU extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 770, 200));
 
-        btnPago.setText("Realizar pago");
-        btnPago.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPagoActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 440, 120, 30));
-
         jButton1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         jButton1.setText("Volver");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -168,6 +170,22 @@ public class CarritoIGU extends javax.swing.JFrame {
         jPanel2.add(lblTitulo);
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 790, 60));
+
+        btnPago1.setText("Realizar pago");
+        btnPago1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPago1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnPago1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 440, 120, 30));
+
+        btnPago2.setText("Borrar del Carrito");
+        btnPago2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPago2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnPago2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 120, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, 530));
 
@@ -200,11 +218,19 @@ public class CarritoIGU extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_lblTotalActionPerformed
 
+    private void btnPago1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPago1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPago1ActionPerformed
+
+    private void btnPago2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPago2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPago2ActionPerformed
 
  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnPago;
+    private javax.swing.JButton btnPago1;
+    private javax.swing.JButton btnPago2;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
