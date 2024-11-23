@@ -53,12 +53,13 @@ public class BusquedaNombre extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        txtBusqueda.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtBusqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtBusquedaActionPerformed(evt);
             }
         });
-        jPanel1.add(txtBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, 450, 50));
+        jPanel1.add(txtBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 40, 510, 50));
 
         btnBuscar.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         btnBuscar.setText("Buscar");

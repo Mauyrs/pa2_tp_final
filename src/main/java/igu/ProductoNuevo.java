@@ -6,16 +6,17 @@ package igu;
 
 import DAO.CategoriaDAO;
 import DAO.ImpDAOCategoria;
+import DAO.ImpDAOProducto;
 import clases.Categoria;
+import clases.Producto;
 import clases.Usuario;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,6 +25,7 @@ import javax.swing.JComboBox;
 public class ProductoNuevo extends javax.swing.JFrame {
 
     private Usuario usuario;
+    private final ImpDAOProducto productoDAO = new ImpDAOProducto();
     private Map<Integer, Categoria> mapComCat= new HashMap();
 
     public ProductoNuevo(Usuario usuario) {
@@ -64,7 +66,7 @@ public class ProductoNuevo extends javax.swing.JFrame {
         btnModificar1 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jSeparator6 = new javax.swing.JSeparator();
-        txtUsuario = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
@@ -78,26 +80,25 @@ public class ProductoNuevo extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("PRODUCTO NUEVO");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 360, 70));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 360, 70));
 
         jLabel2.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel2.setText("CATEGORIA");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel3.setText("NOMBRE");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 60, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 60, -1));
 
         jLabel5.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel5.setText("PRECIO");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel6.setText("CANTIDAD EN STOCK");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, -1));
 
         txtId.setForeground(new java.awt.Color(204, 204, 204));
-        txtId.setText("Ingrese la ID del producto a buscar");
         txtId.setBorder(null);
         txtId.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -117,10 +118,9 @@ public class ProductoNuevo extends javax.swing.JFrame {
                 txtIdKeyTyped(evt);
             }
         });
-        jPanel1.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 140, 200, 20));
+        jPanel1.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 140, 200, 20));
 
         txtPrecio.setForeground(new java.awt.Color(204, 204, 204));
-        txtPrecio.setText("Ingrese el precio del producto");
         txtPrecio.setBorder(null);
         txtPrecio.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -137,22 +137,21 @@ public class ProductoNuevo extends javax.swing.JFrame {
                 txtPrecioKeyTyped(evt);
             }
         });
-        jPanel1.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 170, -1));
+        jPanel1.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 170, -1));
 
         jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 160, 190, 10));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 160, 190, 10));
 
         jSeparator3.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 170, 10));
+        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 170, 10));
 
         jSeparator4.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 170, 10));
+        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 170, 10));
 
         txtCantStock.setForeground(new java.awt.Color(204, 204, 204));
-        txtCantStock.setText("Ingrese la cantidad en stock");
         txtCantStock.setBorder(null);
         txtCantStock.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -169,18 +168,17 @@ public class ProductoNuevo extends javax.swing.JFrame {
                 txtCantStockKeyTyped(evt);
             }
         });
-        jPanel1.add(txtCantStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 170, -1));
+        jPanel1.add(txtCantStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 170, -1));
 
         jSeparator5.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator5.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, 60, 10));
+        jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 60, 10));
 
         jLabel7.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel7.setText("DESCRIPCION");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, -1, -1));
 
         txtDescripcion.setForeground(new java.awt.Color(204, 204, 204));
-        txtDescripcion.setText("Ingrese una descripcion");
         txtDescripcion.setBorder(null);
         txtDescripcion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -192,11 +190,11 @@ public class ProductoNuevo extends javax.swing.JFrame {
                 txtDescripcionActionPerformed(evt);
             }
         });
-        jPanel1.add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, 170, 20));
+        jPanel1.add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 250, 40));
 
         jSeparator7.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator7.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, 170, 10));
+        jPanel1.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 250, 10));
 
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -204,14 +202,14 @@ public class ProductoNuevo extends javax.swing.JFrame {
                 btnBuscarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 190, 120, 40));
+        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 190, 120, 40));
 
         comboCategorias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboCategoriasActionPerformed(evt);
             }
         });
-        jPanel1.add(comboCategorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 310, 140, 20));
+        jPanel1.add(comboCategorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, 190, 20));
 
         btnGuardar1.setText("Guardar");
         btnGuardar1.addActionListener(new java.awt.event.ActionListener() {
@@ -219,7 +217,7 @@ public class ProductoNuevo extends javax.swing.JFrame {
                 btnGuardar1ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnGuardar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 360, 120, 40));
+        jPanel1.add(btnGuardar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 410, 120, 40));
 
         btnEliminar.setText("Eliminar");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -227,7 +225,7 @@ public class ProductoNuevo extends javax.swing.JFrame {
                 btnEliminarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 360, 120, 40));
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 280, 120, 40));
 
         btnModificar1.setText("Modificar");
         btnModificar1.addActionListener(new java.awt.event.ActionListener() {
@@ -235,39 +233,38 @@ public class ProductoNuevo extends javax.swing.JFrame {
                 btnModificar1ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnModificar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 360, 120, 40));
+        jPanel1.add(btnModificar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 280, 120, 40));
 
         jLabel8.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel8.setText("ID");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 120, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 120, -1, -1));
 
         jSeparator6.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator6.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 170, 10));
+        jPanel1.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 170, 10));
 
-        txtUsuario.setForeground(new java.awt.Color(204, 204, 204));
-        txtUsuario.setText("Ingrese el nombre del producto");
-        txtUsuario.setBorder(null);
-        txtUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtNombre.setForeground(new java.awt.Color(204, 204, 204));
+        txtNombre.setBorder(null);
+        txtNombre.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtUsuarioMousePressed(evt);
+                txtNombreMousePressed(evt);
             }
         });
-        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
+        txtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUsuarioActionPerformed(evt);
+                txtNombreActionPerformed(evt);
             }
         });
-        txtUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtUsuarioKeyPressed(evt);
+                txtNombreKeyPressed(evt);
             }
         });
-        jPanel1.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 180, 20));
+        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 180, 20));
 
         jLabel9.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         jLabel9.setText("BUSCAR PRODUCTO");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 50, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 20, -1, -1));
 
         jButton1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         jButton1.setText("Volver");
@@ -276,13 +273,13 @@ public class ProductoNuevo extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, 110, 40));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 420, 110, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 865, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 875, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -309,106 +306,51 @@ public class ProductoNuevo extends javax.swing.JFrame {
     }//GEN-LAST:event_txtDescripcionActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        // TODO add your handling code here:
+        try {
+            Integer indexCategoria =0;
+            Integer idProducto = Integer.parseInt(txtId.getText());
+            Producto encontrado = productoDAO.obtener(idProducto);
+            if(encontrado!=null){
+                txtNombre.setText(encontrado.getNombre());
+                txtPrecio.setText(String.valueOf(encontrado.getPrecio()) );
+                txtCantStock.setText(String.valueOf(encontrado.getCantidadStock()));
+                for(Map.Entry<Integer, Categoria> entry : mapComCat.entrySet()){
+                    Categoria cat = entry.getValue();
+                    if(cat.getIdCategoria()==encontrado.getIdCategoria()){
+                        indexCategoria = entry.getKey();
+                    }
+                }
+                comboCategorias.setSelectedIndex(indexCategoria);
+                txtDescripcion.setText(encontrado.getDescripcion());
+                
+            }else{
+                JOptionPane.showMessageDialog(this, "No se encontro el producto con ID: "+idProducto);
+            }
+            
+            
+            
+        } catch (SQLException | ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(this, "Error al conectar con la base de datos"+ex);
+        }
+        
+        
+        
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void txtIdMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtIdMousePressed
-          if(txtId.getText().equals("Ingrese la ID del producto a buscar")){
-            txtId.setText("");
-            txtId.setForeground(Color.black);
-        }
-        
-      if(txtPrecio.getText().isEmpty()){
-          txtPrecio.setText("Ingrese el precio del producto");
-          txtPrecio.setForeground(Color.gray.brighter());
-      }
-      if(txtCantStock.getText().isEmpty()){
-          txtCantStock.setText("Ingrese la cantidad en stock");
-          txtCantStock.setForeground(Color.gray.brighter());
-      }
-      if(txtDescripcion.getText().isEmpty()){
-          txtDescripcion.setText("Ingrese una descripcion");
-          txtDescripcion.setForeground(Color.gray.brighter());
-      }
-      if(txtUsuario.getText().isEmpty()){
-          txtUsuario.setText("Ingrese el nombre del producto");
-          txtUsuario.setForeground(Color.gray.brighter());
-      }
+      
     }//GEN-LAST:event_txtIdMousePressed
 
     private void txtPrecioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPrecioMousePressed
-               if(txtPrecio.getText().equals("Ingrese el precio del producto")){
-            txtPrecio.setText("");
-            txtPrecio.setForeground(Color.black);
-        }
-        
-      if(txtUsuario.getText().isEmpty()){
-          txtUsuario.setText("Ingrese el nombre del producto");
-          txtUsuario.setForeground(Color.gray.brighter());
-      }
-      if(txtCantStock.getText().isEmpty()){
-          txtCantStock.setText("Ingrese la cantidad en stock");
-          txtCantStock.setForeground(Color.gray.brighter());
-      }
-     
-      if(txtDescripcion.getText().isEmpty()){
-          txtDescripcion.setText("Ingrese una descripcion");
-          txtDescripcion.setForeground(Color.gray.brighter());
-      }
-       if(txtId.getText().isEmpty()){
-          txtId.setText("Ingrese la ID del producto a buscar");
-          txtId.setForeground(Color.gray.brighter());
-      }
+
     }//GEN-LAST:event_txtPrecioMousePressed
 
     private void txtCantStockMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCantStockMousePressed
-       if(txtCantStock.getText().equals("Ingrese la cantidad en stock")){
-            txtCantStock.setText("");
-            txtCantStock.setForeground(Color.black);
-        }
-        
-      if(txtPrecio.getText().isEmpty()){
-          txtPrecio.setText("Ingrese el precio del producto");
-          txtPrecio.setForeground(Color.gray.brighter());
-      }
-      if(txtUsuario.getText().isEmpty()){
-          txtUsuario.setText("Ingrese el nombre del producto");
-          txtUsuario.setForeground(Color.gray.brighter());
-      }
-
-      if(txtDescripcion.getText().isEmpty()){
-          txtDescripcion.setText("Ingrese una descripcion");
-          txtDescripcion.setForeground(Color.gray.brighter());
-      }
-       if(txtId.getText().isEmpty()){
-          txtId.setText("Ingrese la ID del producto a buscar");
-          txtId.setForeground(Color.gray.brighter());
-      }
+ 
     }//GEN-LAST:event_txtCantStockMousePressed
 
     private void txtDescripcionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDescripcionMousePressed
-           if(txtDescripcion.getText().equals("Ingrese una descripcion")){
-            txtDescripcion.setText("");
-            txtDescripcion.setForeground(Color.black);
-        }
-        
-      if(txtPrecio.getText().isEmpty()){
-          txtPrecio.setText("Ingrese el precio del producto");
-          txtPrecio.setForeground(Color.gray.brighter());
-      }
-      if(txtCantStock.getText().isEmpty()){
-          txtCantStock.setText("Ingrese la cantidad en stock");
-          txtCantStock.setForeground(Color.gray.brighter());
-      }
-      
-      if(txtUsuario.getText().isEmpty()){
-          txtUsuario.setText("Ingrese el nombre del producto");
-          txtUsuario.setForeground(Color.gray.brighter());
-      }
-       if(txtId.getText().isEmpty()){
-          txtId.setText("Ingrese la ID del producto a buscar");
-          txtId.setForeground(Color.gray.brighter());
-      }
+
       
     }//GEN-LAST:event_txtDescripcionMousePressed
 
@@ -420,48 +362,129 @@ public class ProductoNuevo extends javax.swing.JFrame {
     }//GEN-LAST:event_txtIdKeyPressed
 
     private void btnGuardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardar1ActionPerformed
-        // TODO add your handling code here:
+        String nombre = txtNombre.getText();
+        Double precio;
+        Integer stock;
+        Categoria categoria = mapComCat.get(comboCategorias.getSelectedIndex());
+        String descripcion = txtDescripcion.getText();
+        
+        if(!txtPrecio.getText().isBlank()){
+            precio = Double.parseDouble(txtPrecio.getText());
+        }else{
+            precio = 0.0;
+        }
+        if(!txtCantStock.getText().isBlank()){
+            stock = Integer.parseInt(txtCantStock.getText());            
+        }else{
+            stock = 0;
+        }
+        
+        if(!(nombre.isBlank()||precio==0.0||descripcion.isBlank())){
+            try {
+                Producto nuevo = new Producto(nombre, descripcion, precio, categoria.getIdCategoria(), stock);
+                
+                productoDAO.insertar(nuevo);
+                
+                JOptionPane.showMessageDialog(this, "Producto Registrado con exito");
+
+                
+            } catch (SQLException ex) {
+                if(ex.getErrorCode()==1062){
+                    JOptionPane.showMessageDialog(this, "El nombre de producto ingresado ya esta registrado");
+
+                }
+            } catch (ClassNotFoundException ex) {
+                    JOptionPane.showMessageDialog(this, "Error al conectar con la base de datos"+ex);
+            }
+            
+        }else{
+            JOptionPane.showMessageDialog(this, "Ingrese todos los datos antes de guardar el nuevo producto");
+
+        }
     }//GEN-LAST:event_btnGuardar1ActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // TODO add your handling code here:
+        try {
+            Integer idProducto = Integer.parseInt(txtId.getText());
+            Producto encontrado = productoDAO.obtener(idProducto);
+            if(encontrado!=null){
+                productoDAO.eliminar(encontrado);
+                JOptionPane.showMessageDialog(this, "Se elimino: " + encontrado.getNombre());
+
+            }else{
+                JOptionPane.showMessageDialog(this, "No se encontro el producto con ID: "+idProducto);
+            }
+            
+            
+            
+        } catch (SQLException | ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(this, "Error al conectar con la base de datos"+ex);
+        }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnModificar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificar1ActionPerformed
-        // TODO add your handling code here:
+        
+        Categoria categoria = mapComCat.get(comboCategorias.getSelectedIndex());
+        
+        
+       
+        
+        try {
+            Integer idProducto = Integer.parseInt(txtId.getText());
+            Producto encontrado = productoDAO.obtener(idProducto);
+            if(encontrado!=null){
+                
+                if(!txtPrecio.getText().isBlank()){
+                    encontrado.setPrecio(Double.parseDouble(txtPrecio.getText()));
+                }
+                
+                if(!txtNombre.getText().isBlank()){
+                    encontrado.setNombre(txtNombre.getText());
+                }
+                
+                if(!txtDescripcion.getText().isBlank()){
+                    encontrado.setDescripcion(txtDescripcion.getText());
+                }
+                
+                if(!txtCantStock.getText().isBlank()){
+                    encontrado.setCantidadStock(Integer.parseInt(txtCantStock.getText()));
+                }
+                
+                encontrado.setIdCategoria(categoria.getIdCategoria());
+                
+                
+                
+                productoDAO.actualizar(encontrado);
+                JOptionPane.showMessageDialog(this, "Se elimino: " + encontrado.getNombre());
+
+            }else{
+                JOptionPane.showMessageDialog(this, "No se encontro el producto con ID: "+idProducto);
+            }
+            
+            
+            
+        } catch (SQLException ex) {
+                if(ex.getErrorCode()==1062){
+                    JOptionPane.showMessageDialog(this, "El nombre de producto ingresado ya esta registrado");
+
+                }
+            } catch (ClassNotFoundException ex) {
+                    JOptionPane.showMessageDialog(this, "Error al conectar con la base de datos"+ex);
+            }
+
     }//GEN-LAST:event_btnModificar1ActionPerformed
 
-    private void txtUsuarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUsuarioMousePressed
-         if(txtUsuario.getText().equals("Ingrese el nombre del producto")){
-            txtUsuario.setText("");
-            txtUsuario.setForeground(Color.black);
-        }
+    private void txtNombreMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNombreMousePressed
         
-      if(txtPrecio.getText().isEmpty()){
-          txtPrecio.setText("Ingrese el precio del producto");
-          txtPrecio.setForeground(Color.gray.brighter());
-      }
-      if(txtCantStock.getText().isEmpty()){
-          txtCantStock.setText("Ingrese la cantidad en stock");
-          txtCantStock.setForeground(Color.gray.brighter());
-      }
-      if(txtDescripcion.getText().isEmpty()){
-          txtDescripcion.setText("Ingrese una descripcion");
-          txtDescripcion.setForeground(Color.gray.brighter());
-      }
-       if(txtId.getText().isEmpty()){
-          txtId.setText("Ingrese la ID del producto a buscar");
-          txtId.setForeground(Color.gray.brighter());
-      }
-    }//GEN-LAST:event_txtUsuarioMousePressed
+    }//GEN-LAST:event_txtNombreMousePressed
 
-    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtUsuarioActionPerformed
+    }//GEN-LAST:event_txtNombreActionPerformed
 
-    private void txtUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyPressed
+    private void txtNombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtUsuarioKeyPressed
+    }//GEN-LAST:event_txtNombreKeyPressed
 
     private void txtPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyTyped
       char tipeado = evt.getKeyChar();
@@ -531,8 +554,8 @@ public class ProductoNuevo extends javax.swing.JFrame {
     private javax.swing.JTextField txtCantStock;
     private javax.swing.JTextField txtDescripcion;
     private javax.swing.JTextField txtId;
+    private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtPrecio;
-    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 
     private void cargarCategorias(JComboBox comboCategorias) {
@@ -544,6 +567,7 @@ public class ProductoNuevo extends javax.swing.JFrame {
             for (Categoria cat : categoriaDAO.listar()){
                 modelo.addElement(cat.getNombre());
                 mapComCat.put(i, cat);
+                i++;
                 
             }
         } catch (SQLException | ClassNotFoundException ex) {
