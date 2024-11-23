@@ -231,14 +231,14 @@ private void inicializarNombre(){
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-       /*     Usuario nuevo=null;
+         Pago pago = null;
+         Producto pro = null;
         try{
             if(txtNombre.getText().isEmpty() || numTar.getText().isEmpty() || cvv.getText().isEmpty()){
             JOptionPane.showMessageDialog(null,"Rellene todos los campos solicitados");
            
                 }else{
-                Pago pago = new Pago();
-                Producto pro = new Producto ();
+              pago = new( ,)
                 
             }catch(){
                     
@@ -246,8 +246,7 @@ private void inicializarNombre(){
                 
             
                 
-        }
-        */
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
  
