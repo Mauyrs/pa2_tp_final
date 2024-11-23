@@ -131,6 +131,7 @@ public class CarritoIGU extends javax.swing.JFrame {
         jLabel1.setText("Monto total:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 350, 110, 40));
 
+        lblTotal.setEditable(false);
         lblTotal.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         lblTotal.setText("000.000 $");
         lblTotal.setBorder(null);
@@ -150,7 +151,7 @@ public class CarritoIGU extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
