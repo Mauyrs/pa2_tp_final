@@ -9,7 +9,11 @@ import DAO.ImpDAOProducto;
 import clases.Pago;
 import clases.Producto;
 import clases.Usuario;
+import clases.main;
 import java.awt.Color;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -238,10 +242,11 @@ private void inicializarNombre(){
             JOptionPane.showMessageDialog(null,"Rellene todos los campos solicitados");
            
                 }else{
-              pago = new( ,)
-                
-            }catch(){
-                    
+              pago = new(lblTotal , fecha, idpedido??)
+              pagoDAO.insertar(pago);
+             
+            }catch(SQLException | ClassNotFoundException ex){
+                    Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 
             
