@@ -7,6 +7,7 @@ package igu;
 import DAO.ImpDAOPago;
 import DAO.ImpDAOProducto;
 import clases.Pago;
+import clases.Producto;
 import clases.Usuario;
 import java.awt.Color;
 import javax.swing.JOptionPane;
@@ -230,7 +231,7 @@ private void inicializarNombre(){
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-            Usuario nuevo=null;
+       /*     Usuario nuevo=null;
         try{
             if(txtNombre.getText().isEmpty() || numTar.getText().isEmpty() || cvv.getText().isEmpty()){
             JOptionPane.showMessageDialog(null,"Rellene todos los campos solicitados");
@@ -246,7 +247,7 @@ private void inicializarNombre(){
             
                 
         }
-        
+        */
     }//GEN-LAST:event_jButton1ActionPerformed
 
  
