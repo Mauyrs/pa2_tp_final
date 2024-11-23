@@ -99,7 +99,6 @@ public class ProductoNuevo extends javax.swing.JFrame {
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, -1));
 
         txtId.setForeground(new java.awt.Color(204, 204, 204));
-        txtId.setText("Ingrese la ID del producto a buscar");
         txtId.setBorder(null);
         txtId.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -122,7 +121,6 @@ public class ProductoNuevo extends javax.swing.JFrame {
         jPanel1.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 140, 200, 20));
 
         txtPrecio.setForeground(new java.awt.Color(204, 204, 204));
-        txtPrecio.setText("Ingrese el precio del producto");
         txtPrecio.setBorder(null);
         txtPrecio.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -154,7 +152,6 @@ public class ProductoNuevo extends javax.swing.JFrame {
         jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 170, 10));
 
         txtCantStock.setForeground(new java.awt.Color(204, 204, 204));
-        txtCantStock.setText("Ingrese la cantidad en stock");
         txtCantStock.setBorder(null);
         txtCantStock.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -182,7 +179,6 @@ public class ProductoNuevo extends javax.swing.JFrame {
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, -1, -1));
 
         txtDescripcion.setForeground(new java.awt.Color(204, 204, 204));
-        txtDescripcion.setText("Ingrese una descripcion");
         txtDescripcion.setBorder(null);
         txtDescripcion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -248,7 +244,6 @@ public class ProductoNuevo extends javax.swing.JFrame {
         jPanel1.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 170, 10));
 
         txtNombre.setForeground(new java.awt.Color(204, 204, 204));
-        txtNombre.setText("Ingrese el nombre del producto");
         txtNombre.setBorder(null);
         txtNombre.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -343,102 +338,19 @@ public class ProductoNuevo extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void txtIdMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtIdMousePressed
-          if(txtId.getText().equals("Ingrese la ID del producto a buscar")){
-            txtId.setText("");
-            txtId.setForeground(Color.black);
-        }
-        
-      if(txtPrecio.getText().isEmpty()){
-          txtPrecio.setText("Ingrese el precio del producto");
-          txtPrecio.setForeground(Color.gray.brighter());
-      }
-      if(txtCantStock.getText().isEmpty()){
-          txtCantStock.setText("Ingrese la cantidad en stock");
-          txtCantStock.setForeground(Color.gray.brighter());
-      }
-      if(txtDescripcion.getText().isEmpty()){
-          txtDescripcion.setText("Ingrese una descripcion");
-          txtDescripcion.setForeground(Color.gray.brighter());
-      }
-      if(txtNombre.getText().isEmpty()){
-          txtNombre.setText("Ingrese el nombre del producto");
-          txtNombre.setForeground(Color.gray.brighter());
-      }
+      
     }//GEN-LAST:event_txtIdMousePressed
 
     private void txtPrecioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPrecioMousePressed
-               if(txtPrecio.getText().equals("Ingrese el precio del producto")){
-            txtPrecio.setText("");
-            txtPrecio.setForeground(Color.black);
-        }
-        
-      if(txtNombre.getText().isEmpty()){
-          txtNombre.setText("Ingrese el nombre del producto");
-          txtNombre.setForeground(Color.gray.brighter());
-      }
-      if(txtCantStock.getText().isEmpty()){
-          txtCantStock.setText("Ingrese la cantidad en stock");
-          txtCantStock.setForeground(Color.gray.brighter());
-      }
-     
-      if(txtDescripcion.getText().isEmpty()){
-          txtDescripcion.setText("Ingrese una descripcion");
-          txtDescripcion.setForeground(Color.gray.brighter());
-      }
-       if(txtId.getText().isEmpty()){
-          txtId.setText("Ingrese la ID del producto a buscar");
-          txtId.setForeground(Color.gray.brighter());
-      }
+
     }//GEN-LAST:event_txtPrecioMousePressed
 
     private void txtCantStockMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCantStockMousePressed
-       if(txtCantStock.getText().equals("Ingrese la cantidad en stock")){
-            txtCantStock.setText("");
-            txtCantStock.setForeground(Color.black);
-        }
-        
-      if(txtPrecio.getText().isEmpty()){
-          txtPrecio.setText("Ingrese el precio del producto");
-          txtPrecio.setForeground(Color.gray.brighter());
-      }
-      if(txtNombre.getText().isEmpty()){
-          txtNombre.setText("Ingrese el nombre del producto");
-          txtNombre.setForeground(Color.gray.brighter());
-      }
-
-      if(txtDescripcion.getText().isEmpty()){
-          txtDescripcion.setText("Ingrese una descripcion");
-          txtDescripcion.setForeground(Color.gray.brighter());
-      }
-       if(txtId.getText().isEmpty()){
-          txtId.setText("Ingrese la ID del producto a buscar");
-          txtId.setForeground(Color.gray.brighter());
-      }
+ 
     }//GEN-LAST:event_txtCantStockMousePressed
 
     private void txtDescripcionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDescripcionMousePressed
-           if(txtDescripcion.getText().equals("Ingrese una descripcion")){
-            txtDescripcion.setText("");
-            txtDescripcion.setForeground(Color.black);
-        }
-        
-      if(txtPrecio.getText().isEmpty()){
-          txtPrecio.setText("Ingrese el precio del producto");
-          txtPrecio.setForeground(Color.gray.brighter());
-      }
-      if(txtCantStock.getText().isEmpty()){
-          txtCantStock.setText("Ingrese la cantidad en stock");
-          txtCantStock.setForeground(Color.gray.brighter());
-      }
-      
-      if(txtNombre.getText().isEmpty()){
-          txtNombre.setText("Ingrese el nombre del producto");
-          txtNombre.setForeground(Color.gray.brighter());
-      }
-       if(txtId.getText().isEmpty()){
-          txtId.setText("Ingrese la ID del producto a buscar");
-          txtId.setForeground(Color.gray.brighter());
-      }
+
       
     }//GEN-LAST:event_txtDescripcionMousePressed
 
@@ -451,17 +363,31 @@ public class ProductoNuevo extends javax.swing.JFrame {
 
     private void btnGuardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardar1ActionPerformed
         String nombre = txtNombre.getText();
-        Double precio = Double.parseDouble(txtPrecio.getText());
-        Integer stock = Integer.parseInt(txtCantStock.getText());
+        Double precio;
+        Integer stock;
         Categoria categoria = mapComCat.get(comboCategorias.getSelectedIndex());
         String descripcion = txtDescripcion.getText();
+        
+        if(!txtPrecio.getText().isBlank()){
+            precio = Double.parseDouble(txtPrecio.getText());
+        }else{
+            precio = 0.0;
+        }
+        if(!txtCantStock.getText().isBlank()){
+            stock = Integer.parseInt(txtCantStock.getText());            
+        }else{
+            stock = 0;
+        }
         
         if(!(nombre.isBlank()||precio==0.0||descripcion.isBlank())){
             try {
                 Producto nuevo = new Producto(nombre, descripcion, precio, categoria.getIdCategoria(), stock);
                 
                 productoDAO.insertar(nuevo);
-                        
+                
+                JOptionPane.showMessageDialog(this, "Producto Registrado con exito");
+
+                
             } catch (SQLException ex) {
                 if(ex.getErrorCode()==1062){
                     JOptionPane.showMessageDialog(this, "El nombre de producto ingresado ya esta registrado");
@@ -478,35 +404,78 @@ public class ProductoNuevo extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGuardar1ActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // TODO add your handling code here:
+        try {
+            Integer idProducto = Integer.parseInt(txtId.getText());
+            Producto encontrado = productoDAO.obtener(idProducto);
+            if(encontrado!=null){
+                productoDAO.eliminar(encontrado);
+                JOptionPane.showMessageDialog(this, "Se elimino: " + encontrado.getNombre());
+
+            }else{
+                JOptionPane.showMessageDialog(this, "No se encontro el producto con ID: "+idProducto);
+            }
+            
+            
+            
+        } catch (SQLException | ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(this, "Error al conectar con la base de datos"+ex);
+        }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnModificar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificar1ActionPerformed
-        // TODO add your handling code here:
+        
+        Categoria categoria = mapComCat.get(comboCategorias.getSelectedIndex());
+        
+        
+       
+        
+        try {
+            Integer idProducto = Integer.parseInt(txtId.getText());
+            Producto encontrado = productoDAO.obtener(idProducto);
+            if(encontrado!=null){
+                
+                if(!txtPrecio.getText().isBlank()){
+                    encontrado.setPrecio(Double.parseDouble(txtPrecio.getText()));
+                }
+                
+                if(!txtNombre.getText().isBlank()){
+                    encontrado.setNombre(txtNombre.getText());
+                }
+                
+                if(!txtDescripcion.getText().isBlank()){
+                    encontrado.setDescripcion(txtDescripcion.getText());
+                }
+                
+                if(!txtCantStock.getText().isBlank()){
+                    encontrado.setCantidadStock(Integer.parseInt(txtCantStock.getText()));
+                }
+                
+                encontrado.setIdCategoria(categoria.getIdCategoria());
+                
+                
+                
+                productoDAO.actualizar(encontrado);
+                JOptionPane.showMessageDialog(this, "Se elimino: " + encontrado.getNombre());
+
+            }else{
+                JOptionPane.showMessageDialog(this, "No se encontro el producto con ID: "+idProducto);
+            }
+            
+            
+            
+        } catch (SQLException ex) {
+                if(ex.getErrorCode()==1062){
+                    JOptionPane.showMessageDialog(this, "El nombre de producto ingresado ya esta registrado");
+
+                }
+            } catch (ClassNotFoundException ex) {
+                    JOptionPane.showMessageDialog(this, "Error al conectar con la base de datos"+ex);
+            }
+
     }//GEN-LAST:event_btnModificar1ActionPerformed
 
     private void txtNombreMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNombreMousePressed
-         if(txtNombre.getText().equals("Ingrese el nombre del producto")){
-            txtNombre.setText("");
-            txtNombre.setForeground(Color.black);
-        }
         
-      if(txtPrecio.getText().isEmpty()){
-          txtPrecio.setText("Ingrese el precio del producto");
-          txtPrecio.setForeground(Color.gray.brighter());
-      }
-      if(txtCantStock.getText().isEmpty()){
-          txtCantStock.setText("Ingrese la cantidad en stock");
-          txtCantStock.setForeground(Color.gray.brighter());
-      }
-      if(txtDescripcion.getText().isEmpty()){
-          txtDescripcion.setText("Ingrese una descripcion");
-          txtDescripcion.setForeground(Color.gray.brighter());
-      }
-       if(txtId.getText().isEmpty()){
-          txtId.setText("Ingrese la ID del producto a buscar");
-          txtId.setForeground(Color.gray.brighter());
-      }
     }//GEN-LAST:event_txtNombreMousePressed
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
