@@ -4,16 +4,22 @@
  */
 package igu;
 
+import DAO.ImpDAOPago;
+import DAO.ImpDAOProducto;
+import clases.Pago;
+import clases.Producto;
 import clases.Usuario;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Nacho
  */
 public class InterfazPago extends javax.swing.JFrame {
-
-   private Usuario usuario;
+     private final ImpDAOPago pagoDAO = new ImpDAOPago ();
+     private Usuario usuario;
+     private final ImpDAOProducto productoDAO = new ImpDAOProducto ();
     public InterfazPago(Usuario usuario) {
         this.usuario= usuario;
         initComponents();
@@ -43,9 +49,9 @@ private void inicializarNombre(){
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        cvv = new javax.swing.JFormattedTextField();
         btnVolver = new javax.swing.JButton();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
+        numTar = new javax.swing.JFormattedTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -91,7 +97,12 @@ private void inicializarNombre(){
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 350, 180, 30));
 
         jButton1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jButton1.setText("Confirmar");
+        jButton1.setText("Realizar pago");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 460, 130, 40));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "25", "26", "27", "28", "29", "30", "31", "32", "33", "34" }));
@@ -110,26 +121,26 @@ private void inicializarNombre(){
         jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 380, 110, 30));
 
         try {
-            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
+            cvv.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
+        cvv.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jFormattedTextField1MousePressed(evt);
+                cvvMousePressed(evt);
             }
         });
-        jFormattedTextField1.addActionListener(new java.awt.event.ActionListener() {
+        cvv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField1ActionPerformed(evt);
+                cvvActionPerformed(evt);
             }
         });
-        jFormattedTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+        cvv.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jFormattedTextField1KeyTyped(evt);
+                cvvKeyTyped(evt);
             }
         });
-        jPanel1.add(jFormattedTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 270, 230, 40));
+        jPanel1.add(cvv, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 270, 230, 40));
 
         btnVolver.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         btnVolver.setText("SALIR");
@@ -141,21 +152,21 @@ private void inicializarNombre(){
         jPanel1.add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, 110, 40));
 
         try {
-            jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-####-####-####")));
+            numTar.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-####-####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedTextField2.addMouseListener(new java.awt.event.MouseAdapter() {
+        numTar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jFormattedTextField2MousePressed(evt);
+                numTarMousePressed(evt);
             }
         });
-        jFormattedTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+        numTar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jFormattedTextField2KeyTyped(evt);
+                numTarKeyTyped(evt);
             }
         });
-        jPanel1.add(jFormattedTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, 230, 40));
+        jPanel1.add(numTar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, 230, 40));
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -188,45 +199,65 @@ private void inicializarNombre(){
         }        
     }//GEN-LAST:event_txtNombreMousePressed
 
-    private void jFormattedTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField1KeyTyped
+    private void cvvKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cvvKeyTyped
         if(!Character.isDigit(evt.getKeyChar())){
             evt.consume();
         }
-    }//GEN-LAST:event_jFormattedTextField1KeyTyped
+    }//GEN-LAST:event_cvvKeyTyped
 
-    private void jFormattedTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField2KeyTyped
+    private void numTarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numTarKeyTyped
      if(!Character.isDigit(evt.getKeyChar())){
             evt.consume();
         }
-    }//GEN-LAST:event_jFormattedTextField2KeyTyped
+    }//GEN-LAST:event_numTarKeyTyped
 
-    private void jFormattedTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField1ActionPerformed
+    private void cvvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cvvActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField1ActionPerformed
+    }//GEN-LAST:event_cvvActionPerformed
 
-    private void jFormattedTextField1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextField1MousePressed
+    private void cvvMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cvvMousePressed
         if(txtNombre.getText().isEmpty()){
            txtNombre.setText("Fulano Andres Martinez Gimenez de Jesus");
            txtNombre.setForeground(Color.gray.brighter());
        }
-    }//GEN-LAST:event_jFormattedTextField1MousePressed
+    }//GEN-LAST:event_cvvMousePressed
 
-    private void jFormattedTextField2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextField2MousePressed
+    private void numTarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_numTarMousePressed
        if(txtNombre.getText().isEmpty()){
            txtNombre.setText("Fulano Andres Martinez Gimenez de Jesus");
            txtNombre.setForeground(Color.gray.brighter());
        }
-    }//GEN-LAST:event_jFormattedTextField2MousePressed
+    }//GEN-LAST:event_numTarMousePressed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+       /*     Usuario nuevo=null;
+        try{
+            if(txtNombre.getText().isEmpty() || numTar.getText().isEmpty() || cvv.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Rellene todos los campos solicitados");
+           
+                }else{
+                Pago pago = new Pago();
+                Producto pro = new Producto ();
+                
+            }catch(){
+                    
+                    }
+                
+            
+                
+        }
+        */
+    }//GEN-LAST:event_jButton1ActionPerformed
 
  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnVolver;
+    private javax.swing.JFormattedTextField cvv;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -237,6 +268,7 @@ private void inicializarNombre(){
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblNombre;
+    private javax.swing.JFormattedTextField numTar;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }
