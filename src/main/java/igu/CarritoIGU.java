@@ -258,8 +258,6 @@ public class CarritoIGU extends javax.swing.JFrame {
 
     private void btnPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPago1ActionPerformed
         
-        
-        
         if(totalCarrito!=0){
             
             try {
