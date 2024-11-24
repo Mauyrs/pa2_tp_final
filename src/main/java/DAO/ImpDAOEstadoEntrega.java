@@ -24,7 +24,7 @@ public class ImpDAOEstadoEntrega implements EstadoEntregaDAO {
     public EstadoEntrega obtener(int id) throws SQLException, ClassNotFoundException {
         Connection con = ConSql.obtener();
         EstadoEntrega est = null;
-        String sql = "SELECT descripcion FROM categoria WHERE id = ?";
+        String sql = "SELECT descripcion FROM estado_entrega WHERE id = ?";
         PreparedStatement prep = con.prepareStatement(sql);
 
         prep.setInt(1, id);
@@ -46,7 +46,7 @@ public class ImpDAOEstadoEntrega implements EstadoEntregaDAO {
     public List<EstadoEntrega> listar() throws SQLException, ClassNotFoundException {
         Connection con = ConSql.obtener();
         List<EstadoEntrega> estados = new ArrayList();
-        String sql = "SELECT id, descripcion FROM categoria ";
+        String sql = "SELECT id, descripcion FROM estado_entrega ";
         PreparedStatement prep = con.prepareStatement(sql);
 
         ResultSet rs = prep.executeQuery();

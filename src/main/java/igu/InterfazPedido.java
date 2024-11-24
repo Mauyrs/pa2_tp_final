@@ -4,17 +4,79 @@
  */
 package igu;
 
+import DAO.CategoriaDAO;
+import DAO.ImpDAOCategoria;
+import DAO.ImpDAOEstadoEntrega;
+import DAO.ImpDAOPedido;
+import DAO.ImpDAOProducto;
+import DAO.ImpDAOUsuario;
+import DAO.PedidoDAO;
+import clases.Categoria;
+import clases.DetallePedido;
+import clases.EstadoEntrega;
+import clases.Pedido;
+import clases.Producto;
+import clases.Usuario;
+import java.awt.CardLayout;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Mauri
  */
 public class InterfazPedido extends javax.swing.JFrame {
 
-    /**
-     * Creates new form InterfazPedido
-     */
-    public InterfazPedido() {
+    
+    private Pedido pedido;
+    private Usuario usuarioInterfaz;
+    private final ImpDAOEstadoEntrega estadoEntregaDAO = new ImpDAOEstadoEntrega();
+    private final ImpDAOPedido pedidoDAO = new ImpDAOPedido();
+    private final ImpDAOUsuario usuarioDAO = new ImpDAOUsuario();
+    private final ImpDAOProducto productoDAO = new ImpDAOProducto();
+    private Map<Integer, EstadoEntrega> mapComEst = new HashMap();
+    
+    
+    public InterfazPedido(Usuario usu, Pedido ped) {
+        
+        this.usuarioInterfaz = usu;
+        this.pedido = ped;
+        
         initComponents();
+        modeloTabla = (DefaultTableModel) tablaDetalle.getModel();
+        
+        modeloTabla.setColumnIdentifiers(new String[]{"Nombre", "Cantidad", "Precio", "Total"});
+        cargarDatosPedido();
+        cargarEstiloTabla();
+        cargarEstados();
+        
+        CardLayout panelOpcional = (CardLayout) contenedorEstado.getLayout();
+        panelOpcional.addLayoutComponent(panelUsuEstado, "usuario");
+        panelOpcional.addLayoutComponent(panelAdmEstado, "admin");
+        
+        switch (usuarioInterfaz.getIdTipo()) {
+            case 1:
+                panelOpcional.show(contenedorEstado, "admin");
+            break;
+            case 2:
+                panelOpcional.show(contenedorEstado, "usuario");
+            break;
+            
+            
+            
+        }
+        
+        
+        
     }
 
     /**
@@ -27,93 +89,100 @@ public class InterfazPedido extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        scrollDetalle = new javax.swing.JScrollPane();
+        tablaDetalle = new javax.swing.JTable();
+        lblNombrePedido = new javax.swing.JLabel();
+        lblNombreUsu = new javax.swing.JLabel();
+        lblTotal = new javax.swing.JLabel();
         contenedorEstado = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jButton2 = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        panelUsuEstado = new javax.swing.JPanel();
+        btnCancelarPed = new javax.swing.JButton();
+        lblEstadoPed = new javax.swing.JLabel();
+        panelAdmEstado = new javax.swing.JPanel();
+        comboEstados = new javax.swing.JComboBox<>();
+        btnCambiarEstado = new javax.swing.JButton();
+        lblFechaPed = new javax.swing.JLabel();
+        lblEntregaEstimada = new javax.swing.JLabel();
+        btnVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        tablaDetalle.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Producto", "Cantidad", "Precio unitario", "Total"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, true, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(200);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setPreferredWidth(1);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setPreferredWidth(1);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setPreferredWidth(1);
+        scrollDetalle.setViewportView(tablaDetalle);
+        if (tablaDetalle.getColumnModel().getColumnCount() > 0) {
+            tablaDetalle.getColumnModel().getColumn(0).setResizable(false);
+            tablaDetalle.getColumnModel().getColumn(0).setPreferredWidth(200);
+            tablaDetalle.getColumnModel().getColumn(1).setResizable(false);
+            tablaDetalle.getColumnModel().getColumn(1).setPreferredWidth(1);
+            tablaDetalle.getColumnModel().getColumn(2).setResizable(false);
+            tablaDetalle.getColumnModel().getColumn(2).setPreferredWidth(1);
+            tablaDetalle.getColumnModel().getColumn(3).setResizable(false);
+            tablaDetalle.getColumnModel().getColumn(3).setPreferredWidth(1);
         }
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setText("Pedido con ID: ");
+        lblNombrePedido.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblNombrePedido.setText("Pedido con ID: ");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setText("Usuario: ");
+        lblNombreUsu.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblNombreUsu.setText("Usuario: ");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setText("Total: $");
+        lblTotal.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTotal.setText("Total: $ ");
 
         contenedorEstado.setBackground(new java.awt.Color(255, 255, 255));
         contenedorEstado.setLayout(new java.awt.CardLayout());
 
-        jPanel2.setLayout(new java.awt.BorderLayout());
+        panelUsuEstado.setLayout(new java.awt.BorderLayout());
 
-        jButton1.setText("Cancelar pedido");
-        jPanel2.add(jButton1, java.awt.BorderLayout.SOUTH);
+        btnCancelarPed.setText("Cancelar pedido");
+        panelUsuEstado.add(btnCancelarPed, java.awt.BorderLayout.SOUTH);
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setText("EstadoPedido");
-        jPanel2.add(jLabel4, java.awt.BorderLayout.CENTER);
+        lblEstadoPed.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblEstadoPed.setText("EstadoPedido");
+        panelUsuEstado.add(lblEstadoPed, java.awt.BorderLayout.CENTER);
 
-        contenedorEstado.add(jPanel2, "card2");
+        contenedorEstado.add(panelUsuEstado, "card2");
 
-        jPanel3.setLayout(new java.awt.BorderLayout());
+        panelAdmEstado.setBackground(new java.awt.Color(255, 255, 255));
+        panelAdmEstado.setLayout(new java.awt.BorderLayout());
+        panelAdmEstado.add(comboEstados, java.awt.BorderLayout.PAGE_START);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel3.add(jComboBox1, java.awt.BorderLayout.PAGE_START);
+        btnCambiarEstado.setText("Cambiar estado");
+        panelAdmEstado.add(btnCambiarEstado, java.awt.BorderLayout.SOUTH);
 
-        jButton2.setText("Cambiar estado");
-        jPanel3.add(jButton2, java.awt.BorderLayout.SOUTH);
+        contenedorEstado.add(panelAdmEstado, "card3");
 
-        contenedorEstado.add(jPanel3, "card3");
+        lblFechaPed.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblFechaPed.setText("Fecha del pedido: ");
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setText("Fecha del pedido: ");
+        lblEntregaEstimada.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblEntregaEstimada.setText("Entrega estimada: ");
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setText("Entrega estimada: ");
+        btnVolver.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -122,18 +191,21 @@ public class InterfazPedido extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 760, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(contenedorEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(317, 317, 317)
+                        .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(scrollDetalle, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 760, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblNombrePedido, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblFechaPed, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblEntregaEstimada, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblNombreUsu, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(contenedorEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(0, 0, Short.MAX_VALUE))))
                 .addContainerGap(50, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -142,20 +214,23 @@ public class InterfazPedido extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(26, 26, 26)
                         .addComponent(contenedorEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(lblNombrePedido)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2)
+                        .addComponent(lblNombreUsu)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel5)
+                        .addComponent(lblFechaPed)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel6)))
+                        .addComponent(lblEntregaEstimada)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addComponent(scrollDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTotal))
+                .addContainerGap())
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -163,56 +238,112 @@ public class InterfazPedido extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(InterfazPedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(InterfazPedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(InterfazPedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(InterfazPedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new InterfazPedido().setVisible(true);
-            }
-        });
-    }
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        int tipoUsuario = usuarioInterfaz.getIdTipo();
+            switch(tipoUsuario){
+                case 1:
+                    InterfazAdmin interAdmin = new InterfazAdmin (usuarioInterfaz);
+                    interAdmin.setVisible(true);
+                    this.setVisible(false);
+                break;
+                case 2:
+                    InterfazUsuario interUsu = new InterfazUsuario (usuarioInterfaz);
+                    interUsu.setVisible(true);
+                    this.setVisible(false);
+                break; 
+              }
+    }//GEN-LAST:event_btnVolverActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCambiarEstado;
+    private javax.swing.JButton btnCancelarPed;
+    private javax.swing.JButton btnVolver;
+    private javax.swing.JComboBox<String> comboEstados;
     private javax.swing.JPanel contenedorEstado;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblEntregaEstimada;
+    private javax.swing.JLabel lblEstadoPed;
+    private javax.swing.JLabel lblFechaPed;
+    private javax.swing.JLabel lblNombrePedido;
+    private javax.swing.JLabel lblNombreUsu;
+    private javax.swing.JLabel lblTotal;
+    private javax.swing.JPanel panelAdmEstado;
+    private javax.swing.JPanel panelUsuEstado;
+    private javax.swing.JScrollPane scrollDetalle;
+    private javax.swing.JTable tablaDetalle;
     // End of variables declaration//GEN-END:variables
+    private DefaultTableModel modeloTabla;
+    private EstadoEntrega estado; 
+    private void cargarEstados() {
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+        comboEstados.setModel(modelo);
+        Integer i = 0;
+        try {
+            for (EstadoEntrega est : estadoEntregaDAO.listar()){
+                modelo.addElement(est.getDescripcion());
+                mapComEst.put(i, est);
+                i++;
+                
+            }
+            Integer indexEstado = 0;
+            for(Map.Entry<Integer, EstadoEntrega> entry : mapComEst.entrySet()){
+                    EstadoEntrega estado = entry.getValue();
+                    if(estado.getIdEstado()==pedido.getIdEstado()){
+                        indexEstado = entry.getKey();
+                    }
+            }
+            
+            comboEstados.setSelectedIndex(indexEstado);
+            
+            
+        } catch (SQLException | ClassNotFoundException ex) {
+            modelo.addElement("Error Consulta SQL");
+        }
+        
+        
+    }
+
+    private void cargarDatosPedido() {
+        try {
+            Usuario usuPedido = usuarioDAO.obtener(pedido.getIdUsuario());
+            List<DetallePedido> detalles = pedidoDAO.obtenerDetalles(pedido);
+            Double totalPedido=0.0;
+            for(DetallePedido det : detalles){
+                Producto prod = productoDAO.obtener(det.getIdProducto());
+                Integer cantidad = det.getCantidad();
+                Double precioUnit = det.getPrecioUnitario();
+                Double totalFila = cantidad*precioUnit;
+                totalPedido += totalFila;
+                Object[] fila = {prod.getNombre(),cantidad,precioUnit, totalFila};
+                modeloTabla.addRow(fila);
+                
+            }
+            
+            this.estado = estadoEntregaDAO.obtener(pedido.getIdEstado());
+            
+            lblEstadoPed.setText(estado.getDescripcion());
+            lblNombreUsu.setText(lblNombreUsu.getText()+usuPedido.getNombre()+" "+usuPedido.getApellido());
+            lblNombrePedido.setText(lblNombrePedido.getText()+pedido.getIdPedido());
+            lblFechaPed.setText(lblFechaPed.getText()+pedido.getFechaPedido());
+            lblEntregaEstimada.setText(lblEntregaEstimada.getText()+pedido.getEntregaEstimada());
+            lblTotal.setText(lblTotal.getText() + totalPedido.toString());
+            
+            
+        } catch (SQLException | ClassNotFoundException ex) {
+            lblNombrePedido.setText("No se pudo recuperar los datos dele pedido");
+        }
+        
+    }
+
+    private void cargarEstiloTabla() {
+        DefaultTableCellRenderer derecha = new DefaultTableCellRenderer();
+        derecha.setHorizontalAlignment(SwingConstants.RIGHT);
+        tablaDetalle.getColumn("Cantidad").setCellRenderer(derecha);
+        tablaDetalle.getColumn("Precio").setCellRenderer(derecha);
+        tablaDetalle.getColumn("Total").setCellRenderer(derecha);
+
+    }
+    
+    
+    
 }

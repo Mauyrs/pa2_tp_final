@@ -47,13 +47,16 @@ public class CarritoIGU extends javax.swing.JFrame {
         try {
             Map<Producto, Integer> carritoUsu = usuarioDAO.obtenerCarrito(usu);
             DefaultTableModel tabla = (DefaultTableModel) tblCarrito.getModel();
+            
             tabla.setRowCount(0);
             tabla.setColumnIdentifiers(new String[]{"Nombre", "Cantidad", "Precio", "Total"});
             Map<Integer, Producto> mapRow= new HashMap();
             Integer fila = 0;
             
             DefaultTableCellRenderer derecha = new DefaultTableCellRenderer();
+            
             derecha.setHorizontalAlignment(SwingConstants.RIGHT);
+            
             tblCarrito.getColumn("Nombre").setResizable(false);
             tblCarrito.getColumn("Nombre").setPreferredWidth(200);
             
@@ -326,9 +329,6 @@ public class CarritoIGU extends javax.swing.JFrame {
             } catch (SQLException | ClassNotFoundException ex) {
                 JOptionPane.showMessageDialog(tblCarrito, "No se pudo conectar con la base de datos" + ex.getMessage());
             }
-            
-            
-            
         }else{
             JOptionPane.showMessageDialog(tblCarrito, "No se selecciono una fila");
         }

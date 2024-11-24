@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -85,7 +86,7 @@ public class ItemPedido extends javax.swing.JPanel {
                         .addComponent(lblNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(58, 58, 58)
                         .addComponent(lblEstado)))
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         panelPrincipalLayout.setVerticalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,7 +99,7 @@ public class ItemPedido extends javax.swing.JPanel {
                 .addComponent(lblFechaPed)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblEntregaEstim)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
 
         add(panelPrincipal, java.awt.BorderLayout.CENTER);
@@ -134,6 +135,8 @@ public class ItemPedido extends javax.swing.JPanel {
         return panelPrincipal;
     }
 
+    
+    
     private void rellenarPedido() {
         
             try {
@@ -153,10 +156,13 @@ public class ItemPedido extends javax.swing.JPanel {
                 String fechaPedido = pedido.getFechaPedido().toString();
                 lblFechaPed.setText(lblFechaPed.getText()+" " + fechaPedido);
                 lblEntregaEstim.setText(lblEntregaEstim.getText()+" "+ entregaEstimada);
+                lblNumero.setText("Pedido con ID: " + pedido.getIdPedido());
                 
                 
             } catch (SQLException | ClassNotFoundException ex) {
                 lblNumero.setText("NO SE PUDIERON OBTENER DATOS DEL PEDIDO");
+                JOptionPane.showMessageDialog(jPanel1, ex.toString());
+
             }
         
         

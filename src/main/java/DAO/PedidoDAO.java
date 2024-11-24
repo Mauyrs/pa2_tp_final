@@ -11,5 +11,5 @@ import java.util.Map;
 public interface PedidoDAO extends DAO<Pedido>{
     Pedido insertarCarrito(Usuario usu, Map<Producto, Integer> carrito) throws SQLException, ClassNotFoundException;
     Double recuperarTotal(Pedido ped) throws SQLException, ClassNotFoundException;
-    
+    List<DetallePedido> obtenerDetalles(Pedido ped) throws SQLException, ClassNotFoundException;
 }

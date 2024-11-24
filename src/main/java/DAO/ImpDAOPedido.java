@@ -190,8 +190,33 @@ public class ImpDAOPedido implements PedidoDAO {
         
         return total;
     }
-    
-    
-    
-    
+
+    @Override
+    public List<DetallePedido> obtenerDetalles(Pedido ped) throws SQLException, ClassNotFoundException {
+        Connection con = ConSql.obtener();
+        List<DetallePedido> detalles = new ArrayList();
+        
+        String sql = "SELECT id_producto, precio_unitario, cantidad FROM detalle_pedido WHERE id_pedido = ?";
+        
+        PreparedStatement prep = con.prepareStatement(sql);
+        prep.setInt(1, ped.getIdPedido());
+        
+        ResultSet rs = prep.executeQuery();
+        
+        while(rs.next()){
+            Integer idProd = rs.getInt("id_producto");
+            Double precio = rs.getDouble("precio_unitario");
+            Integer cantidad = rs.getInt("cantidad");
+            
+            DetallePedido detalle = new DetallePedido(ped.getIdPedido(), idProd, precio, cantidad);
+            
+            detalles.add(detalle);
+            
+        }   
+        ConSql.cerrarConexion(con);
+        ConSql.cerrarPrepStmt(prep);
+        ConSql.cerrarResultSet(rs);
+        
+        return detalles;
+    }
 }

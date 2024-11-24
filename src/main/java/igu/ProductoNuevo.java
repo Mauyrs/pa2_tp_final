@@ -455,7 +455,7 @@ public class ProductoNuevo extends javax.swing.JFrame {
                 
                 
                 productoDAO.actualizar(encontrado);
-                JOptionPane.showMessageDialog(this, "Se elimino: " + encontrado.getNombre());
+                JOptionPane.showMessageDialog(this, "Se modifico: " + encontrado.getNombre());
 
             }else{
                 JOptionPane.showMessageDialog(this, "No se encontro el producto con ID: "+idProducto);
