@@ -4,16 +4,32 @@
  */
 package igu;
 
+import DAO.ImpDAOUsuario;
+import clases.Producto;
 import clases.Usuario;
+import clases.main;
+import java.awt.Color;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import seguridad.Contrasena;
 
 public class PerfilUsuario extends javax.swing.JFrame {
        private Usuario usuario;  
-        
+       private final ImpDAOUsuario usuarioDAO = new ImpDAOUsuario();
     public PerfilUsuario(Usuario usuario) {
         this.usuario = usuario;
         initComponents();
+        rellenarDatos(usuario);
     }
-
+  private void rellenarDatos(Usuario usuario) {
+        txtNombre.setText(usuario.getNombre());
+        txtApellido.setText(usuario.getApellido());
+        txtCorreo.setText(usuario.getCorreo());
+        txtDireccion.setText(usuario.getDireccion());
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -23,15 +39,13 @@ public class PerfilUsuario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        txtCorreo2 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txtNombre = new javax.swing.JTextField();
         txtApellido = new javax.swing.JTextField();
-        txtCorreo = new javax.swing.JTextField();
-        txtDireccion = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         passConfirmar = new javax.swing.JPasswordField();
         passContra = new javax.swing.JPasswordField();
@@ -39,67 +53,89 @@ public class PerfilUsuario extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        txtCorreo = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
+        txtDireccion = new javax.swing.JTextField();
+        jCheckBox1 = new javax.swing.JCheckBox();
+
+        txtCorreo2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        txtCorreo2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Correo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 18))); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(204, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         jLabel1.setText("Contraseña:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 200, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, 200, -1));
 
         jLabel3.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         jLabel3.setText("Apellido:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, -1, 60));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, -1, 60));
 
         jLabel4.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         jLabel4.setText("Correo:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 140, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 150, 50));
 
         jLabel5.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         jLabel5.setText("Nombre:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 160, 50));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 160, 50));
 
-        txtNombre.setBorder(null);
-        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 40, 140, 40));
-
-        txtApellido.setBorder(null);
-        jPanel1.add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 100, 140, 40));
-
-        txtCorreo.setBorder(null);
-        jPanel1.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, 140, 40));
-
-        txtDireccion.setBorder(null);
-        jPanel1.add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 210, 140, 40));
+        txtApellido.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        txtApellido.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Apellido", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 18))); // NOI18N
+        jPanel1.add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 90, 290, -1));
 
         jLabel6.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         jLabel6.setText("Direccion:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 170, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 170, -1));
 
-        passConfirmar.setText("jPasswordField1");
+        passConfirmar.setText("********");
+        passConfirmar.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Contraseña", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 18))); // NOI18N
+        passConfirmar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                passConfirmarMousePressed(evt);
+            }
+        });
         passConfirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 passConfirmarActionPerformed(evt);
             }
         });
-        jPanel1.add(passConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 340, 140, 40));
+        jPanel1.add(passConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 360, 290, 50));
 
-        passContra.setText("jPasswordField1");
-        jPanel1.add(passContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 260, 140, 40));
+        passContra.setText("********");
+        passContra.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Contraseña", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 18))); // NOI18N
+        passContra.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                passContraMousePressed(evt);
+            }
+        });
+        passContra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passContraActionPerformed(evt);
+            }
+        });
+        jPanel1.add(passContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, 290, 50));
 
+        btnGuardar.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         btnGuardar.setText("Guardar cambios");
-        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 220, -1, -1));
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 440, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel8.setText(":");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 350, 10, 30));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 370, 10, 30));
 
         jLabel9.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         jLabel9.setText("<html>Confirmar contraseña </html>");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, 200, 150));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 200, 150));
 
         jButton1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         jButton1.setText("Volver");
@@ -110,15 +146,35 @@ public class PerfilUsuario extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 450, 110, 40));
 
+        txtCorreo.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        txtCorreo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Correo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 18))); // NOI18N
+        jPanel1.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, 290, -1));
+
+        txtNombre.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        txtNombre.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nombre", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 18))); // NOI18N
+        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 30, 290, -1));
+
+        txtDireccion.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        txtDireccion.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Direccion", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 18))); // NOI18N
+        jPanel1.add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 210, 290, -1));
+
+        jCheckBox1.setText("Mostrar contraseñas");
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 340, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 611, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 726, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 499, Short.MAX_VALUE)
         );
 
         pack();
@@ -146,11 +202,87 @@ public class PerfilUsuario extends javax.swing.JFrame {
                
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void passContraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passContraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passContraActionPerformed
+
+    private void passConfirmarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passConfirmarMousePressed
+if(String.valueOf(passConfirmar.getPassword()).equals("********")){
+              passConfirmar.setText("");
+              passConfirmar.setForeground(Color.black);
+              }       
+    }//GEN-LAST:event_passConfirmarMousePressed
+
+    private void passContraMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passContraMousePressed
+        if(String.valueOf(passContra.getPassword()).equals("********")){
+              passContra.setText("");
+              passContra.setForeground(Color.black);
+              }
+    }//GEN-LAST:event_passContraMousePressed
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+      String contra = String.valueOf(passContra.getPassword());
+      String confirma = String.valueOf(passConfirmar.getPassword());
+      String nombre = txtNombre.getText().trim();
+      String apellido = txtApellido.getText().trim();
+      String correo= txtCorreo.getText().trim();
+      String direccion = txtDireccion.getText().trim();
+      String correoAnt = usuario.getCorreo();
+      
+      try{
+          
+     if(correoAnt.equals(correo) || usuarioDAO.buscarCorreo(txtCorreo.getText().trim())==null){
+         if(!apellido.isBlank()){
+             usuario.setApellido(apellido);
+         }
+        if(!nombre.isBlank()){
+            usuario.setNombre(nombre);
+        }
+        if(!correo.isBlank()){
+            usuario.setCorreo(correo);
+        }
+        
+        if(!direccion.isBlank()){
+            usuario.setDireccion(direccion);
+        }
+         
+       
+        if(!contra.isEmpty()&& !confirma.isEmpty()){
+            if(contra.equals(confirma) && contra.length()>10){
+                String contraEncriptada= Contrasena.encriptar(contra);
+                usuario.setHashContrasena(contraEncriptada);
+            }else{
+                JOptionPane.showMessageDialog(null,"Las contraseñas no son iguales o menores a 10 caracteres");
+            }
+        }
+         usuarioDAO.actualizar(usuario);
+     }else{
+            JOptionPane.showMessageDialog(null,"Ese correo ya esta en uso");
+     }
+     
+     }catch(SQLException | ClassNotFoundException ex){
+         Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+     }
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+    if (jCheckBox1.isSelected()) {
+  
+                  passContra.setEchoChar((char) 0); // Hace visible el texto
+                  passConfirmar.setEchoChar((char) 0);
+                } else {
+                    // Si no está seleccionado, ocultar el texto de la contraseña
+                    passContra.setEchoChar('*'); // Vuelve a ocultar el texto
+                     passConfirmar.setEchoChar('*');
+                }   
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton jButton1;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -163,6 +295,7 @@ public class PerfilUsuario extends javax.swing.JFrame {
     private javax.swing.JPasswordField passContra;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtCorreo;
+    private javax.swing.JTextField txtCorreo2;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables

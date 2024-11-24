@@ -217,7 +217,7 @@ public class ProductoNuevo extends javax.swing.JFrame {
                 btnGuardar1ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnGuardar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 410, 120, 40));
+        jPanel1.add(btnGuardar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 380, 120, 40));
 
         btnEliminar.setText("Eliminar");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -225,7 +225,7 @@ public class ProductoNuevo extends javax.swing.JFrame {
                 btnEliminarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 280, 120, 40));
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 380, 120, 40));
 
         btnModificar1.setText("Modificar");
         btnModificar1.addActionListener(new java.awt.event.ActionListener() {
@@ -233,7 +233,7 @@ public class ProductoNuevo extends javax.swing.JFrame {
                 btnModificar1ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnModificar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 280, 120, 40));
+        jPanel1.add(btnModificar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 380, 120, 40));
 
         jLabel8.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel8.setText("ID");
@@ -273,7 +273,7 @@ public class ProductoNuevo extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 420, 110, 40));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 410, 110, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
