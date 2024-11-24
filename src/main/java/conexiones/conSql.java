@@ -28,9 +28,6 @@ public class ConSql {
         statement.close();
     }
     
-    public static void cerrarStatement(Statement statement) throws SQLException {
-        statement.close();
-    }
     
     public static void cerrarResultSet(ResultSet rs)throws SQLException{
         rs.close();
