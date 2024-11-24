@@ -258,7 +258,6 @@ public class CarritoIGU extends javax.swing.JFrame {
 
     private void btnPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPago1ActionPerformed
         
-        //TENGO QUE CONTROLAR QUE EL CARRITO NO SE PASE DEL STOCK
         
         
         if(totalCarrito!=0){
@@ -290,22 +289,7 @@ public class CarritoIGU extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(tblCarrito, "No existen productos en el carrito, no se puede proceder con la compra");
 
         }
-        
-       /* //ESTE CODIGO FUNCIONA PERFECTO PERO NO DEBERIA ESTAR ACA, SE DEBERIA USAR UNA VEZ SE CONFIRMAN LAS CREDENCIALES DE PAGO
-        try {
-            
-            Map<Producto, Integer> carritoActual = usuarioDAO.obtenerCarrito(usu);
-            Pedido ped = pedidoDAO.insertarCarrito(usu, carritoActual);
-            Double totalPedido = pedidoDAO.recuperarTotal(ped);
-            Pago pag = new Pago(totalPedido, LocalDate.now(), ped.getIdPedido());
-            pagoDAO.insertar(pag);
-            
-            
-        } catch (SQLException | ClassNotFoundException ex) {
-            JOptionPane.showMessageDialog(tblCarrito, "No se pudo conectar con la base de datos" + ex.getMessage());
-        }
-        */
-        
+                
         
 
     }//GEN-LAST:event_btnPago1ActionPerformed
