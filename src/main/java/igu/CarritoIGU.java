@@ -258,9 +258,6 @@ public class CarritoIGU extends javax.swing.JFrame {
 
     private void btnPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPago1ActionPerformed
         
-        //TENGO QUE CONTROLAR QUE EL CARRITO NO SE PASE DEL STOCK
-        
-        
         if(totalCarrito!=0){
             
             try {
@@ -290,8 +287,7 @@ public class CarritoIGU extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(tblCarrito, "No existen productos en el carrito, no se puede proceder con la compra");
 
         }
-        
-      
+
         
 
     }//GEN-LAST:event_btnPago1ActionPerformed
