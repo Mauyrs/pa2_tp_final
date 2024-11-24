@@ -32,6 +32,7 @@ public class CarritoIGU extends javax.swing.JFrame {
     private final ImpDAOCarrito carritoDAO = new ImpDAOCarrito();
     private final ImpDAOPedido pedidoDAO = new ImpDAOPedido();
     private final ImpDAOPago pagoDAO = new ImpDAOPago();
+    private Double totalCarrito;
     public CarritoIGU(Usuario usu) {
         this.usu = usu;
         initComponents();
@@ -40,7 +41,7 @@ public class CarritoIGU extends javax.swing.JFrame {
 
     private void inicializarCarrito(){
         
-        Double totalCarrito = 0.0;
+        totalCarrito = 0.0;
         String nombreCompleto = usu.getNombre().trim()+ " " + usu.getApellido().trim();
         Font fuente = new Font("Kameron",Font.BOLD,15);
         tblCarrito.setFont(fuente);
