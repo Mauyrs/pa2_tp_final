@@ -4,15 +4,29 @@
  */
 package igu;
 
+import DAO.ImpDAOUsuario;
+import clases.Pedido;
 import clases.Usuario;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.sql.SQLException;
+import java.util.List;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 
 public class ListaPedidosUsuario extends javax.swing.JFrame {
 
     private Usuario usuario;
+    private final ImpDAOUsuario usuarioDAO = new ImpDAOUsuario();
     public ListaPedidosUsuario(Usuario usuario) {
         this.usuario = usuario;
         initComponents();
+        completarLista();
+        
     }
 
     /**
@@ -25,14 +39,10 @@ public class ListaPedidosUsuario extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         btnVolver = new javax.swing.JButton();
-        btnListar = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jSeparator4 = new javax.swing.JSeparator();
-        jSeparator3 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
+        scrollPedidos = new javax.swing.JScrollPane();
+        panelPedidos = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -42,26 +52,6 @@ public class ListaPedidosUsuario extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "ID", "Estado", "Precio", "ID Usuario", "Fecha de pedido", "Entrega estimada"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 650, 292));
-
         btnVolver.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         btnVolver.setText("Volver");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
@@ -69,29 +59,25 @@ public class ListaPedidosUsuario extends javax.swing.JFrame {
                 btnVolverActionPerformed(evt);
             }
         });
-        jPanel1.add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, 110, 40));
+        jPanel1.add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, 110, 50));
 
-        btnListar.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        btnListar.setText("Listar");
-        jPanel1.add(btnListar, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 230, 90, 40));
-
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jSeparator4.setBackground(new java.awt.Color(0, 0, 0));
-        jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 160, 10));
-
-        jSeparator3.setBackground(new java.awt.Color(0, 0, 0));
-        jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 60, 10));
-
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
-        jLabel1.setText("MIS PEDIDOS");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 240, -1));
+        jLabel1.setText("TUS PEDIDOS");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, 260, -1));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, 250, 50));
+        panelPedidos.setBackground(new java.awt.Color(255, 255, 255));
+        panelPedidos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        panelPedidos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        panelPedidos.setFocusCycleRoot(true);
+        panelPedidos.setInheritsPopupMenu(true);
+        panelPedidos.setLayout(new javax.swing.BoxLayout(panelPedidos, javax.swing.BoxLayout.LINE_AXIS));
+        panelPedidos.setLayout(new javax.swing.BoxLayout(panelPedidos, javax.swing.BoxLayout.Y_AXIS));
+        scrollPedidos.setViewportView(panelPedidos);
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 924, 550));
+        jPanel1.add(scrollPedidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 770, 350));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 890, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -116,14 +102,63 @@ public class ListaPedidosUsuario extends javax.swing.JFrame {
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnListar;
     private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JPanel panelPedidos;
+    private javax.swing.JScrollPane scrollPedidos;
     // End of variables declaration//GEN-END:variables
+
+
+private void completarLista() {
+        try {
+            List<Pedido> pedidos = usuarioDAO.obtenerPedidosUsu(usuario);
+            Integer i = 1;
+            
+            if(!pedidos.isEmpty()){
+                for(Pedido ped : pedidos){
+                    ItemPedido item = new ItemPedido(ped);
+                    panelPedidos.add(item);
+                    JLabel numeroPed = item.getLblNumero();
+                    linkear(numeroPed, ped, this);
+                    if((i%2)==0){
+                        JPanel panel = item.getPanelPrincipal();
+                        panel.setBackground(panel.getBackground().brighter());
+                    }
+                    i++;
+                }
+            }else{
+                JOptionPane.showMessageDialog(this, "No se realizaron pedidos");
+            }
+            
+            panelPedidos.revalidate();
+        } catch (SQLException | ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(this, "No se pudo conectar a la base de datos "+ex.getMessage());
+        }
+    }
+
+    private void linkear(JLabel label, Pedido ped, ListaPedidosUsuario vent) {
+            Color letraOriginal = label.getForeground();
+
+            label.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseEntered(MouseEvent e) { 
+                    label.setForeground(new Color(70, 130, 180)); 
+                    label.setCursor(new Cursor(Cursor.HAND_CURSOR)); 
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    label.setForeground(letraOriginal); 
+                    label.setCursor(new Cursor(Cursor.DEFAULT_CURSOR)); 
+                }
+
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    InterfazPedido intProd = new InterfazPedido(usuario, ped);
+                    intProd.setVisible(true);
+                    vent.setVisible(false);
+                }
+            });
+    }
 }

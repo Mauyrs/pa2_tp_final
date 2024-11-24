@@ -91,7 +91,7 @@ public class ListaPedidosAdmin extends javax.swing.JFrame {
         panelPedidos.setLayout(new javax.swing.BoxLayout(panelPedidos, javax.swing.BoxLayout.Y_AXIS));
         scrollPedidos.setViewportView(panelPedidos);
 
-        jPanel1.add(scrollPedidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, 770, 320));
+        jPanel1.add(scrollPedidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, 770, 360));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 550));
 

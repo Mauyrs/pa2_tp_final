@@ -3,6 +3,7 @@ package DAO;
 
 import clases.Carrito;
 import clases.Producto;
+import clases.Usuario;
 import conexiones.ConSql;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -116,6 +117,25 @@ public class ImpDAOCarrito implements CarritoDAO{
         
         
         return camb;
+    }
+
+    @Override
+    public Integer vaciarCarrito(Usuario usu) throws SQLException, ClassNotFoundException {
+        Connection con = ConSql.obtener();
+        Carrito car = null;
+
+        String sql = "DELETE FROM carrito WHERE id_usuario = ?";
+        
+        PreparedStatement prep = con.prepareStatement(sql);
+
+        prep.setInt(1, usu.getIdUsuario());
+        Integer cant = prep.executeUpdate();
+                
+
+        ConSql.cerrarConexion(con);
+        ConSql.cerrarPrepStmt(prep);
+
+        return cant;
     }
     
     

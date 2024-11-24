@@ -1,6 +1,7 @@
 package DAO;
 
 import clases.Carrito;
+import clases.Usuario;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -16,4 +17,6 @@ public interface CarritoDAO {
     int actualizar(Carrito car) throws SQLException,ClassNotFoundException;
      
     int eliminar(Carrito car) throws SQLException, ClassNotFoundException;
+    
+    Integer vaciarCarrito(Usuario usu)throws SQLException, ClassNotFoundException;
 }

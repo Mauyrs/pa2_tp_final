@@ -136,6 +136,7 @@ public class CarritoIGU extends javax.swing.JFrame {
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 350, 110, 40));
 
         lblTotal.setEditable(false);
+        lblTotal.setBackground(new java.awt.Color(255, 255, 255));
         lblTotal.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         lblTotal.setText("000.000 $");
         lblTotal.setBorder(null);
@@ -144,7 +145,7 @@ public class CarritoIGU extends javax.swing.JFrame {
                 lblTotalActionPerformed(evt);
             }
         });
-        jPanel1.add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 360, 140, 20));
+        jPanel1.add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 360, 270, 20));
 
         tblCarrito.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -189,18 +190,18 @@ public class CarritoIGU extends javax.swing.JFrame {
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 0, 40)); // NOI18N
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTitulo.setText("Carrito de: ");
+        lblTitulo.setText("Carrito de: Nombre de Usuario");
         jPanel2.add(lblTitulo);
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 790, 60));
 
-        btnPago.setText("Realizar pago");
+        btnPago.setText("Finalizar Compra");
         btnPago.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPagoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 360, 120, 30));
+        jPanel1.add(btnPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 430, 120, 30));
 
         btnCambiar.setText("Cambiar cantidad");
         btnCambiar.addActionListener(new java.awt.event.ActionListener() {
@@ -256,9 +257,40 @@ public class CarritoIGU extends javax.swing.JFrame {
     }//GEN-LAST:event_lblTotalActionPerformed
 
     private void btnPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPago1ActionPerformed
-        InterfazPago inter = new InterfazPago(usu);
-        inter.setVisible(true);
-        this.setVisible(false);
+        
+        //TENGO QUE CONTROLAR QUE EL CARRITO NO SE PASE DEL STOCK
+        
+        
+        if(totalCarrito!=0){
+            
+            try {
+                Map<Producto, Integer> carritoActual = usuarioDAO.obtenerCarrito(usu);
+                boolean suficienteStock = true;
+                Producto insuf=null;
+                for(Map.Entry<Producto, Integer> entry : carritoActual.entrySet()){
+                            Producto prod = entry.getKey();
+                            
+                            Integer cant = entry.getValue();
+                            Integer nuevoStock = prod.getCantidadStock()-cant;
+                            if(nuevoStock<0){suficienteStock = false;insuf=prod;break;}
+                }
+                
+                if(suficienteStock){
+                    InterfazPago inter = new InterfazPago(usu, carritoActual);
+                    inter.setVisible(true);
+                    this.setVisible(false);
+                }else{
+                    JOptionPane.showMessageDialog(tblCarrito, "La cantidad requeridad de \n"+insuf.getNombre()+"\nEs mayor a la existente: "+insuf.getCantidadStock());
+                }
+                
+            } catch (SQLException | ClassNotFoundException ex) {
+                Logger.getLogger(CarritoIGU.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            JOptionPane.showMessageDialog(tblCarrito, "No existen productos en el carrito, no se puede proceder con la compra");
+
+        }
+        
        /* //ESTE CODIGO FUNCIONA PERFECTO PERO NO DEBERIA ESTAR ACA, SE DEBERIA USAR UNA VEZ SE CONFIRMAN LAS CREDENCIALES DE PAGO
         try {
             

@@ -289,6 +289,7 @@ public class InterfazPedido extends javax.swing.JFrame {
             pedido.setIdEstado(8);
             try {
                 pedidoDAO.actualizar(pedido);
+                lblEstadoPed.setText("Cancelado");
                 JOptionPane.showMessageDialog(this, "Pedido cancelado con exito.");
             } catch (SQLException ex) {
                 Logger.getLogger(InterfazPedido.class.getName()).log(Level.SEVERE, null, ex);
@@ -297,7 +298,7 @@ public class InterfazPedido extends javax.swing.JFrame {
             }
 
         }else{
-            
+            JOptionPane.showMessageDialog(this, "Solo puede cancelar pedidos que se encuentren en preparacion");
         }
         
         

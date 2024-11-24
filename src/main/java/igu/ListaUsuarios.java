@@ -65,11 +65,11 @@ public class ListaUsuarios extends javax.swing.JFrame {
         panelUsuarios.setLayout(new javax.swing.BoxLayout(panelUsuarios, javax.swing.BoxLayout.Y_AXIS));
         jScrollPane1.setViewportView(panelUsuarios);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 750, 290));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 810, 330));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         jLabel1.setText("LISTA DE USUARIOS");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, 360, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 360, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 924, 550));
 
@@ -105,12 +105,17 @@ public class ListaUsuarios extends javax.swing.JFrame {
     private void cargarUsuarios() {
         try {
             List<Usuario> usuarios = usuarioDAO.listar();
+            Integer i =1;
             if(!usuarios.isEmpty()){
                 for(Usuario usu : usuarios){
                     ItemUsuario item = new ItemUsuario(usu);
-                    
+                    panelUsuarios.add(item);
+                    if(i%2==0){
+                        item.setBackground(item.getBackground().brighter());
+                    }
+                    i++;
                 }
-                
+                panelUsuarios.revalidate();
             }else{
                 JOptionPane.showMessageDialog(this, "No existen usuarios registrados");
 

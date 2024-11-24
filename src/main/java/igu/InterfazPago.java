@@ -4,14 +4,19 @@
  */
 package igu;
 
+import DAO.ImpDAOCarrito;
 import DAO.ImpDAOPago;
+import DAO.ImpDAOPedido;
 import DAO.ImpDAOProducto;
 import clases.Pago;
+import clases.Pedido;
 import clases.Producto;
 import clases.Usuario;
 import clases.main;
 import java.awt.Color;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -21,17 +26,19 @@ import javax.swing.JOptionPane;
  * @author Nacho
  */
 public class InterfazPago extends javax.swing.JFrame {
-     private final ImpDAOPago pagoDAO = new ImpDAOPago ();
-     private Usuario usuario;
-     private final ImpDAOProducto productoDAO = new ImpDAOProducto ();
-    public InterfazPago(Usuario usuario) {
+    private final ImpDAOPago pagoDAO = new ImpDAOPago ();
+    private Usuario usuario;
+    private final ImpDAOProducto productoDAO = new ImpDAOProducto ();
+    private final ImpDAOCarrito carritoDAO = new ImpDAOCarrito();
+    private final ImpDAOPedido pedidoDAO = new ImpDAOPedido();
+    private Map<Producto, Integer> carrito;
+    public InterfazPago(Usuario usuario, Map<Producto, Integer> car) {
         this.usuario= usuario;
+        this.carrito = car;
         initComponents();
-        inicializarNombre();
+        
     }
-private void inicializarNombre(){
-        lblNombre.setText(this.usuario.getNombre().trim().toUpperCase());
-    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -42,7 +49,6 @@ private void inicializarNombre(){
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        lblNombre = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
@@ -64,10 +70,6 @@ private void inicializarNombre(){
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lblNombre.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
-        lblNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jPanel1.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 480, 70));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel1.setText("CVV");
@@ -122,6 +124,11 @@ private void inicializarNombre(){
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 380, 30, 30));
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 380, 110, 30));
 
         try {
@@ -174,9 +181,9 @@ private void inicializarNombre(){
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 0, 48)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Dialog", 0, 44)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("PROCEDEREMOS CON EL PAGO");
+        jLabel2.setText("INGRESE SUS DATOS PARA EL PAGO");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 850, 80));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, 90));
@@ -234,26 +241,62 @@ private void inicializarNombre(){
     }//GEN-LAST:event_numTarMousePressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        /*
-         Pago pago = null;
-         Producto pro = null;
-        try{
-            if(txtNombre.getText().isEmpty() || numTar.getText().isEmpty() || cvv.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null,"Rellene todos los campos solicitados");
-           
-                }else{
-              pedido = new
-              pago = new(lblTotal , fecha, idpedido??)
-              pagoDAO.insertar(pago);
-            }
-            }catch(SQLException | ClassNotFoundException ex){
-                    Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
-            }
-          */
+        
+         /*
+            Controlar que no esten vacios
+            Controlar que el numero de tarjeta este completo
+            Controlar que el CVV sean 3 numeros
+        
+        */  
             
+         if(!(numTar.getText().isBlank()||cvv.getText().isBlank()|| (txtNombre.getText().isBlank()||txtNombre.getText().equals("Fulano Andres Martinez Gimenez de Jesus")))){
+             if(cvv.getText().length()==3 && numTar.getText().length()==19){
+                 try {
+                     Pedido ped = pedidoDAO.insertarCarrito(usuario, carrito);
+                     Double totalPedido = pedidoDAO.recuperarTotal(ped);
+                     Pago pag = new Pago(totalPedido,LocalDate.now(),ped.getIdPedido());
+                     Integer cambios = pagoDAO.insertar(pag);
+                     
+                     if(cambios == 1){
+                        for(Map.Entry<Producto, Integer> entry : carrito.entrySet()){
+                            Producto prod = entry.getKey();
+                            Integer cant = entry.getValue();
+                            Integer nuevoStock = prod.getCantidadStock()-cant;
+                            prod.setCantidadStock(nuevoStock); 
+                        }
+                         
+                         carritoDAO.vaciarCarrito(usuario);
+                         JOptionPane.showMessageDialog(this, "Compra completada! Continuar a pedidos...");
+                         ListaPedidosUsuario interfazPedidos = new ListaPedidosUsuario(usuario);
+                         interfazPedidos.setVisible(true);
+                         this.setVisible(false);
+                         
+                         
+                     }else{
+                         pedidoDAO.eliminar(ped);
+                     }
+                     
+                     
+                 } catch (SQLException | ClassNotFoundException ex) {
+                     JOptionPane.showMessageDialog(this, "No se pudo conectar a la base de datos: "+ex.getMessage());
+                 }
+                 
+             }else{
+                 JOptionPane.showMessageDialog(this, "Debe ingresar un cvv y un numero de tarjeta valido");
+             }
+         }else{
+            JOptionPane.showMessageDialog(this, "Debe ingresar todos los datos antes de continuar");
+
+         }
+         
+         
                 
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox2ActionPerformed
 
  
 
@@ -272,7 +315,6 @@ private void inicializarNombre(){
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel lblNombre;
     private javax.swing.JFormattedTextField numTar;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
