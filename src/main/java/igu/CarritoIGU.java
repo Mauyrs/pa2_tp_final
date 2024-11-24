@@ -201,7 +201,7 @@ public class CarritoIGU extends javax.swing.JFrame {
                 btnPagoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 430, 120, 30));
+        jPanel1.add(btnPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 430, 160, 30));
 
         btnCambiar.setText("Cambiar cantidad");
         btnCambiar.addActionListener(new java.awt.event.ActionListener() {
