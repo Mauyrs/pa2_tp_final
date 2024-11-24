@@ -154,7 +154,7 @@ public class InterfazPago extends javax.swing.JFrame {
         jPanel1.add(cvv, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 270, 230, 40));
 
         btnVolver.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        btnVolver.setText("SALIR");
+        btnVolver.setText("Volver");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVolverActionPerformed(evt);
@@ -242,12 +242,7 @@ public class InterfazPago extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
-         /*
-            Controlar que no esten vacios
-            Controlar que el numero de tarjeta este completo
-            Controlar que el CVV sean 3 numeros
         
-        */  
             
          if(!(numTar.getText().isBlank()||cvv.getText().isBlank()|| (txtNombre.getText().isBlank()||txtNombre.getText().equals("Fulano Andres Martinez Gimenez de Jesus")))){
              if(cvv.getText().length()==3 && numTar.getText().length()==19){

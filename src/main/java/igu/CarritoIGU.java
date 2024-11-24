@@ -90,7 +90,7 @@ public class CarritoIGU extends javax.swing.JFrame {
             }
             
             mapFilaProducto = mapRow;
-            lblTotal.setText("$ "+totalCarrito.toString());
+            lblTotal.setText("$ "+String.format("%.2f",totalCarrito));
             lblTitulo.setText("Carrito de: "+nombreCompleto);
             
             
@@ -291,21 +291,7 @@ public class CarritoIGU extends javax.swing.JFrame {
 
         }
         
-       /* //ESTE CODIGO FUNCIONA PERFECTO PERO NO DEBERIA ESTAR ACA, SE DEBERIA USAR UNA VEZ SE CONFIRMAN LAS CREDENCIALES DE PAGO
-        try {
-            
-            Map<Producto, Integer> carritoActual = usuarioDAO.obtenerCarrito(usu);
-            Pedido ped = pedidoDAO.insertarCarrito(usu, carritoActual);
-            Double totalPedido = pedidoDAO.recuperarTotal(ped);
-            Pago pag = new Pago(totalPedido, LocalDate.now(), ped.getIdPedido());
-            pagoDAO.insertar(pag);
-            
-            
-        } catch (SQLException | ClassNotFoundException ex) {
-            JOptionPane.showMessageDialog(tblCarrito, "No se pudo conectar con la base de datos" + ex.getMessage());
-        }
-        */
-        
+      
         
 
     }//GEN-LAST:event_btnPago1ActionPerformed
