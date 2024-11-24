@@ -234,5 +234,31 @@ public class ImpDAOUsuario implements UsuarioDAO{
         return usu;
 
     }
+
+    @Override
+    public Integer totalPedidos(Usuario usu) throws SQLException, ClassNotFoundException {
+        Connection con = ConSql.obtener();
+        
+        
+        String sql = "SELECT COUNT(id) AS total FROM pedido WHERE id_usuario = ?";
+        
+        PreparedStatement prep = con.prepareStatement(sql);
+        
+        prep.setInt(1, usu.getIdUsuario());
+        Integer total = 0;
+        
+        ResultSet rs = prep.executeQuery();
+        if(rs.next()){
+            total = rs.getInt("total");
+            
+        }
+        
+        ConSql.cerrarConexion(con);
+        ConSql.cerrarPrepStmt(prep);
+        ConSql.cerrarResultSet(rs);
+        
+        return total;
+
+    }
     
 }

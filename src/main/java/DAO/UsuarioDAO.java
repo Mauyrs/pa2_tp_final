@@ -11,4 +11,5 @@ public interface UsuarioDAO extends DAO<Usuario>{
     List<Pedido> obtenerPedidosUsu(Usuario usu) throws SQLException,ClassNotFoundException;
     Map<Producto, Integer> obtenerCarrito(Usuario usu) throws SQLException,ClassNotFoundException;
     Usuario buscarCorreo(String correo) throws SQLException,ClassNotFoundException;
+    Integer totalPedidos(Usuario usu)throws SQLException,ClassNotFoundException;
 }

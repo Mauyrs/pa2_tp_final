@@ -26,6 +26,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -150,9 +151,15 @@ public class InterfazPedido extends javax.swing.JFrame {
         contenedorEstado.setBackground(new java.awt.Color(255, 255, 255));
         contenedorEstado.setLayout(new java.awt.CardLayout());
 
+        panelUsuEstado.setBackground(new java.awt.Color(255, 255, 255));
         panelUsuEstado.setLayout(new java.awt.BorderLayout());
 
         btnCancelarPed.setText("Cancelar pedido");
+        btnCancelarPed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarPedActionPerformed(evt);
+            }
+        });
         panelUsuEstado.add(btnCancelarPed, java.awt.BorderLayout.SOUTH);
 
         lblEstadoPed.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -166,6 +173,11 @@ public class InterfazPedido extends javax.swing.JFrame {
         panelAdmEstado.add(comboEstados, java.awt.BorderLayout.PAGE_START);
 
         btnCambiarEstado.setText("Cambiar estado");
+        btnCambiarEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCambiarEstadoActionPerformed(evt);
+            }
+        });
         panelAdmEstado.add(btnCambiarEstado, java.awt.BorderLayout.SOUTH);
 
         contenedorEstado.add(panelAdmEstado, "card3");
@@ -253,6 +265,43 @@ public class InterfazPedido extends javax.swing.JFrame {
                 break; 
               }
     }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void btnCambiarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiarEstadoActionPerformed
+        EstadoEntrega seleccionado = mapComEst.get(comboEstados.getSelectedIndex());
+        
+        if(seleccionado.getIdEstado() != pedido.getIdEstado()){
+            pedido.setIdEstado(seleccionado.getIdEstado());
+            try {
+                pedidoDAO.actualizar(pedido);
+                JOptionPane.showMessageDialog(this, "Estado de pedido actualizado con exito.");
+            } catch (SQLException | ClassNotFoundException ex) {
+                JOptionPane.showMessageDialog(this, "No se pudo cambiar el estado del pedido.");
+            }
+        }else{
+                JOptionPane.showMessageDialog(this, "Este pedido ya tiene el estado de \""+ seleccionado.getDescripcion() +"\"");            
+        }
+    }//GEN-LAST:event_btnCambiarEstadoActionPerformed
+
+    private void btnCancelarPedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarPedActionPerformed
+        
+        
+        if(pedido.getIdEstado()==6){
+            pedido.setIdEstado(8);
+            try {
+                pedidoDAO.actualizar(pedido);
+                JOptionPane.showMessageDialog(this, "Pedido cancelado con exito.");
+            } catch (SQLException ex) {
+                Logger.getLogger(InterfazPedido.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(InterfazPedido.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }else{
+            
+        }
+        
+        
+    }//GEN-LAST:event_btnCancelarPedActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCambiarEstado;

@@ -234,7 +234,7 @@ private void inicializarNombre(){
     }//GEN-LAST:event_numTarMousePressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+        /*
          Pago pago = null;
          Producto pro = null;
         try{
@@ -249,7 +249,7 @@ private void inicializarNombre(){
             }catch(SQLException | ClassNotFoundException ex){
                     Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
             }
-          
+          */
             
                 
         
